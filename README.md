@@ -1,4 +1,4 @@
-# <img src="https://rawgit.com/Wagnerp/Krypton-NET-4.7/master/Help/Output/Logo.PNG">-NET-4.00
+# <img src="https://rawgit.com/Wagnerp/Krypton-NET-4.7/master/Help/Output/Logo.PNG">-NET-5.4000
 
 =======
 
@@ -6,7 +6,7 @@
 
 =======
 
-## NOTE: With the advent of Windows 10 1803 being released to the general public, I am pleased to announce the availability of a 4.02 release that will support the .NET 4.0.2 framework. You can follow the project [here](https://github.com/Wagnerp/Krypton-NET-4.02).
+## NOTE: With the advent of Windows 10 1803 being released to the general public, I am pleased to announce the availability of a 5.4002 release that will support the .NET 5.400.2 framework. You can follow the project [here](https://github.com/Wagnerp/Krypton-NET-5.4002).
 
 =======
 
@@ -74,7 +74,7 @@
 * Build 569 (build date Sunday 22nd April 2018) is now available. It is recommended that you uninstall/remove previous versions first before using this version.
 * DLL assembly names have been renamed to `Krypton Design`, `Krypton Docking`, `Krypton Navigator`, `Krypton Ribbon`, `Krypton Toolkit` and `Krypton Workspace`,  these changes do also apply to other binaries in this repo. However these changes does **NOT** affect the namespace names of `ComponentFactory.Krypton.xx`.
 * Build output paths have been changed for easier installer authoring and synchronisation.
-* Renamed repo title to `Krypton-NET-4.00` to better reflect versioning.
+* Renamed repo title to `Krypton-NET-5.4000` to better reflect versioning.
 * Removed different architectures folder for easier navigation.
 
 =======
@@ -132,7 +132,7 @@
 =======
 
 ## 2018-03-24am Palette upgrade tool
-* The palette upgrade tool is now back! Enhancements over previous commercial version 4.4.0 include:
+* The palette upgrade tool is now back! Enhancements over previous commercial version 4.5.400 include:
 - Ability to export upgraded palette XML files
 - Check to see if the output palette file is not saved before closing
 * Exploration into a console version is in the works
@@ -180,7 +180,7 @@
 =======
 
 ## 2018-01-27pm New Nuget package release
-* New Nuget package, version `4.00.544` (build date January 27th, 2018) has been released
+* New Nuget package, version `5.4000.544` (build date January 27th, 2018) has been released
 
 =======
 
@@ -204,8 +204,8 @@
 =======
 
 ## 2018-01-24am Designer bug fix
-* Fixed bug with ComponentFactory.Krypton.Design.dll to version `4.00.0.0` due to hard coded values in toolkit code. Thanks to Smurf-IV for pointing this out to me.
-* New Nuget package, version `4.00.524`, relating to the version of ComponentFactory.Krypton.Designer.dll (build date January 24th, 2018) will be uploaded to incorporate this fix.
+* Fixed bug with ComponentFactory.Krypton.Design.dll to version `5.4000.0.0` due to hard coded values in toolkit code. Thanks to Smurf-IV for pointing this out to me.
+* New Nuget package, version `5.4000.524`, relating to the version of ComponentFactory.Krypton.Designer.dll (build date January 24th, 2018) will be uploaded to incorporate this fix.
 
 =======
 
@@ -216,10 +216,10 @@
 =======
 
 ## 2018-01-20 Nuget package update
-* Fixed Nuget package specification to show the true file assembly number, i.e `4.00.522.0` (build date January 16th, 2018) [Issue, #13](https://github.com/Wagnerp/Krypton-NET-4.0/issues/13)
-* All new releases of packages will no longer have a dedicated changelog. Instead, it will point users back to [this repository](https://github.com/Wagnerp/Krypton-NET-4.0) for more information.
-* All new releases of packages will no longer ship with the '.chm' help file. This is to reduce file size from 00+ MB to 5 - 6 MB. If the help file is needed, then please refer to [this link](https://github.com/Wagnerp/Krypton-NET-4.0/raw/master/Help/KryptonHelp.chm) to download it.
-* New versions of Nuget packages can be obtained via [this link](https://www.nuget.org/packages/KryptonToolkitSuite47/) or via your package manager with the following command 'Install-Package KryptonToolkitSuite47 -Version 4.00.xxx' (replace the x's with version number) or by searching KryptonToolkitSuite47 in your package manager.
+* Fixed Nuget package specification to show the true file assembly number, i.e `5.4000.522.0` (build date January 16th, 2018) [Issue, #13](https://github.com/Wagnerp/Krypton-NET-5.400/issues/13)
+* All new releases of packages will no longer have a dedicated changelog. Instead, it will point users back to [this repository](https://github.com/Wagnerp/Krypton-NET-5.400) for more information.
+* All new releases of packages will no longer ship with the '.chm' help file. This is to reduce file size from 00+ MB to 5 - 6 MB. If the help file is needed, then please refer to [this link](https://github.com/Wagnerp/Krypton-NET-5.400/raw/master/Help/KryptonHelp.chm) to download it.
+* New versions of Nuget packages can be obtained via [this link](https://www.nuget.org/packages/KryptonToolkitSuite47/) or via your package manager with the following command 'Install-Package KryptonToolkitSuite47 -Version 5.4000.xxx' (replace the x's with version number) or by searching KryptonToolkitSuite47 in your package manager.
 
 =======
 
@@ -276,7 +276,7 @@
 =======
 
 ## 2018-01-09 Incremental versioning
-* To reflect the .Net version move to Major.Minor of `4.00`
+* To reflect the .Net version move to Major.Minor of `5.4000`
 * Build will increment, with the final useless installable number left at zero
 * Use "[Automatic Versions](https://marketplace.visualstudio.com/items?itemName=PrecisionInfinity.AutomaticVersions)" to perform the update build number action
 
@@ -292,7 +292,7 @@
 * Reupload of fresh binaries after a good fight!
 * Changed year of all classes, controls etc from `2017` to `2018`
 * Mass rebuild of solution
-* Eradicated all references of `4.5.0.0` to `4.0.0.0`
+* Eradicated all references of `4.5.0.0` to `5.400.0.0`
 
 =======
 
@@ -333,14 +333,14 @@
 * Work out why clipping is the default for "DrawText" 
   - Applies to buttons, Labels, Form Titles
   - Create test project - has theme selection, for type testing
-* Remove `Severity Code Description Project File Line Suppression State` Warning CS0618 `SecurityAction.RequestMinimum` is obsolete: `Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155500 for more information.` Basic Events 2015 [Source Path]\Krypton-NET-4.0\Source\Krypton Navigator Examples\Basic Events\Properties\AssemblyInfo.cs 35 Active
+* Remove `Severity Code Description Project File Line Suppression State` Warning CS0618 `SecurityAction.RequestMinimum` is obsolete: `Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155500 for more information.` Basic Events 2015 [Source Path]\Krypton-NET-5.400\Source\Krypton Navigator Examples\Basic Events\Properties\AssemblyInfo.cs 35 Active
  
 =======
 ## 2017-10-17 Commits are:
-* An update to Component factory's KryptonToolkit to support the .NET 4.0 framework.
+* An update to Component factory's KryptonToolkit to support the .NET 5.400 framework.
 * Add generic c# .gitignore
 * Change the solution to reflect Visual Studio 2017 usage
-* Change Test apps to use .Net 4.0 Target framework
+* Change Test apps to use .Net 5.400 Target framework
 * Add designer Dll to test apps to allow visual design and testing without GAC'ing
 
 =======
@@ -374,10 +374,10 @@
 =======
 
 ## 2017-10-17 Commits are:
-* An update to Component factory's KryptonToolkit to support the .NET 4.0 framework.
+* An update to Component factory's KryptonToolkit to support the .NET 5.400 framework.
 * Add generic c# .gitignore
 * Change the solution to reflect Visual Studio 2017 usage
-* Change Test apps to use .Net 4.0.0 Target framework
+* Change Test apps to use .Net 5.400.0 Target framework
 * Add designer Dll to test apps to allow visual design and testing without GAC'ing
 
 =======
@@ -390,7 +390,7 @@
 * Work out why clipping is the default for `DrawText` 
   - Applies to buttons, Labels, Form Titles
   - Create test project - has theme selection, for type testing
-* Remove Severity Code Description Project File Line Suppression State Warning CS0618 'SecurityAction.RequestMinimum' is obsolete: 'Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155500 for more information.' Basic Events 2015 [Source Path]\Krypton-NET-4.0\Source\Krypton Navigator Examples\Basic Events\Properties\AssemblyInfo.cs 35 Active
+* Remove Severity Code Description Project File Line Suppression State Warning CS0618 'SecurityAction.RequestMinimum' is obsolete: 'Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155500 for more information.' Basic Events 2015 [Source Path]\Krypton-NET-5.400\Source\Krypton Navigator Examples\Basic Events\Properties\AssemblyInfo.cs 35 Active
 
 =======
  

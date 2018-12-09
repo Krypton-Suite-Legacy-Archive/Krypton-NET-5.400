@@ -83,7 +83,7 @@
 =======
 
 ## 2018-03-24am Palette upgrade tool
-* The palette upgrade tool is now back! Enhancements over previous commercial version 4.4.0 include:
+* The palette upgrade tool is now back! Enhancements over previous commercial version 4.5.400 include:
 - Ability to export upgraded palette XML files
 - Check to see if the output palette file is not saved before closing
 * Exploration into a console version is in the works

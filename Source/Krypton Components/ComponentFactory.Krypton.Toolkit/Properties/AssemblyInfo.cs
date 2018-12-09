@@ -5,8 +5,8 @@
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-4.00)
-//  Version 4.00.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
+//  Version 5.4000.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -16,10 +16,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 
-[assembly: AssemblyVersion("4.000.622.0")]
-[assembly: AssemblyFileVersion("4.000.622.0")]
+[assembly: AssemblyVersion("5.400.622.0")]
+[assembly: AssemblyFileVersion("5.400.622.0")]
 [assembly: AssemblyCopyright("© Component Factory Pty Ltd, 2006-2018. Then modifications by Peter Wagner (aka Wagnerp) & Simon Coghlan (aka Smurf-IV) 2017-2018. All rights reserved.")]
-[assembly: AssemblyInformationalVersion("4.000.618.0")]
+[assembly: AssemblyInformationalVersion("5.400.618.0")]
 [assembly: AssemblyProduct("Krypton Toolkit")]
 [assembly: AssemblyDefaultAlias("ComponentFactory.Krypton.Toolkit.dll")]
 [assembly: AssemblyTitle("ComponentFactory.Krypton.Toolkit")]
