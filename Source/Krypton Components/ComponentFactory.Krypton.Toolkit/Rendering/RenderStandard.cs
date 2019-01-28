@@ -1,22 +1,22 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
+using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -1050,7 +1050,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                      PaletteState state,
                                                      bool composition,
                                                      bool glowing)
-		{
+        {
             Debug.Assert(context != null);
             Debug.Assert(palette != null);
             Debug.Assert(values != null);
@@ -1146,14 +1146,14 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>Memento with cached information.</returns>
         public override IDisposable LayoutContent(ViewLayoutContext context,
-											      Rectangle availableRect,
-											      IPaletteContent palette,
-											      IContentValues values,
-											      VisualOrientation orientation,
-											      PaletteState state,
+                                                  Rectangle availableRect,
+                                                  IPaletteContent palette,
+                                                  IContentValues values,
+                                                  VisualOrientation orientation,
+                                                  PaletteState state,
                                                   bool composition,
                                                   bool glowing)
-		{
+        {
             Debug.Assert(context != null);
             Debug.Assert(palette != null);
             Debug.Assert(values != null);
@@ -1368,7 +1368,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                palette.GetContentShortTextColorAngle(state),
                                                                orientation))
                     {
-                        if (!AccurateText.DrawString(context.Graphics,
+                        /*if (!AccurateText.DrawString(context.Graphics,
                                                      colorBrush,
                                                      standard.ShortTextRect,
                                                      context.Control.RightToLeft,
@@ -1376,13 +1376,14 @@ namespace ComponentFactory.Krypton.Toolkit
                                                      composition,
                                                      glowing,
                                                      state,
-                                                     standard.ShortTextMemento))
+                                                     standard.ShortTextMemento))*/
+                        if (!AccurateText.DrawString(context.Graphics, colorBrush, standard.ShortTextRect, context.Control.RightToLeft, standard.Orientation, composition, state, standard.ShortTextMemento))
                         {
                             // Failed to draw means the font is likely to be invalid, get a fresh font
                             standard.ShortTextMemento.Font = palette.GetContentShortTextNewFont(state);
 
                             // Try again using the new font
-                            AccurateText.DrawString(context.Graphics,
+                            /*AccurateText.DrawString(context.Graphics,
                                                     colorBrush,
                                                     standard.ShortTextRect,
                                                     context.Control.RightToLeft,
@@ -1390,7 +1391,8 @@ namespace ComponentFactory.Krypton.Toolkit
                                                     composition,
                                                     glowing,
                                                     state,
-                                                    standard.ShortTextMemento);
+                                                    standard.ShortTextMemento);*/
+                            AccurateText.DrawString(context.Graphics, colorBrush, standard.ShortTextRect, context.Control.RightToLeft, standard.Orientation, composition, state, standard.ShortTextMemento);
                         }
                     }
 
@@ -1412,7 +1414,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                          context.Control.RightToLeft,
                                                          standard.Orientation,
                                                          composition,
-                                                         glowing,
                                                          state,
                                                          standard.ShortTextMemento))
                             {
@@ -1425,7 +1426,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                         context.Control.RightToLeft,
                                                         standard.Orientation,
                                                         composition,
-                                                        glowing,
                                                         state,
                                                         standard.ShortTextMemento);
                             }
@@ -1457,7 +1457,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                      context.Control.RightToLeft,
                                                      standard.Orientation,
                                                      composition,
-                                                     glowing,
                                                      state,
                                                      standard.LongTextMemento))
                         {
@@ -1470,7 +1469,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                     context.Control.RightToLeft,
                                                     standard.Orientation,
                                                     composition,
-                                                    glowing,
                                                     state,
                                                     standard.LongTextMemento);
                         }
@@ -1494,7 +1492,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                          context.Control.RightToLeft,
                                                          standard.Orientation,
                                                          composition,
-                                                         glowing,
                                                          state,
                                                          standard.LongTextMemento))
                             {
@@ -1507,7 +1504,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                         context.Control.RightToLeft,
                                                         standard.Orientation,
                                                         composition,
-                                                        glowing,
                                                         state,
                                                         standard.LongTextMemento);
                             }
@@ -5700,7 +5696,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Implementation Content
-       
+
         private static Padding ContentPaddingForButtonForm(Padding original,
                                                            ViewLayoutContext context,
                                                            int allocatedHeight)
@@ -5881,7 +5877,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       paletteContent.GetContentShortTextPrefix(state),
                                                                       memento.ShortTextHint,
                                                                       composition,
-                                                                      glowing,
                                                                       fontChanged);
 
                 // Space required for short text starts with the text width itself
@@ -5965,7 +5960,6 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                      paletteContent.GetContentLongTextPrefix(state),
                                                                      memento.LongTextHint,
                                                                      composition,
-                                                                     glowing,
                                                                      fontChanged);
 
                 // Space required for long text starts with the text width itself
@@ -5976,7 +5970,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                            allocation, displayRect,
                                            spacingGap, memento.LongTextTrimming,
                                            ref requiredSpace,
-                    (memento.ShortTextMemento!=null)?memento.ShortTextMemento.Format.FormatFlags.HasFlag(StringFormatFlags.NoClip): true)
+                    (memento.ShortTextMemento != null) ? memento.ShortTextMemento.Format.FormatFlags.HasFlag(StringFormatFlags.NoClip) : true)
                 )
                 {
                     // Cache the actual draw size of the text
@@ -6432,7 +6426,7 @@ namespace ComponentFactory.Krypton.Toolkit
             }
         }
 
-        RadioButtonState DiscoverRadioButtonState(bool enabled,
+        private RadioButtonState DiscoverRadioButtonState(bool enabled,
                                                   bool checkState,
                                                   bool tracking,
                                                   bool pressed)
@@ -10447,8 +10441,8 @@ namespace ComponentFactory.Krypton.Toolkit
             Color[] colorsLowerHalf = { bottomDark, bottomMedium, bottomLight, bottomLight, bottomMedium, bottomDark };
 
             float[] posLowerHalf = state == PaletteState.Pressed
-                ? new float[] {0.0f, 0.3f, 0.5f, 0.5f, 0.7f, 1.0f}
-                : new float[] {0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f};
+                ? new float[] { 0.0f, 0.3f, 0.5f, 0.5f, 0.7f, 1.0f }
+                : new float[] { 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f };
 
             ColorBlend blendLowerHalf = new ColorBlend
             {
