@@ -340,6 +340,7 @@
 * Remove `Severity Code Description Project File Line Suppression State` Warning CS0618 `SecurityAction.RequestMinimum` is obsolete: `Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155500 for more information.` Basic Events 2015 [Source Path]\Krypton-NET-5.400\Source\Krypton Navigator Examples\Basic Events\Properties\AssemblyInfo.cs 35 Active
  
 =======
+
 ## 2017-10-17 Commits are:
 * An update to Component factory's KryptonToolkit to support the .NET 5.400 framework.
 * Add generic c# .gitignore
