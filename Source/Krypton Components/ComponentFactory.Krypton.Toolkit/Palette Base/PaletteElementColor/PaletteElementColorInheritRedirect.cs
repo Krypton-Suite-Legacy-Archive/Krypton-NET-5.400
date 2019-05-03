@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,31 +14,31 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Provide inheritance of palette element colors from source redirector.
-	/// </summary>
+    /// <summary>
+    /// Provide inheritance of palette element colors from source redirector.
+    /// </summary>
     public class PaletteElementColorInheritRedirect : PaletteElementColorInherit
-	{
-		#region Instance Fields
-		private PaletteRedirect _redirect;
+    {
+        #region Instance Fields
+        private PaletteRedirect _redirect;
 
-	    #endregion
+        #endregion
 
-		#region Identity
+        #region Identity
         /// <summary>
         /// Initialize a new instance of the PaletteElementColorInheritRedirect class.
-		/// </summary>
+        /// </summary>
         /// <param name="redirect">Source for inherit requests.</param>
         /// <param name="element">Element value..</param>
         public PaletteElementColorInheritRedirect(PaletteRedirect redirect,
                                                   PaletteElement element)
-		{
-			Debug.Assert(redirect != null);
+        {
+            Debug.Assert(redirect != null);
 
-			_redirect = redirect;
+            _redirect = redirect;
             Element = element;
-		}
-		#endregion
+        }
+        #endregion
 
         #region SetRedirector
         /// <summary>
@@ -57,7 +57,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public PaletteElement Element { get; set; }
 
-	    #endregion
+        #endregion
 
         #region IPaletteElementColor
         /// <summary>

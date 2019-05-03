@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,9 +14,9 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Allow the background values to be forced to fixed values.
-	/// </summary>
+    /// </summary>
     public class PaletteBorderInheritForced : PaletteBorderInherit
     {
         #region Instance Fields
@@ -91,11 +91,11 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region IPaletteBorder
-		/// <summary>
-		/// Gets a value indicating if border should be drawn.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>InheritBool value.</returns>
+        /// <summary>
+        /// Gets a value indicating if border should be drawn.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>InheritBool value.</returns>
         public override InheritBool GetBorderDraw(PaletteState state)
         {
             return _inherit.GetBorderDraw(state);
@@ -130,19 +130,19 @@ namespace ComponentFactory.Krypton.Toolkit
             }
         }
 
-		/// <summary>
-		/// Gets the graphics drawing hint.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>PaletteGraphicsHint value.</returns>
+        /// <summary>
+        /// Gets the graphics drawing hint.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>PaletteGraphicsHint value.</returns>
         public override PaletteGraphicsHint GetBorderGraphicsHint(PaletteState state) =>
-		    ForceGraphicsHint != PaletteGraphicsHint.Inherit ? ForceGraphicsHint : _inherit.GetBorderGraphicsHint(state);
+            ForceGraphicsHint != PaletteGraphicsHint.Inherit ? ForceGraphicsHint : _inherit.GetBorderGraphicsHint(state);
 
         /// <summary>
-		/// Gets the first border color.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Color value.</returns>
+        /// Gets the first border color.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Color value.</returns>
         public override Color GetBorderColor1(PaletteState state) => _inherit.GetBorderColor1(state);
 
         /// <summary>

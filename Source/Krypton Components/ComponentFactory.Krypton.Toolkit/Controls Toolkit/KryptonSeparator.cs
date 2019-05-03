@@ -1,19 +1,19 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -25,7 +25,7 @@ namespace ComponentFactory.Krypton.Toolkit
     [DefaultEvent("SplitterMoved")]
     [DefaultProperty("Orientation")]
     [DesignerCategory("code")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonSeparatorDesigner))]
+    [Designer(typeof(KryptonSeparatorDesigner))]
     [Description("Display a separator generated events to operation.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
     [ComVisible(true)]
@@ -91,7 +91,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [Category("Behavior")]
         [Description("Occurs when the separator is about to be moved and requests the rectangle of allowed movement.")]
         public event EventHandler<SplitterMoveRectMenuArgs> SplitterMoveRect;
-        
+
         /// <summary>
         /// Occurs when the separator move finishes and a move has occured.
         /// </summary>
@@ -128,7 +128,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 PaletteBorderStyle.ControlClient, PaletteBackStyle.SeparatorHighProfile,
                 PaletteBorderStyle.SeparatorHighProfile, NeedPaintDelegate)
             {
-                BorderRedirect = {OverrideBorderToFalse = true}
+                BorderRedirect = { OverrideBorderToFalse = true }
             };
 
             // Never draw the border around the background
@@ -195,7 +195,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 // message filter that would prevent it from being garbage collected
                 _separatorController.Dispose();
             }
-            
+
             base.Dispose(disposing);
         }
         #endregion

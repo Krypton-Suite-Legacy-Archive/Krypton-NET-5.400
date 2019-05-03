@@ -1,25 +1,26 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+
 using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Navigator
 {
-	/// <summary>
-	/// Draws a window containing rounded docking indicators.
-	/// </summary>
+    /// <summary>
+    /// Draws a window containing rounded docking indicators.
+    /// </summary>
     public class DropDockingIndicatorsRounded : NativeWindow, 
                                                 IDisposable,
                                                 IDropDockingIndicator
@@ -34,20 +35,20 @@ namespace ComponentFactory.Krypton.Navigator
         #region Identity
         /// <summary>
         /// Initialize a new instance of the DropDockingIndicatorsRounded class.
-		/// </summary>
+        /// </summary>
         /// <param name="paletteDragDrop">Drawing palette.</param>
         /// <param name="renderer">Drawing renderer.</param>
-		/// <param name="showLeft">Show left hot area.</param>
-		/// <param name="showRight">Show right hot area.</param>
-		/// <param name="showTop">Show top hot area.</param>
-		/// <param name="showBottom">Show bottom hot area.</param>
+        /// <param name="showLeft">Show left hot area.</param>
+        /// <param name="showRight">Show right hot area.</param>
+        /// <param name="showTop">Show top hot area.</param>
+        /// <param name="showBottom">Show bottom hot area.</param>
         /// <param name="showMiddle">Show middle hot area.</param>
         public DropDockingIndicatorsRounded(IPaletteDragDrop paletteDragDrop, 
                                             IRenderer renderer,
-							                bool showLeft, bool showRight,
-							                bool showTop, bool showBottom,
+                                            bool showLeft, bool showRight,
+                                            bool showTop, bool showBottom,
                                             bool showMiddle)
-		{
+        {
             _paletteDragDrop = paletteDragDrop;
             _renderer = renderer;
 
@@ -73,24 +74,24 @@ namespace ComponentFactory.Krypton.Navigator
                 Parent = IntPtr.Zero,
 
                 // Appear as a top-level window
-                Style = unchecked((int)PI.WS_POPUP),
+                Style = unchecked((int)PI.WS_.POPUP),
 
                 // Set styles so that it does not have a caption bar and is above all other 
                 // windows in the ZOrder, i.e. TOPMOST
-                ExStyle = PI.WS_EX_TOPMOST +
-                         PI.WS_EX_TOOLWINDOW
+                ExStyle = PI.WS_EX_.TOPMOST |
+                          PI.WS_EX_.TOOLWINDOW
             };
 
-            // We are going to use per-pixrl alpha blending and so need a layered window
-            cp.ExStyle += PI.WS_EX_LAYERED;
+            // We are going to use per-pixel alpha blending and so need a layered window
+            cp.ExStyle |= PI.WS_EX_.LAYERED;
 
             // Create the actual window
             CreateHandle(cp);
         }
 
-		/// <summary>
-		/// Make sure the resources are disposed of gracefully.
-		/// </summary>
+        /// <summary>
+        /// Make sure the resources are disposed of gracefully.
+        /// </summary>
         public void Dispose()
         {
             DestroyHandle();
@@ -99,14 +100,14 @@ namespace ComponentFactory.Krypton.Navigator
 
         #region Public
         /// <summary>
-		/// Show the window relative to provided screen rectangle.
-		/// </summary>
-		/// <param name="screenRect">Screen rectangle.</param>
-		public void ShowRelative(Rectangle screenRect)
-		{
-			// Find screen middle points
-			int yMid = screenRect.Y + (screenRect.Height / 2);
-			int xMid = screenRect.X + (screenRect.Width / 2);
+        /// Show the window relative to provided screen rectangle.
+        /// </summary>
+        /// <param name="screenRect">Screen rectangle.</param>
+        public void ShowRelative(Rectangle screenRect)
+        {
+            // Find screen middle points
+            int yMid = screenRect.Y + (screenRect.Height / 2);
+            int xMid = screenRect.X + (screenRect.Width / 2);
 
             // Find docking size middle points
             int yHalf = _dragData.DockWindowSize.Height / 2;
@@ -134,81 +135,81 @@ namespace ComponentFactory.Krypton.Navigator
                 location = new Point(xMid - xHalf, yMid - yHalf);
             }
 
-		    // Update the image for display
+            // Update the image for display
             UpdateLayeredWindow(new Rectangle(location, _showRect.Size));
             
-			// Show the window without activating it (i.e. do not take focus)
-			PI.ShowWindow(Handle, PI.SW_SHOWNOACTIVATE);
-		}
+            // Show the window without activating it (i.e. do not take focus)
+            PI.ShowWindow(Handle, PI.ShowWindowCommands.SW_SHOWNOACTIVATE);
+        }
 
         /// <summary>
         /// Hide the window from display.
         /// </summary>
         public void Hide()
         {
-            PI.ShowWindow(Handle, PI.SW_HIDE);
+            PI.ShowWindow(Handle, PI.ShowWindowCommands.SW_HIDE);
         }
 
-		/// <summary>
-		/// Perofrm mouse hit testing against a screen point.
-		/// </summary>
-		/// <param name="screenPoint">Screen point.</param>
-		/// <returns>Area that is active.</returns>
-		public int ScreenMouseMove(Point screenPoint)
-		{
-			// Convert from screen to client coordinates
+        /// <summary>
+        /// Perform mouse hit testing against a screen point.
+        /// </summary>
+        /// <param name="screenPoint">Screen point.</param>
+        /// <returns>Area that is active.</returns>
+        public int ScreenMouseMove(Point screenPoint)
+        {
+            // Convert from screen to client coordinates
             Point pt = new Point(screenPoint.X - _showRect.X, screenPoint.Y - _showRect.Y);
 
-			// Remember the current active value
+            // Remember the current active value
             int activeBefore = _dragData.ActiveFlags;
 
-			// Reset active back to nothing
+            // Reset active back to nothing
             _dragData.ClearActive();
 
-			// Find new active area
+            // Find new active area
             if (_dragData.ShowLeft && _dragData.RectLeft.Contains(pt))
             {
                 _dragData.ActiveLeft = true;
             }
-		    if (_dragData.ShowRight && _dragData.RectRight.Contains(pt))
-		    {
-		        _dragData.ActiveRight = true;
-		    }
-		    if (_dragData.ShowTop && _dragData.RectTop.Contains(pt))
-		    {
-		        _dragData.ActiveTop = true;
-		    }
-		    if (_dragData.ShowBottom && _dragData.RectBottom.Contains(pt))
-		    {
-		        _dragData.ActiveBottom = true;
-		    }
+            if (_dragData.ShowRight && _dragData.RectRight.Contains(pt))
+            {
+                _dragData.ActiveRight = true;
+            }
+            if (_dragData.ShowTop && _dragData.RectTop.Contains(pt))
+            {
+                _dragData.ActiveTop = true;
+            }
+            if (_dragData.ShowBottom && _dragData.RectBottom.Contains(pt))
+            {
+                _dragData.ActiveBottom = true;
+            }
 
-		    // Only consider the middle if the others do not match
+            // Only consider the middle if the others do not match
             if ((_dragData.ActiveFlags == 0) && _dragData.ShowMiddle && _dragData.RectMiddle.Contains(pt))
             {
                 _dragData.ActiveMiddle = true;
             }
 
-		    // Do we need to update the display?
+            // Do we need to update the display?
             if (_dragData.ActiveFlags != activeBefore)
             {
                 UpdateLayeredWindow(_showRect);
             }
 
-		    return _dragData.ActiveFlags;
-		}
+            return _dragData.ActiveFlags;
+        }
 
-		/// <summary>
-		/// Ensure the state is updated to reflect the mouse not being over the control.
-		/// </summary>
-		public void MouseReset()
-		{
-			// Do we need to update display?
-			if (_dragData.AnyActive)
-			{
+        /// <summary>
+        /// Ensure the state is updated to reflect the mouse not being over the control.
+        /// </summary>
+        public void MouseReset()
+        {
+            // Do we need to update display?
+            if (_dragData.AnyActive)
+            {
                 _dragData.ClearActive();
                 UpdateLayeredWindow(_showRect);
-			}
+            }
         }
         #endregion
 
@@ -250,14 +251,9 @@ namespace ComponentFactory.Krypton.Navigator
                     ulwsize.cy = rect.Height;
 
                     // New window position
-                    PI.POINT topPos;
-                    topPos.x = rect.Left;
-                    topPos.y = rect.Top;
-
+                    PI.POINT topPos = new PI.POINT(rect.Left,rect.Top);
                     // Offset into memory bitmap is always zero
-                    PI.POINT pointSource;
-                    pointSource.x = 0;
-                    pointSource.y = 0;
+                    PI.POINT pointSource = new PI.POINT(0, 0);
 
                     // We want to make the entire bitmap opaque 
                     PI.BLENDFUNCTION blend = new PI.BLENDFUNCTION

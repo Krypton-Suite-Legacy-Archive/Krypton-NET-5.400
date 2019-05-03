@@ -1,11 +1,12 @@
 ﻿// *****************************************************************************
+// BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
+// The software and associated documentation supplied hereunder are the 
+//  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  © Component Factory Pty Ltd 2011. All rights reserved.
-//	The software and associated documentation supplied hereunder are the 
-//  proprietary information of Component Factory Pty Ltd, 17/267 Nepean Hwy, 
-//  Seaford, Vic 3198, Australia and are supplied subject to licence terms.
-// 
-//  Version 4.5.400.1 	www.ComponentFactory.com
+//  Modifications by MegaKraken, Thavarajan, Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -293,7 +294,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the PaletteOffice2010Silver class.
-		/// </summary>
+        /// </summary>
         public PaletteOffice2013()
             : base(_schemeColors,
                    _checkBoxList,

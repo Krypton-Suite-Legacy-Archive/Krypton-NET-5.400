@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
@@ -89,6 +90,8 @@ namespace ComponentFactory.Krypton.Toolkit
         private FormWindowState _lastWindowState;
         private string _textExtra;
         private string _oldText;
+        private string _administratorText;
+        private bool _isInAdministratorMode;
         private bool _allowFormChrome;
         private bool _allowStatusStripMerge;
         private bool _recreateButtons;
@@ -98,7 +101,6 @@ namespace ComponentFactory.Krypton.Toolkit
         private StatusStrip _statusStrip;
         private Bitmap _cacheBitmap;
         private Icon _cacheIcon;
-
         #endregion
 
         #region Identity
@@ -186,6 +188,11 @@ namespace ComponentFactory.Krypton.Toolkit
 
             // Create the view manager instance
             ViewManager = new ViewManager(this, _drawDocker);
+
+            // Set the UseDropShadow to true
+            UseDropShadow = true;
+
+            AdministratorText = "Administrator";
         }
 
         /// <summary>
@@ -249,7 +256,7 @@ namespace ComponentFactory.Krypton.Toolkit
         public bool AllowButtonSpecToolTips { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating if custome chrome is allowed.
+        /// Gets or sets a value indicating if custom chrome is allowed.
         /// </summary>
         [Category("Visuals")]
         [Description("Should custom chrome be allowed for this KryptonForm instance.")]
@@ -370,6 +377,38 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
+        /// Gets or sets the administrator text.
+        /// </summary>
+        /// <value>
+        /// The administrator text.
+        /// </value>
+        [Category("Appearance"), Description("Sets the window title in accordance to the current user elevation."), DefaultValue("Administrator")]
+        public string AdministratorText
+        {
+            get => _administratorText;
+
+            set
+            {
+                _administratorText = value;
+
+                PerformNeedPaint(false);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is in administrator mode.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is in administrator mode; otherwise, <c>false</c>.
+        /// </value>
+        [Category("Appearance"), Description("Is the user currently an administrator."), DefaultValue(false)]
+        public bool IsInAdministratorMode
+        {
+            get => _isInAdministratorMode;
+            set => _isInAdministratorMode = value;
+        }
+
+        /// <summary>
         /// Gets access to the common form appearance entries that other states can override.
         /// </summary>
         [Category("Visuals")]
@@ -377,10 +416,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteFormRedirect StateCommon { get; }
 
-        private bool ShouldSerializeStateCommon()
-        {
-            return !StateCommon.IsDefault;
-        }
+        private bool ShouldSerializeStateCommon() => !StateCommon.IsDefault;
 
         /// <summary>
         /// Gets access to the inactive form appearance entries.
@@ -390,10 +426,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteForm StateInactive { get; }
 
-        private bool ShouldSerializeStateInactive()
-        {
-            return !StateInactive.IsDefault;
-        }
+        private bool ShouldSerializeStateInactive() => !StateInactive.IsDefault;
 
         /// <summary>
         /// Gets access to the active form appearance entries.
@@ -403,10 +436,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteForm StateActive { get; }
 
-        private bool ShouldSerializeStateActive()
-        {
-            return !StateActive.IsDefault;
-        }
+        private bool ShouldSerializeStateActive() => !StateActive.IsDefault;
 
         /// <summary>
         /// Gets the collection of button specifications.
@@ -554,13 +584,13 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             // Get the current window style (cannot use the 
             // WindowState property as it can be slightly out of date)
-            uint style = PI.GetWindowLong(Handle, PI.GWL_STYLE);
+            uint style = PI.GetWindowLong(Handle, PI.GWL_.STYLE);
 
-            if ((style & PI.WS_MINIMIZE) != 0)
+            if ((style & PI.WS_.MINIMIZE) != 0)
             {
                 return FormWindowState.Minimized;
             }
-            else if ((style & PI.WS_MAXIMIZE) != 0)
+            else if ((style & PI.WS_.MAXIMIZE) != 0)
             {
                 return FormWindowState.Maximized;
             }
@@ -693,19 +723,22 @@ namespace ComponentFactory.Krypton.Toolkit
                         // Failed so we convert the Icon directly instead of trying to get a sized version first
                         _cacheBitmap = _cacheIcon.ToBitmap();
                     }
-                    catch { }
+                    catch
+                    {
+                        //
+                    }
                 }
 
-                // If the ToBitmap() failes then we might still have no bitmap for use
+                // If the ToBitmap() fails then we might still have no bitmap for use
                 if (_cacheBitmap != null)
                 {
                     // If the image is not the required size, create it
                     if (_cacheBitmap.Size != CAPTION_ICON_SIZE)
                     {
-                        // Create a resized verison of the bitmap
+                        // Create a resized version of the bitmap
                         Bitmap resizedBitmap = new Bitmap(_cacheBitmap, CAPTION_ICON_SIZE);
 
-                        // Must gradcefully remove unused resources!
+                        // Must gracefully remove unused resources!
                         _cacheBitmap.Dispose();
 
                         // Cache for future access
@@ -797,6 +830,8 @@ namespace ComponentFactory.Krypton.Toolkit
 
             // We only apply custom chrome when control is already created and positioned
             UpdateCustomChromeDecision();
+
+            UpdateTitle(GetHasCurrentInstanceGotAdministrativeRights());
         }
 
         /// <summary>
@@ -928,7 +963,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
             if ((CustomCaptionArea != null) && CustomCaptionArea.Contains(pt))
             {
-                return (IntPtr)PI.HTCAPTION;
+                return (IntPtr)PI.HT.CAPTION;
             }
 
             if (!composition)
@@ -953,7 +988,7 @@ namespace ComponentFactory.Krypton.Toolkit
             // Do not allow the caption to be moved or the border resized
             if (InertForm)
             {
-                return (IntPtr)PI.HTCLIENT;
+                return (IntPtr)PI.HT.CLIENT;
             }
 
             using (ViewLayoutContext context = new ViewLayoutContext(this, Renderer))
@@ -964,7 +999,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     // Is the mouse over the image area
                     if (_drawContent.ImageRectangle(context).Contains(pt))
                     {
-                        return (IntPtr)PI.HTMENU;
+                        return (IntPtr)PI.HT.MENU;
                     }
                 }
             }
@@ -1011,7 +1046,7 @@ namespace ComponentFactory.Krypton.Toolkit
                         (pt.Y > borders.Top) &&
                         (pt.Y < (Height - borders.Bottom)))
                     {
-                        return (IntPtr)PI.HTCAPTION;
+                        return (IntPtr)PI.HT.CAPTION;
                     }
                 }
 
@@ -1023,15 +1058,15 @@ namespace ComponentFactory.Krypton.Toolkit
                     {
                         if (pt.Y <= HT_CORNER)
                         {
-                            return (IntPtr)PI.HTTOPLEFT;
+                            return (IntPtr)PI.HT.TOPLEFT;
                         }
 
                         if (pt.Y >= (Height - HT_CORNER))
                         {
-                            return (IntPtr)PI.HTBOTTOMLEFT;
+                            return (IntPtr)PI.HT.BOTTOMLEFT;
                         }
 
-                        return (IntPtr)PI.HTLEFT;
+                        return (IntPtr)PI.HT.LEFT;
                     }
 
                     // Is point over the right border?
@@ -1039,15 +1074,15 @@ namespace ComponentFactory.Krypton.Toolkit
                     {
                         if (pt.Y <= HT_CORNER)
                         {
-                            return (IntPtr)PI.HTTOPRIGHT;
+                            return (IntPtr)PI.HT.TOPRIGHT;
                         }
 
                         if (pt.Y >= (Height - HT_CORNER))
                         {
-                            return (IntPtr)PI.HTBOTTOMRIGHT;
+                            return (IntPtr)PI.HT.BOTTOMRIGHT;
                         }
 
-                        return (IntPtr)PI.HTRIGHT;
+                        return (IntPtr)PI.HT.RIGHT;
                     }
 
                     // Is point over the bottom border?
@@ -1055,15 +1090,15 @@ namespace ComponentFactory.Krypton.Toolkit
                     {
                         if (pt.X <= HT_CORNER)
                         {
-                            return (IntPtr)PI.HTBOTTOMLEFT;
+                            return (IntPtr)PI.HT.BOTTOMLEFT;
                         }
 
                         if (pt.X >= (Width - HT_CORNER))
                         {
-                            return (IntPtr)PI.HTBOTTOMRIGHT;
+                            return (IntPtr)PI.HT.BOTTOMRIGHT;
                         }
 
-                        return (IntPtr)PI.HTBOTTOM;
+                        return (IntPtr)PI.HT.BOTTOM;
                     }
 
                     // Is point over the top border?
@@ -1071,15 +1106,15 @@ namespace ComponentFactory.Krypton.Toolkit
                     {
                         if (pt.X <= HT_CORNER)
                         {
-                            return (IntPtr)PI.HTTOPLEFT;
+                            return (IntPtr)PI.HT.TOPLEFT;
                         }
 
                         if (pt.X >= (Width - HT_CORNER))
                         {
-                            return (IntPtr)PI.HTTOPRIGHT;
+                            return (IntPtr)PI.HT.TOPRIGHT;
                         }
 
-                        return (IntPtr)PI.HTTOP;
+                        return (IntPtr)PI.HT.TOP;
                     }
                 }
 
@@ -1195,6 +1230,11 @@ namespace ComponentFactory.Krypton.Toolkit
                                                     PaletteMetricInt.HeaderButtonEdgeInsetCustom2,
                                                     PaletteMetricPadding.HeaderButtonPaddingCustom2);
                     break;
+                case HeaderStyle.Custom3:
+                    _buttonManager.SetDockerMetrics(drawDocker, palette,
+                        PaletteMetricInt.HeaderButtonEdgeInsetCustom3,
+                        PaletteMetricPadding.HeaderButtonPaddingCustom3);
+                    break;
                 default:
                     // Should never happen!
                     Debug.Assert(false);
@@ -1290,7 +1330,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     // Is a layout required?
                     if (NeedLayout || (GetDefinedIcon() != _cacheIcon))
                     {
-                        // Ask the view to peform a layout
+                        // Ask the view to perform a layout
                         using (ViewLayoutContext context = new ViewLayoutContext(ViewManager,
                                                                                  this,
                                                                                  RealWindowRectangle,
@@ -1506,7 +1546,7 @@ namespace ComponentFactory.Krypton.Toolkit
                         _visualPopupToolTip.Disposed += OnVisualPopupToolTipDisposed;
 
                         // Show relative to the provided screen point
-                        _visualPopupToolTip.ShowCalculatingSize(e.ScreenPt);
+                        _visualPopupToolTip.ShowCalculatingSize(e.ControlMousePosition);
                     }
                 }
             }
@@ -1592,12 +1632,14 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Calls the method that draws the drop shadow around the form.
         /// </summary>
         /// <param name="useDropShadow">Use dropshadow user input value.</param>
-        private void UpdateDropShadowDraw(bool useDropShadow)
+        public void UpdateDropShadowDraw(bool useDropShadow)
         {
             if (useDropShadow)
             {
                 DrawDropShadow();
             }
+
+            Invalidate();
         }
 
         /// <summary>
@@ -1607,6 +1649,9 @@ namespace ComponentFactory.Krypton.Toolkit
         private void DrawDropShadow()
         {
             GetCreateParams();
+
+            // Redraw
+            Invalidate();
         }
 
         /// <summary>
@@ -1620,7 +1665,9 @@ namespace ComponentFactory.Krypton.Toolkit
             return cp;
         }
 
-        // Example by juverpp
+        /// <summary>
+        /// Example by juverpp 
+        /// </summary>
         protected override CreateParams CreateParams
         {
             get
@@ -1628,8 +1675,54 @@ namespace ComponentFactory.Krypton.Toolkit
                 // add the drop shadow flag for automatically drawing
                 // a drop shadow around the form
                 CreateParams cp = base.CreateParams;
-                cp.ClassStyle |= CS_DROPSHADOW;
+
+                if (UseDropShadow)
+                {
+                    cp.ClassStyle |= CS_DROPSHADOW;
+                }
+
                 return cp;
+            }
+        }
+        #endregion
+
+        #region Admin Code        
+        /// <summary>
+        /// Gets the has current instance got administrative rights.
+        /// </summary>
+        /// <returns></returns>
+        private static bool GetHasCurrentInstanceGotAdministrativeRights()
+        {
+            try
+            {
+                WindowsPrincipal principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+
+                bool hasAdministrativeRights = principal.IsInRole(WindowsBuiltInRole.Administrator);
+
+                if (hasAdministrativeRights)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Updates the title.
+        /// </summary>
+        /// <param name="hasAdministrativeRights">if set to <c>true</c> [has administrative rights].</param>
+        private void UpdateTitle(bool hasAdministrativeRights)
+        {
+            if (hasAdministrativeRights)
+            {
+                Text = $"{ Text } - [{ AdministratorText }]";
             }
         }
         #endregion

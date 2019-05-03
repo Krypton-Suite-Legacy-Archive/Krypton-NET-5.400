@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -15,11 +15,11 @@ using System.Windows.Forms.VisualStyles;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Take into account the current theme when creating an Office 2003 appearance.
-	/// </summary>
+    /// <summary>
+    /// Take into account the current theme when creating an Office 2003 appearance.
+    /// </summary>
     public class PaletteProfessionalOffice2003 : PaletteProfessionalSystem
-	{
+    {
         #region Static Fields
         private static readonly Color[] _colorsB = { Color.FromArgb( 89, 135, 214),   // Header1Begin
                                                                  Color.FromArgb(  4,  57, 148),   // Header1End
@@ -41,11 +41,11 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the PaletteProfessionalOffice2003 class.
-		/// </summary>
+        /// </summary>
         public PaletteProfessionalOffice2003()
-		{
-		}
-		#endregion
+        {
+        }
+        #endregion
 
         #region ColorTable
         /// <summary>
@@ -85,12 +85,12 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region StandardBack
-		/// <summary>
-		/// Gets the color background drawing style.
-		/// </summary>
-		/// <param name="style">Background style.</param>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Color drawing style.</returns>
+        /// <summary>
+        /// Gets the color background drawing style.
+        /// </summary>
+        /// <param name="style">Background style.</param>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Color drawing style.</returns>
         public override PaletteColorStyle GetBackColorStyle(PaletteBackStyle style, PaletteState state)
         {
             // Only override system palette if a recognized office 2003 color scheme is used
@@ -245,9 +245,13 @@ namespace ComponentFactory.Krypton.Toolkit
                     case PaletteContentStyle.GridHeaderRowList:
                     case PaletteContentStyle.GridHeaderRowSheet:
                     case PaletteContentStyle.GridHeaderRowCustom1:
+                    case PaletteContentStyle.GridHeaderRowCustom2:
+                    case PaletteContentStyle.GridHeaderRowCustom3:
                     case PaletteContentStyle.GridHeaderColumnList:
                     case PaletteContentStyle.GridHeaderColumnSheet:
                     case PaletteContentStyle.GridHeaderColumnCustom1:
+                    case PaletteContentStyle.GridHeaderColumnCustom2:
+                    case PaletteContentStyle.GridHeaderColumnCustom3:
                     case PaletteContentStyle.HeaderDockInactive:
                         return SystemColors.ControlText;
                     case PaletteContentStyle.HeaderDockActive:

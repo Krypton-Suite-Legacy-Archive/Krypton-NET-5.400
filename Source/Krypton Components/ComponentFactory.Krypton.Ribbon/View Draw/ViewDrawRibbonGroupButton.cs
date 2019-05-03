@@ -1,26 +1,26 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
-using System;
-using System.Drawing;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Diagnostics;
 using ComponentFactory.Krypton.Toolkit;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Draws a ribbon group button.
-	/// </summary>
+    /// <summary>
+    /// Draws a ribbon group button.
+    /// </summary>
     internal class ViewDrawRibbonGroupButton : ViewComposite,
                                                IRibbonViewGroupItemView
     {
@@ -54,7 +54,7 @@ namespace ComponentFactory.Krypton.Ribbon
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewDrawRibbonGroupButton class.
-		/// </summary>
+        /// </summary>
         /// <param name="ribbon">Reference to owning ribbon control.</param>
         /// <param name="ribbonButton">Reference to source button definition.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
@@ -89,15 +89,15 @@ namespace ComponentFactory.Krypton.Ribbon
             GroupButton.PropertyChanged += OnButtonPropertyChanged;
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewDrawRibbonGroupButton:" + Id;
-		}
+        }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -229,7 +229,7 @@ namespace ComponentFactory.Krypton.Ribbon
                         break;
                 }
 
-                keyTipList.Add(new KeyTipInfo(GroupButton.Enabled, GroupButton.KeyTip, 
+                keyTipList.Add(new KeyTipInfo(GroupButton.Enabled, GroupButton.KeyTip,
                                               screenPt, this[0].ClientRectangle, controller));
             }
         }
@@ -259,7 +259,7 @@ namespace ComponentFactory.Krypton.Ribbon
         /// <param name="context">Layout context.</param>
         public override Size GetPreferredSize(ViewLayoutContext context)
         {
-            bool drawNonTrackingAreas = (_ribbon.RibbonShape != PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013);
+            bool drawNonTrackingAreas = (_ribbon.RibbonShape != PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013 || _ribbon.RibbonShape == PaletteRibbonShape.Office365);
 
             // Update the views with the type of button being used
             _viewLarge.ButtonType = GroupButton.ButtonType;
@@ -310,7 +310,7 @@ namespace ComponentFactory.Krypton.Ribbon
             else
             {
                 _viewLarge.SplitRectangle = Rectangle.Empty;
-                _viewMediumSmall.SplitRectangle = Rectangle.Empty; 
+                _viewMediumSmall.SplitRectangle = Rectangle.Empty;
             }
         }
         #endregion
@@ -397,7 +397,7 @@ namespace ComponentFactory.Krypton.Ribbon
             _viewLarge.Add(contentLayout);
 
             // Create controller for intercepting events to determine tool tip handling
-            _viewLarge.MouseController = new ToolTipController(_ribbon.TabsArea.ButtonSpecManager.ToolTipManager, 
+            _viewLarge.MouseController = new ToolTipController(_ribbon.TabsArea.ButtonSpecManager.ToolTipManager,
                                                                _viewLarge, _viewLarge.MouseController);
         }
 
@@ -452,7 +452,7 @@ namespace ComponentFactory.Krypton.Ribbon
             _viewMediumSmall.Add(contentLayout);
 
             // Create controller for intercepting events to determine tool tip handling
-            _viewMediumSmall.MouseController = new ToolTipController(_ribbon.TabsArea.ButtonSpecManager.ToolTipManager, 
+            _viewMediumSmall.MouseController = new ToolTipController(_ribbon.TabsArea.ButtonSpecManager.ToolTipManager,
                                                                      _viewMediumSmall, _viewMediumSmall.MouseController);
         }
 

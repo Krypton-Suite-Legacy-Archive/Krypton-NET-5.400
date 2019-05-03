@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -15,57 +15,57 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// View element that has a preferred size and then draws a solid color, used for debugging.
-	/// </summary>
-	public class ViewDrawDebug : ViewLeaf
-	{
-		#region Instance Fields
+    /// </summary>
+    public class ViewDrawDebug : ViewLeaf
+    {
+        #region Instance Fields
         private readonly Size _preferredSize;
         private readonly Color _color;
         #endregion
 
-		#region Identity
+        #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewDrawDebug class.
-		/// </summary>
+        /// </summary>
         /// <param name="preferredSize">Preferred size.</param>
         /// <param name="color">Solid color to draw with.</param>
         public ViewDrawDebug(Size preferredSize, Color color)
-		{
+        {
             // Remember the source information
             _preferredSize = preferredSize;
             _color = color;
-		}
+        }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewDrawDebug:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
         #region Layout
-		/// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override Size GetPreferredSize(ViewLayoutContext context)
-		{
+        /// <summary>
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override Size GetPreferredSize(ViewLayoutContext context)
+        {
             Debug.Assert(context != null);
             return _preferredSize;
-		}
+        }
 
-		/// <summary>
-		/// Perform a layout of the elements.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override void Layout(ViewLayoutContext context)
-		{
+        /// <summary>
+        /// Perform a layout of the elements.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override void Layout(ViewLayoutContext context)
+        {
             Debug.Assert(context != null);
 
             // Use all of the provided space
@@ -73,18 +73,18 @@ namespace ComponentFactory.Krypton.Toolkit
             // Always use the metric and ignore given space
             ClientRectangle = context.DisplayRectangle;
         }
-		#endregion
+        #endregion
 
-		#region Paint
+        #region Paint
 
-	    /// <summary>
-	    /// Perform rendering before child elements are rendered.
-	    /// </summary>
-	    /// <param name="context">Rendering context.</param>
-	    /// <exception cref="ArgumentNullException"></exception>
-	    public override void RenderBefore(RenderContext context) 
-		{
-			Debug.Assert(context != null);
+        /// <summary>
+        /// Perform rendering before child elements are rendered.
+        /// </summary>
+        /// <param name="context">Rendering context.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public override void RenderBefore(RenderContext context) 
+        {
+            Debug.Assert(context != null);
 
             // Validate incoming reference
             if (context == null)
@@ -98,6 +98,6 @@ namespace ComponentFactory.Krypton.Toolkit
                 context.Graphics.FillRectangle(brush, ClientRectangle);
             }
         }
-		#endregion    
+        #endregion    
     }
 }

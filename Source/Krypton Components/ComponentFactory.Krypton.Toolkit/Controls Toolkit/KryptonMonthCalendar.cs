@@ -1,31 +1,31 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Enables the user to select a date using a visual monthly calendar display.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonMonthCalendar), "ToolboxBitmaps.KryptonMonthCalendar.bmp")]
     [DefaultEvent("DateChanged")]
     [DefaultProperty("SelectionRange")]
     [DefaultBindingProperty("SelectionRange")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonMonthCalendarDesigner))]
+    [Designer(typeof(KryptonMonthCalendarDesigner))]
     [DesignerCategory("code")]
     [Description("Select a date using a visual monthly calendar display.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -165,9 +165,9 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonMonthCalendar class.
-		/// </summary>
+        /// </summary>
         public KryptonMonthCalendar()
-		{
+        {
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 
             // Create the palette storage
@@ -243,7 +243,7 @@ namespace ComponentFactory.Krypton.Toolkit
             _scrollChange = 0;
             _todayFormat = "d";
         }
-		#endregion
+        #endregion
 
         #region Public
         /// <summary>
@@ -266,9 +266,9 @@ namespace ComponentFactory.Krypton.Toolkit
         [EditorBrowsable(EditorBrowsableState.Never)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Bindable(false)]
-        public override AutoSizeMode  AutoSizeMode
+        public override AutoSizeMode AutoSizeMode
         {
-	        get => base.AutoSizeMode;
+            get => base.AutoSizeMode;
             set => base.AutoSizeMode = value;
         }
 
@@ -278,7 +278,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ImeMode ImeMode 
+        public new ImeMode ImeMode
         {
             get => base.ImeMode;
             set => base.ImeMode = value;
@@ -306,7 +306,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => EffectiveMinDate(_minDate);
 
-            set 
+            set
             {
                 if (value != _minDate)
                 {
@@ -509,7 +509,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => EffectiveMaxDate(_maxDate);
 
-            set 
+            set
             {
                 if (value != _maxDate)
                 {
@@ -546,7 +546,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _maxSelectionCount;
 
-            set 
+            set
             {
                 if (value < 1)
                 {
@@ -573,7 +573,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _selectionStart;
 
-            set 
+            set
             {
                 if (value != _selectionStart)
                 {
@@ -623,7 +623,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _selectionEnd;
 
-            set 
+            set
             {
                 if (value != _selectionEnd)
                 {
@@ -726,8 +726,8 @@ namespace ComponentFactory.Krypton.Toolkit
         [Description("First day of the week.")]
         [DefaultValue(typeof(Day), "Default")]
         [Localizable(true)]
-        public Day FirstDayOfWeek 
-        { 
+        public Day FirstDayOfWeek
+        {
             get => _firstDayOfWeek;
 
             set
@@ -1402,7 +1402,7 @@ namespace ComponentFactory.Krypton.Toolkit
             // We take all regular input characters
             return char.IsLetterOrDigit(charCode);
         }
-        
+
         /// <summary>
         /// Determines whether the specified key is a regular input key or a special key that requires preprocessing.
         /// </summary>

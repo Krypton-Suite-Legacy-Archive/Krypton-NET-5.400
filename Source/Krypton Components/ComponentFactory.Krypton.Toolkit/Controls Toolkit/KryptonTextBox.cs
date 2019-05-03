@@ -1,20 +1,20 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.ComponentModel;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -26,7 +26,7 @@ namespace ComponentFactory.Krypton.Toolkit
     [DefaultEvent("TextChanged")]
     [DefaultProperty("Text")]
     [DefaultBindingProperty("Text")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonTextBoxDesigner))]
+    [Designer(typeof(KryptonTextBoxDesigner))]
     [DesignerCategory("code")]
     [Description("Enables the user to enter text, and provides multiline editing and password character masking.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -40,6 +40,7 @@ namespace ComponentFactory.Krypton.Toolkit
             #region Instance Fields
             private readonly KryptonTextBox _kryptonTextBox;
             private bool _mouseOver;
+            private string _hint;
             #endregion
 
             #region Events
@@ -114,10 +115,10 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 switch (m.Msg)
                 {
-                    case PI.WM_NCHITTEST:
+                    case PI.WM_.NCHITTEST:
                         if (_kryptonTextBox.InTransparentDesignMode)
                         {
-                            m.Result = (IntPtr)PI.HTTRANSPARENT;
+                            m.Result = (IntPtr)PI.HT.TRANSPARENT;
                         }
                         else
                         {
@@ -125,14 +126,14 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
 
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // Mouse is not over the control
                         MouseOver = false;
                         _kryptonTextBox.PerformNeedPaint(true);
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Mouse is over the control
                         if (!MouseOver)
                         {
@@ -142,8 +143,8 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_PRINTCLIENT:
-                    case PI.WM_PAINT:
+                    case PI.WM_.PRINTCLIENT:
+                    case PI.WM_.PAINT:
                         {
                             PI.PAINTSTRUCT ps = new PI.PAINTSTRUCT();
 
@@ -260,7 +261,7 @@ namespace ComponentFactory.Krypton.Toolkit
                             }
                         }
                         break;
-                    case PI.WM_CONTEXTMENU:
+                    case PI.WM_.CONTEXTMENU:
                         // Only interested in overriding the behavior when we have a krypton context menu...
                         if (_kryptonTextBox.KryptonContextMenu != null)
                         {
@@ -299,6 +300,21 @@ namespace ComponentFactory.Krypton.Toolkit
             /// <param name="e">An EventArgs containing the event data.</param>
             protected virtual void OnTrackMouseLeave(EventArgs e) => TrackMouseLeave?.Invoke(this, e);
             #endregion
+
+            // Cue, Tip , Watermark
+            public string Hint
+            {
+                get => _hint;
+                set
+                {
+                    _hint = value;
+                    if (string.IsNullOrEmpty(Text) && !string.IsNullOrWhiteSpace(Hint))
+                    {
+                        PI.SendMessage(Handle, PI.EM_SETCUEBANNER, (IntPtr)1, Hint);
+                    }
+                    Refresh();
+                }
+            }
         }
 
         #endregion
@@ -338,6 +354,8 @@ namespace ComponentFactory.Krypton.Toolkit
         private bool _alwaysActive;
         private bool _trackingMouseEnter;
         private int _cachedHeight;
+        private bool _multilineStringEditor;
+        private ButtonSpecAny _editorButton;
         #endregion
 
         #region Events
@@ -431,7 +449,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonTextBox class.
-		/// </summary>
+        /// </summary>
         public KryptonTextBox()
         {
             // Contains another control and needs marking as such for validation to work
@@ -513,6 +531,15 @@ namespace ComponentFactory.Krypton.Toolkit
             ToolTipManager.CancelToolTip += OnCancelToolTip;
             _buttonManager.ToolTipManager = ToolTipManager;
 
+            // Create the button spec for the multiline editor button.
+            _editorButton = new ButtonSpecAny
+            {
+                Image = Properties.Resources.SelectParentControlFlipped,
+                Style = PaletteButtonStyle.ButtonSpec,
+                Type = PaletteButtonSpecStyle.Generic
+            };
+            _editorButton.Click += OnEditorButtonClicked;
+
             // Add text box to the controls collection
             ((KryptonReadOnlyControls)Controls).AddInternal(_textBox);
         }
@@ -545,6 +572,28 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Public
         /// <summary>
+        /// Gets and sets control watermark.
+        /// </summary>
+        public string Hint
+        {
+            get => _textBox.Hint;
+            set => _textBox.Hint = value;
+        }
+
+        private bool ShouldSerializeHint()
+        {
+            return !string.IsNullOrWhiteSpace(Hint);
+        }
+
+
+        /// <summary>
+        /// </summary>
+        public void ResetHint()
+        {
+            Hint = string.Empty;
+        }
+
+        /// <summary>
         /// Gets and sets if the control is in the tab chain.
         /// </summary>
         public new bool TabStop
@@ -561,6 +610,23 @@ namespace ComponentFactory.Krypton.Toolkit
         [Browsable(false)]
         public bool InRibbonDesignMode { get; set; }
 
+        /// <summary>
+        /// Gets and sets if the control uses the multiline string editor widget.
+        /// </summary>
+        [Category("Behavior")]
+        [Description("Indicates if the control uses the multiline string editor widget.")]
+        [DefaultValue(false)]
+        public bool MultilineStringEditor
+        {
+            get => _multilineStringEditor;
+            set
+            {
+                if (_multilineStringEditor != value)
+                {
+                    SetMultilineStringEditor(value);
+                }
+            }
+        }
         /// <summary>
         /// Gets access to the contained TextBox instance.
         /// </summary>
@@ -966,9 +1032,9 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets and sets the input control style.
-		/// </summary>
-		[Category("Visuals")]
+        /// Gets and sets the input control style.
+        /// </summary>
+        [Category("Visuals")]
         [Description("Input control style.")]
         public InputControlStyle InputControlStyle
         {
@@ -1274,9 +1340,9 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets the rectangle that represents the display area of the control.
-		/// </summary>
-		public override Rectangle DisplayRectangle
+        /// Gets the rectangle that represents the display area of the control.
+        /// </summary>
+        public override Rectangle DisplayRectangle
         {
             get
             {
@@ -1346,9 +1412,36 @@ namespace ComponentFactory.Krypton.Toolkit
                 _forcedLayout = false;
             }
         }
+
+        /// <summary>
+        /// Sets up the multiline string editor for the control.
+        /// </summary>
+        /// <param name="value">
+        /// true to enable the multiline string editor; otherwise false.
+        /// </param>
+        protected void SetMultilineStringEditor(bool value)
+        {
+            _multilineStringEditor = value;
+            // FIXME: This should probably rather be drawn as a glyph or something and not be
+            // added to the ButtonSpecs that can be modified by the user, but I lack the
+            // familiarity with the Krypton Framework and the time to figure out how to implement
+            // this the proper way.
+            if (value == false)
+            {
+                ButtonSpecs.Remove(_editorButton);
+            }
+            else
+            {
+                if (!ButtonSpecs.Contains(_editorButton))
+                {
+                    ButtonSpecs.Add(_editorButton);
+                }
+            }
+        }
         #endregion
 
         #region Protected Virtual
+        // ReSharper disable VirtualMemberNeverOverridden.Global
         /// <summary>
         /// Raises the AcceptsTabChanged event.
         /// </summary>
@@ -1398,6 +1491,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="e">An EventArgs containing the event data.</param>
         [Description("Raises the TrackMouseLeave event.")]
         protected virtual void OnTrackMouseLeave(EventArgs e) => TrackMouseLeave?.Invoke(this, e);
+        // ReSharper restore VirtualMemberNeverOverridden.Global
         #endregion
 
         #region Protected Overrides
@@ -1428,10 +1522,10 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Raises the EnabledChanged event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnEnabledChanged(EventArgs e)
+        /// Raises the EnabledChanged event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnEnabledChanged(EventArgs e)
         {
             // Change in enabled state requires a layout and repaint
             UpdateStateAndPalettes();
@@ -1520,7 +1614,10 @@ namespace ComponentFactory.Krypton.Toolkit
             if (IsHandleCreated || _forcedLayout || (DesignMode && (_textBox != null)))
             {
                 Rectangle fillRect = _layoutFill.FillRect;
-                _textBox.SetBounds(fillRect.X, fillRect.Y, fillRect.Width, fillRect.Height);
+                //  for centering the inner text field vertically
+                int y = Height / 2 - _textBox.Height / 2;
+
+                _textBox.SetBounds(fillRect.X, y, fillRect.Width, fillRect.Height);
             }
         }
 
@@ -1668,10 +1765,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             switch (m.Msg)
             {
-                case PI.WM_NCHITTEST:
+                case PI.WM_.NCHITTEST:
                     if (InTransparentDesignMode)
                     {
-                        m.Result = (IntPtr)PI.HTTRANSPARENT;
+                        m.Result = (IntPtr)PI.HT.TRANSPARENT;
                     }
                     else
                     {
@@ -1679,7 +1776,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     }
 
                     break;
-                case PI.WM_LBUTTONDOWN:
+                case PI.WM_.LBUTTONDOWN:
                     base.WndProc(ref m);
                     break;
                 default:
@@ -1827,9 +1924,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                      CommonHelper.ContentStyleFromLabelStyle(toolTipStyle));
 
                         _visualPopupToolTip.Disposed += OnVisualPopupToolTipDisposed;
-
-                        // Show relative to the provided screen rectangle
-                        _visualPopupToolTip.ShowCalculatingSize(RectangleToScreen(e.Target.ClientRectangle));
+                        _visualPopupToolTip.ShowRelativeTo(e.Target, e.ControlMousePosition);
                     }
                 }
             }
@@ -1859,12 +1954,19 @@ namespace ComponentFactory.Krypton.Toolkit
                 if (_trackingMouseEnter)
                 {
                     OnTrackMouseEnter(EventArgs.Empty);
+                    OnMouseEnter(e);
                 }
                 else
                 {
                     OnTrackMouseLeave(EventArgs.Empty);
+                    OnMouseLeave(e);
                 }
             }
+        }
+
+        private void OnEditorButtonClicked(object sender, EventArgs e)
+        {
+            new MultilineStringEditor(this).ShowEditor();
         }
         #endregion
     }

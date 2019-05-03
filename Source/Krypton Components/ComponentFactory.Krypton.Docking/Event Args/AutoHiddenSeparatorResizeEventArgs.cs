@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -16,19 +16,19 @@ using ComponentFactory.Krypton.Navigator;
 
 namespace ComponentFactory.Krypton.Docking
 {
-	/// <summary>
+    /// <summary>
     /// Event arguments for a AutoHiddenSeparatorResize event.
-	/// </summary>
+    /// </summary>
     public class AutoHiddenSeparatorResizeEventArgs : EventArgs
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the AutoHiddenSeparatorResizeEventArgs class.
-		/// </summary>
+        /// </summary>
         /// <param name="separator">Reference to separator control instance.</param>
         /// <param name="dockspace">Reference to dockspace control instance.</param>
         /// <param name="page">Reference to page contained in the dockspace.</param>
@@ -37,35 +37,35 @@ namespace ComponentFactory.Krypton.Docking
                                                   KryptonDockspace dockspace,
                                                   KryptonPage page,
                                                   Rectangle resizeRect)
-		{
+        {
             SeparatorControl = separator;
             DockspaceControl = dockspace;
             Page = page;
             ResizeRect = resizeRect;
-		}
-		#endregion
+        }
+        #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Gets a reference to the KryptonSeparator control.
         /// </summary>
         public KryptonSeparator SeparatorControl { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets a reference to the KryptonDockspace control.
         /// </summary>
         public KryptonDockspace DockspaceControl { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets a reference to the KryptonPage instance.
         /// </summary>
         public KryptonPage Page { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets and sets the rectangle that limits resizing of the dockspace using the separator.
         /// </summary>
         public Rectangle ResizeRect { get; set; }
 
-	    #endregion
-	}
+        #endregion
+    }
 }

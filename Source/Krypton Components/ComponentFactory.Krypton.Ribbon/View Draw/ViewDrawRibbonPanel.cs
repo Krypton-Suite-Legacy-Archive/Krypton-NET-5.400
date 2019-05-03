@@ -1,24 +1,24 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
+using ComponentFactory.Krypton.Toolkit;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Draws the ribbon background panel.
-	/// </summary>
+    /// <summary>
+    /// Draws the ribbon background panel.
+    /// </summary>
     internal class ViewDrawRibbonPanel : ViewDrawPanel
     {
         #region Static Fields
@@ -67,7 +67,7 @@ namespace ComponentFactory.Krypton.Ribbon
         {
             // If we are rendering using desktop window composition and using the Office 2010 shape 
             // of ribbon then we need to draw the tabs area as part of the window chromw
-            if (DrawOnComposition && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013))
+            if (DrawOnComposition && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013 || _ribbon.RibbonShape == PaletteRibbonShape.Office365))
             {
                 int tabsHeight = _ribbon.TabsArea.ClientHeight;
 
@@ -98,7 +98,7 @@ namespace ComponentFactory.Krypton.Ribbon
             // If we are rendering using desktop window composition and using the Office 2010 shape 
             // of ribbon then we need to draw the tabs area as part of the window chrome
             // Not for 2013
-            if (DrawOnComposition && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013))
+            if (DrawOnComposition && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013 || _ribbon.RibbonShape == PaletteRibbonShape.Office365))
             {
                 if (edges)
                 {
@@ -131,6 +131,13 @@ namespace ComponentFactory.Krypton.Ribbon
                     }
                 }
                 else if (_ribbon.RibbonShape == PaletteRibbonShape.Office2013)
+                {
+                    using (SolidBrush backBrush = new SolidBrush(Color.White))
+                    {
+                        g.FillRectangle(backBrush, new Rectangle(rect.X, rect.Y, rect.Width, rect.Height - 1));
+                    }
+                }
+                else if (_ribbon.RibbonShape == PaletteRibbonShape.Office365)
                 {
                     using (SolidBrush backBrush = new SolidBrush(Color.White))
                     {

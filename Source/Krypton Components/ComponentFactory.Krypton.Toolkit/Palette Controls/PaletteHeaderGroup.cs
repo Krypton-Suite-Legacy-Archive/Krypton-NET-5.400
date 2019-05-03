@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -15,21 +15,21 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Implement storage for HeaderGroup states.
-	/// </summary>
-	public class PaletteHeaderGroup : PaletteDouble,
+    /// <summary>
+    /// Implement storage for HeaderGroup states.
+    /// </summary>
+    public class PaletteHeaderGroup : PaletteDouble,
                                       IPaletteMetric
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private IPaletteMetric _inherit;
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteHeaderGroup class.
-		/// </summary>
+        /// </summary>
         /// <param name="inheritHeaderGroup">Source for inheriting palette defaulted values.</param>
         /// <param name="inheritHeaderPrimary">Source for inheriting primary header defaulted values.</param>
         /// <param name="inheritHeaderSecondary">Source for inheriting secondary header defaulted values.</param>
@@ -39,7 +39,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                   PaletteHeaderPaddingRedirect inheritHeaderSecondary,
                                   NeedPaintHandler needPaint)
             : base(inheritHeaderGroup, needPaint)
-		{
+        {
             Debug.Assert(inheritHeaderGroup != null);
             Debug.Assert(inheritHeaderPrimary != null);
             Debug.Assert(inheritHeaderSecondary != null);
@@ -47,22 +47,22 @@ namespace ComponentFactory.Krypton.Toolkit
             // Remember the inheritance
             _inherit = inheritHeaderGroup;
 
-			// Create the palette storage
+            // Create the palette storage
             HeaderPrimary = new PaletteTripleMetric(inheritHeaderPrimary, needPaint);
             HeaderSecondary = new PaletteTripleMetric(inheritHeaderSecondary, needPaint);
         }
-		#endregion
+        #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (base.IsDefault &&
-		                                   HeaderPrimary.IsDefault &&
-		                                   HeaderSecondary.IsDefault);
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (base.IsDefault &&
+                                           HeaderPrimary.IsDefault &&
+                                           HeaderSecondary.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region SetInherit
         /// <summary>
@@ -80,33 +80,33 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region HeaderPrimary
         /// <summary>
-		/// Gets access to the primary header appearance entries.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Overrides for defining primary header appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// Gets access to the primary header appearance entries.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Overrides for defining primary header appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteTripleMetric HeaderPrimary { get; }
 
-	    private bool ShouldSerializeHeaderPrimary()
-		{
-			return !HeaderPrimary.IsDefault;
-		}
-		#endregion
+        private bool ShouldSerializeHeaderPrimary()
+        {
+            return !HeaderPrimary.IsDefault;
+        }
+        #endregion
 
         #region HeaderSecondary
         /// <summary>
-		/// Gets access to the secondary header appearance entries.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Overrides for defining secondary header appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// Gets access to the secondary header appearance entries.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Overrides for defining secondary header appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteTripleMetric HeaderSecondary { get; }
 
-	    private bool ShouldSerializeHeaderSecondary()
-		{
-			return !HeaderSecondary.IsDefault;
-		}
-		#endregion
+        private bool ShouldSerializeHeaderSecondary()
+        {
+            return !HeaderSecondary.IsDefault;
+        }
+        #endregion
 
         #region IPaletteMetric
         /// <summary>

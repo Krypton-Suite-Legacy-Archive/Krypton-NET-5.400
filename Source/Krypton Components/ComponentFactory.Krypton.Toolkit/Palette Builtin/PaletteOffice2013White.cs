@@ -1,29 +1,22 @@
 ﻿// *****************************************************************************
+// BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
+// The software and associated documentation supplied hereunder are the 
+//  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  © Component Factory Pty Ltd 2012. All rights reserved.
-//	The software and associated documentation supplied hereunder are the 
-//  proprietary information of Component Factory Pty Ltd, 17/267 Nepean Hwy, 
-//  Seaford, Vic 3198, Australia and are supplied subject to licence terms.
-// 
-//  Version 4.5.400.2 	www.ComponentFactory.com
+//  Modifications by MegaKraken, Thavarajan, Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
-using System;
-using System.Text;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Diagnostics;
-using Microsoft.Win32;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Provides the White color scheme variant of the Office 2013 palette.
-	/// </summary>
+    /// <summary>
+    /// Provides the White color scheme variant of the Office 2013 palette.
+    /// </summary>
     public class PaletteOffice2013White : PaletteOffice2013Base
     {
         #region Static Fields
@@ -301,16 +294,16 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the PaletteOffice2010Silver class.
-		/// </summary>
+        /// </summary>
         public PaletteOffice2013White()
-            : base(_schemeColors, 
-                   _checkBoxList, 
-                   _galleryButtonList, 
+            : base(_schemeColors,
+                   _checkBoxList,
+                   _galleryButtonList,
                    _radioButtonArray,
                    _trackBarColors)
         {
-		}
-		#endregion
+        }
+        #endregion
 
         #region Images
         /// <summary>

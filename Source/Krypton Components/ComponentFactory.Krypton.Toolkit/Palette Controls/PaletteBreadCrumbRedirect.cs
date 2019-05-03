@@ -1,44 +1,44 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Implement redirected storage for common bread crumb appearance.
-	/// </summary>
+    /// <summary>
+    /// Implement redirected storage for common bread crumb appearance.
+    /// </summary>
     public class PaletteBreadCrumbRedirect : PaletteDoubleMetricRedirect
-	{
+    {
         #region Instance Fields
 
-	    #endregion
+        #endregion
 
         #region Identity
         /// <summary>
-		/// Initialize a new instance of the PaletteBreadCrumbRedirect class.
-		/// </summary>
+        /// Initialize a new instance of the PaletteBreadCrumbRedirect class.
+        /// </summary>
         /// <param name="redirect">Inheritence redirection for bread crumb level.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteBreadCrumbRedirect(PaletteRedirect redirect,
                                          NeedPaintHandler needPaint)
             : base(redirect, PaletteBackStyle.PanelAlternate, PaletteBorderStyle.ControlClient)
-		{
+        {
             BreadCrumb = new PaletteTripleRedirect(redirect, 
                                                       PaletteBackStyle.ButtonBreadCrumb,
                                                       PaletteBorderStyle.ButtonBreadCrumb,
                                                       PaletteContentStyle.ButtonBreadCrumb, 
                                                       needPaint);
         }
-		#endregion
+        #endregion
 
         #region IsDefault
         /// <summary>
@@ -47,7 +47,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [Browsable(false)]
         public override bool IsDefault => (base.IsDefault && BreadCrumb.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region BreadCrumb
         /// <summary>
@@ -58,7 +58,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteTripleRedirect BreadCrumb { get; }
 
-	    private bool ShouldSerializeBreadCrumb()
+        private bool ShouldSerializeBreadCrumb()
         {
             return !BreadCrumb.IsDefault;
         }

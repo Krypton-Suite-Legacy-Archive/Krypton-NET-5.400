@@ -1,21 +1,22 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.ComponentModel;
-using ComponentFactory.Krypton.Toolkit;
+using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
+
 using ComponentFactory.Krypton.Navigator;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Workspace
 {
@@ -64,7 +65,7 @@ namespace ComponentFactory.Krypton.Workspace
                     break;
                 default:
                     Debug.Assert(false);
-                    throw new ArgumentOutOfRangeException("Hint must be an edge value.");
+                    throw new ArgumentOutOfRangeException(nameof(hint), @"Hint must be an edge value.");
             }
         }
         #endregion
@@ -128,26 +129,23 @@ namespace ComponentFactory.Krypton.Workspace
                 }
 
                 // Make the last page transfer the newly selected page of the cell
-                if (page != null)
+                // Does the cell allow the selection of tabs?
+                if (cell.AllowTabSelect)
                 {
-                    // Does the cell allow the selection of tabs?
-                    if (cell.AllowTabSelect)
-                    {
-                        cell.SelectedPage = page;
-                    }
+                    cell.SelectedPage = page;
+                }
 
-                    // Need to layout so the new cell has been added as a child control and 
-                    // therefore can receive the focus we want to give it immediately afterwards
-                    Workspace.PerformLayout();
+                // Need to layout so the new cell has been added as a child control and 
+                // therefore can receive the focus we want to give it immediately afterwards
+                Workspace.PerformLayout();
 
-                    if (!cell.IsDisposed)
-                    {
-                        // Without this DoEvents() call the dropping of multiple pages in a complex arrangement causes an exception for
-                        // a complex reason that is hard to work out (i.e. I'm not entirely sure). Something to do with using select to
-                        // change activation is causing the source workspace control to dispose to earlier.
-                        Application.DoEvents();
-                        cell.Select();
-                    }
+                if (!cell.IsDisposed)
+                {
+                    // Without this DoEvents() call the dropping of multiple pages in a complex arrangement causes an exception for
+                    // a complex reason that is hard to work out (i.e. I'm not entirely sure). Something to do with using select to
+                    // change activation is causing the source workspace control to dispose to earlier.
+                    Application.DoEvents();
+                    cell.Select();
                 }
             }
 

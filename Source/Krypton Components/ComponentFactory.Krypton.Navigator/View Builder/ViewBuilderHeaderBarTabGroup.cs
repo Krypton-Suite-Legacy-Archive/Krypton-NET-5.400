@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -17,11 +17,11 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Navigator
 {
-	/// <summary>
+    /// <summary>
     /// Implements the NavigatorMode.HeaderGroupTab view.
-	/// </summary>
+    /// </summary>
     internal class ViewBuilderHeaderBarTabGroup : ViewBuilderBarTabBase
-	{
+    {
         #region Instance Fields
         private ViewLayoutInsetOverlap _layoutOverlap;
         private ViewDrawDocker _viewHeadingPrimary;
@@ -54,7 +54,7 @@ namespace ComponentFactory.Krypton.Navigator
         /// </summary>
         public override bool IsTabStripMode => false;
 
-	    /// <summary>
+        /// <summary>
         /// Gets the ButtonSpec associated with the provided view element.
         /// </summary>
         /// <param name="element">Element to search against.</param>
@@ -562,6 +562,11 @@ namespace ComponentFactory.Krypton.Navigator
                     _buttonManager.SetDockerMetrics(drawDocker, palette,
                                                     PaletteMetricInt.HeaderButtonEdgeInsetCustom2,
                                                     PaletteMetricPadding.HeaderButtonPaddingCustom2);
+                    break;
+                case HeaderStyle.Custom3:
+                    _buttonManager.SetDockerMetrics(drawDocker, palette,
+                        PaletteMetricInt.HeaderButtonEdgeInsetCustom3,
+                        PaletteMetricPadding.HeaderButtonPaddingCustom3);
                     break;
                 default:
                     // Should never happen!

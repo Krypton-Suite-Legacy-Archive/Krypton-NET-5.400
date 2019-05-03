@@ -1,23 +1,25 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by MegaKraken, Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using System.Security.Permissions;
-using ComponentFactory.Krypton.Toolkit;
+using System.Windows.Forms;
+
 using ComponentFactory.Krypton.Navigator;
+using ComponentFactory.Krypton.Toolkit;
 using ComponentFactory.Krypton.Workspace;
+// ReSharper disable MemberCanBeInternal
 
 namespace ComponentFactory.Krypton.Docking
 {
@@ -27,13 +29,13 @@ namespace ComponentFactory.Krypton.Docking
     [ToolboxItem(false)]
     [DesignerCategory("code")]
     [DesignTimeVisible(false)]
-    public class KryptonAutoHiddenSlidePanel : KryptonPanel, 
+    public class KryptonAutoHiddenSlidePanel : KryptonPanel,
                                                IMessageFilter
     {
         #region Static Fields
 
         private const int SLIDE_MINIMUM = 27;
-        private const int SLIDE_DISTANCE = 16;
+        private const int SLIDE_DISTANCE = int.MaxValue ; // = 16;
         private const int SLIDE_INTERVAL = 15;
         private const int CLIENT_MINIMUM = 22;
         private const int DISMISS_INTERVAL = 300;
@@ -46,7 +48,7 @@ namespace ComponentFactory.Krypton.Docking
         private readonly KryptonAutoHiddenPanel _panel;
         private KryptonAutoHiddenGroup _group;
         private readonly KryptonDockspaceSlide _dockspaceSlide;
-        private readonly EventHandler _checkMakeHidden; 
+        private readonly EventHandler _checkMakeHidden;
         private readonly KryptonPanel _inner;
         private readonly Button _dummyTarget;
         private DockingAutoHiddenShowState _state;
@@ -65,7 +67,7 @@ namespace ComponentFactory.Krypton.Docking
         [Category("Behavior")]
         [Description("Occurs when the separator is about to be moved and requests the rectangle of allowed movement.")]
         public event EventHandler<SplitterMoveRectMenuArgs> SplitterMoveRect;
-        
+
         /// <summary>
         /// Occurs when the separator move finishes and a move has occured.
         /// </summary>
@@ -93,7 +95,7 @@ namespace ComponentFactory.Krypton.Docking
         [Category("Behavior")]
         [Description("Occurs when the user clicks the auto hidden button for a page.")]
         public event EventHandler<UniqueNameEventArgs> PageAutoHiddenClicked;
-        
+
         /// <summary>
         /// Occurs when a page requests that a drop down menu be shown.
         /// </summary>
@@ -106,7 +108,7 @@ namespace ComponentFactory.Krypton.Docking
         /// </summary>
         [Category("Behavior")]
         [Description("Occurs when an auto hidden page showing state changes.")]
-        public event EventHandler<AutoHiddenShowingStateEventArgs> AutoHiddenShowingStateChanged;        
+        public event EventHandler<AutoHiddenShowingStateEventArgs> AutoHiddenShowingStateChanged;
         #endregion
 
         #region Identity
@@ -148,7 +150,7 @@ namespace ComponentFactory.Krypton.Docking
             _dockspaceSlide.PageCloseClicked += OnDockspacePageCloseClicked;
             _dockspaceSlide.PageAutoHiddenClicked += OnDockspacePageAutoHiddenClicked;
             _dockspaceSlide.PageDropDownClicked += OnDockspacePageDropDownClicked;
-            
+
             SeparatorControl = new KryptonDockspaceSeparator(edge, true);
             SeparatorControl.SplitterMoving += OnDockspaceSeparatorMoving;
             SeparatorControl.SplitterMoved += OnDockspaceSeparatorMoved;
@@ -168,7 +170,7 @@ namespace ComponentFactory.Krypton.Docking
                 Size = new Size(100, 100)
             };
             Controls.Add(_dummyTarget);
-            
+
             // Add ourself into the target control for docking
             control.SizeChanged += OnControlSizeChanged;
             control.Controls.Add(this);
@@ -205,7 +207,7 @@ namespace ComponentFactory.Krypton.Docking
                 Page = null;
                 _group = null;
 
-                // Remove ourself from the control we planted outself into
+                // Remove ourself from the control we planted ourself into
                 _control.Controls.Remove(this);
 
                 // Remove all the pages so that the pages have palette redirection reset
@@ -264,7 +266,7 @@ namespace ComponentFactory.Krypton.Docking
         }
 
         /// <summary>
-        /// Remove from view the slide out page if it matches the unqiue name provided.
+        /// Remove from view the slide out page if it matches the unique name provided.
         /// </summary>
         /// <param name="uniqueName">Unique name of the page to be hidden.</param>
         public void HideUniqueName(string uniqueName)
@@ -478,11 +480,11 @@ namespace ComponentFactory.Krypton.Docking
             }
         }
 
-		/// <summary>
-		/// Filters out a message before it is dispatched.
-		/// </summary>
-		/// <param name="msg">The message to be dispatched. You cannot modify this message. </param>
-		/// <returns>true to filter out; false otherwise.</returns>
+        /// <summary>
+        /// Filters out a message before it is dispatched.
+        /// </summary>
+        /// <param name="msg">The message to be dispatched. You cannot modify this message. </param>
+        /// <returns>true to filter out; false otherwise.</returns>
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         public bool PreFilterMessage(ref Message msg)
         {
@@ -495,12 +497,22 @@ namespace ComponentFactory.Krypton.Docking
             //    We are not in the hidden state                                        AND
             //    We have an associated auto hidden group control that is not disposed  AND
             //    We are not disposed
-            if ((parentForm != null) && ((parentForm == Form.ActiveForm) || ((parentMdi != null) && (parentMdi.ActiveMdiChild == parentForm))) &&
-                parentForm.ContainsFocus && (_state != DockingAutoHiddenShowState.Hidden) && (_group != null) && !_group.IsDisposed && !IsDisposed)
+            if ((parentForm != null)
+                 && ((parentForm == Form.ActiveForm)
+                      || ((parentMdi != null)
+                           && (parentMdi.ActiveMdiChild == parentForm)
+                      )
+                 )
+                 && parentForm.ContainsFocus
+                 && (_state != DockingAutoHiddenShowState.Hidden)
+                 && (_group != null)
+                 && !_group.IsDisposed
+                 && !IsDisposed
+                 )
             {
                 switch (msg.Msg)
                 {
-                    case PI.WM_KEYDOWN:
+                    case PI.WM_.KEYDOWN:
                         // Pressing escape removes the auto hidden window
                         if ((int)msg.WParam == PI.VK_ESCAPE)
                         {
@@ -508,7 +520,7 @@ namespace ComponentFactory.Krypton.Docking
                             return true;
                         }
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // If the mouse is leaving a control then we start the dismiss timer so that a mouse move is required
                         // to cancel the mouse move and prevent the actual dismissal occuring. The exception to this is if the
                         // slide out dockspace has the focus, in which case we do nothing.
@@ -519,13 +531,14 @@ namespace ComponentFactory.Krypton.Docking
                             _dismissRunning = true;
                         }
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Convert the mouse position into a screen location
                         Point screenPt = CommonHelper.ClientMouseMessageToScreenPt(msg);
 
-                        // Is the mouse over ourself or over the associated auto hiiden group
-                        if (RectangleToScreen(ClientRectangle).Contains(screenPt) ||
-                            _group.RectangleToScreen(_group.ClientRectangle).Contains(screenPt))
+                        // Is the mouse over ourself or over the associated auto hidden group
+                        if (RectangleToScreen(ClientRectangle).Contains(screenPt)
+                            || _group.RectangleToScreen(_group.ClientRectangle).Contains(screenPt)
+                            )
                         {
                             // We do not dismiss while the mouse is over ourself
                             if (_dismissRunning)
@@ -659,7 +672,7 @@ namespace ComponentFactory.Krypton.Docking
             // Find the preferred size of the slider area by combining the separator and dockspace
             Size dockspacePreferred = Page.AutoHiddenSlideSize;
             Size separatorPreferred = SeparatorControl.GetPreferredSize(_control.Size);
-            Size slideSize = new Size(separatorPreferred.Width + dockspacePreferred.Width, 
+            Size slideSize = new Size(separatorPreferred.Width + dockspacePreferred.Width,
                                       separatorPreferred.Height + dockspacePreferred.Height);
 
             // Find the maximum allowed size based on the owning control client area reduced by a sensible minimum

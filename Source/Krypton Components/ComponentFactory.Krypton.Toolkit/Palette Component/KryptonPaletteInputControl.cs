@@ -1,21 +1,21 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Storage for palette input control states.
-	/// </summary>
+    /// <summary>
+    /// Storage for palette input control states.
+    /// </summary>
     public class KryptonPaletteInputControl : Storage
     {
         #region Instance Fields
@@ -28,7 +28,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonPaletteInputControl class.
-		/// </summary>
+        /// </summary>
         /// <param name="redirect">Redirector to inherit values from.</param>
         /// <param name="backStyle">Background style.</param>
         /// <param name="borderStyle">Border style.</param>
@@ -39,7 +39,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                           PaletteBorderStyle borderStyle,
                                           PaletteContentStyle contentStyle,
                                           NeedPaintHandler needPaint) 
-		{
+        {
             // Create the storage objects
             _stateCommon = new PaletteTripleRedirect(redirect, backStyle, borderStyle, contentStyle, needPaint);
             _stateDisabled = new PaletteTriple(_stateCommon, needPaint);

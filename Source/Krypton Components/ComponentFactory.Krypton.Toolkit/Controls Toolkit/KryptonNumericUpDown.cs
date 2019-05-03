@@ -1,31 +1,34 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
+using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+// ReSharper disable MemberCanBePrivate.Local
+// ReSharper disable UnusedMember.Local
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Provide a NumericUpDown with Krypton styling applied.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonNumericUpDown), "ToolboxBitmaps.KryptonNumericUpDown.bmp")]
     [DefaultEvent("ValueChanged")]
-	[DefaultProperty("Value")]
+    [DefaultProperty("Value")]
     [DefaultBindingProperty("Value")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonNumericUpDownDesigner))]
+    [Designer(typeof(KryptonNumericUpDownDesigner))]
     [DesignerCategory("code")]
     [Description("Represents a Windows spin box (also known as an up-down control) that displays numeric values.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -67,6 +70,34 @@ namespace ComponentFactory.Krypton.Toolkit
 
                 // We provide the border manually
                 BorderStyle = BorderStyle.None;
+                AllowDecimals = true;
+                DecimalPlaces = 99;
+            }
+            #endregion
+
+            #region Public
+            /// <summary>
+            /// Gets or sets whether the control accepts decimal values.
+            /// </summary>
+            [Category("Behavior")]
+            [Description("Indicates whether the control can accept decimal values, rather than integer values only.")]
+            [DefaultValue(true)]
+            public bool AllowDecimals
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Gets or sets whether the control displays trailing zeroes.
+            /// </summary>
+            [Category("Behavior")]
+            [Description("Indicates whether the control will display traling zeroes.")]
+            [DefaultValue(false)]
+            public bool TrailingZeroes
+            {
+                get;
+                set;
             }
             #endregion
 
@@ -78,7 +109,7 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 get => _mouseOver;
 
-                set 
+                set
                 {
                     // Only interested in changes
                     if (_mouseOver != value)
@@ -101,6 +132,32 @@ namespace ComponentFactory.Krypton.Toolkit
 
             #region Protected
             /// <summary>
+            /// This is a really ugly hack but it gets the job done.
+            /// </summary>
+            protected override void UpdateEditText()
+            {
+                if (!AllowDecimals && (long)Value != Value)
+                {
+                    Value = (long)Value;
+                }
+                if (!Hexadecimal && !TrailingZeroes)
+                {
+                    Text = Value.ToString("0.##############################");
+                }
+                else
+                {
+                    base.UpdateEditText();
+                }
+            }
+
+            protected override void OnKeyPress(KeyPressEventArgs e)
+            {
+                base.OnKeyPress(e);
+                e.Handled = !AllowDecimals && e.KeyChar.ToString() ==
+                            CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            }
+
+            /// <summary>
             /// Process Windows-based messages.
             /// </summary>
             /// <param name="m">A Windows-based message.</param>
@@ -108,10 +165,10 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 switch (m.Msg)
                 {
-                    case PI.WM_NCHITTEST:
+                    case PI.WM_.NCHITTEST:
                         if (_kryptonNumericUpDown.InTransparentDesignMode)
                         {
-                            m.Result = (IntPtr)PI.HTTRANSPARENT;
+                            m.Result = (IntPtr)PI.HT.TRANSPARENT;
                         }
                         else
                         {
@@ -119,14 +176,14 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
 
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // Mouse is not over the control
                         MouseOver = false;
                         _kryptonNumericUpDown.PerformNeedPaint(true);
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Mouse is over the control
                         if (!MouseOver)
                         {
@@ -136,7 +193,7 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_CONTEXTMENU:
+                    case PI.WM_.CONTEXTMENU:
                         // Only interested in overriding the behavior when we have a krypton context menu...
                         if (_kryptonNumericUpDown.KryptonContextMenu != null)
                         {
@@ -180,11 +237,11 @@ namespace ComponentFactory.Krypton.Toolkit
             /// <summary>
             /// Gets or sets a value indicating whether a value has been entered by the user.
             /// </summary>
-            internal protected bool InternalUserEdit 
+            internal protected bool InternalUserEdit
             {
                 get => UserEdit;
                 set => UserEdit = value;
-            }   
+            }
             #endregion
         }
 
@@ -272,8 +329,9 @@ namespace ComponentFactory.Krypton.Toolkit
                 set => PI.SetWindowPos(Handle,
                     IntPtr.Zero,
                     0, 0, 0, 0,
-                    (uint)(PI.SWP_NOMOVE | PI.SWP_NOSIZE |
-                           (value ? PI.SWP_SHOWWINDOW : PI.SWP_HIDEWINDOW)));
+                    (PI.SWP_.NOMOVE | PI.SWP_.NOSIZE |
+                           (value ? PI.SWP_.SHOWWINDOW : PI.SWP_.HIDEWINDOW))
+                    );
             }
             #endregion
 
@@ -291,10 +349,10 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 switch (m.Msg)
                 {
-                    case PI.WM_NCHITTEST:
+                    case PI.WM_.NCHITTEST:
                         if (NumericUpDown.InTransparentDesignMode)
                         {
-                            m.Result = (IntPtr)PI.HTTRANSPARENT;
+                            m.Result = (IntPtr)PI.HT.TRANSPARENT;
                         }
                         else
                         {
@@ -302,14 +360,14 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
 
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // Mouse is not over the control
                         MouseOver = false;
                         MousePoint = new Point(-int.MaxValue, -int.MaxValue);
                         NumericUpDown.PerformNeedPaint(true);
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Extra mouse position
                         MousePoint = new Point((int)m.LParam.ToInt64());
 
@@ -338,8 +396,8 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_PRINTCLIENT:
-                    case PI.WM_PAINT:
+                    case PI.WM_.PRINTCLIENT:
+                    case PI.WM_.PAINT:
                         {
                             PI.PAINTSTRUCT ps = new PI.PAINTSTRUCT();
 
@@ -446,7 +504,7 @@ namespace ComponentFactory.Krypton.Toolkit
                             }
                         }
                         break;
-                    case PI.WM_CONTEXTMENU:
+                    case PI.WM_.CONTEXTMENU:
                         // Only interested in overriding the behavior when we have a krypton context menu...
                         if (NumericUpDown.KryptonContextMenu != null)
                         {
@@ -488,7 +546,7 @@ namespace ComponentFactory.Krypton.Toolkit
             protected virtual void OnTrackMouseLeave(EventArgs e) => TrackMouseLeave?.Invoke(this, e);
             #endregion
         }
-        
+
         private class SubclassButtons : SubclassEdit, IContentValues, IDisposable
         {
             #region Instance Fields
@@ -566,23 +624,23 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 switch (m.Msg)
                 {
-                    case PI.WM_LBUTTONDBLCLK:
-                    case PI.WM_LBUTTONDOWN:
+                    case PI.WM_.LBUTTONDBLCLK:
+                    case PI.WM_.LBUTTONDOWN:
                         _mousePressed = new Point((int)m.LParam.ToInt64());
                         base.WndProc(ref m);
                         PI.RedrawWindow(Handle, IntPtr.Zero, IntPtr.Zero, 0x300);
                         break;
-                    case PI.WM_LBUTTONUP:
-                    case PI.WM_MBUTTONUP:
-                    case PI.WM_MBUTTONDOWN:
-                    case PI.WM_RBUTTONUP:
-                    case PI.WM_RBUTTONDOWN:
+                    case PI.WM_.LBUTTONUP:
+                    case PI.WM_.MBUTTONUP:
+                    case PI.WM_.MBUTTONDOWN:
+                    case PI.WM_.RBUTTONUP:
+                    case PI.WM_.RBUTTONDOWN:
                         _mousePressed = new Point(-int.MaxValue, -int.MaxValue);
                         base.WndProc(ref m);
                         PI.RedrawWindow(Handle, IntPtr.Zero, IntPtr.Zero, 0x300);
                         break;
-                    case PI.WM_PRINTCLIENT:
-                    case PI.WM_PAINT:
+                    case PI.WM_.PRINTCLIENT:
+                    case PI.WM_.PAINT:
                         PI.PAINTSTRUCT ps = new PI.PAINTSTRUCT();
 
                         // Do we need to BeginPaint or just take the given HDC?
@@ -665,7 +723,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                      this, VisualOrientation.Top, false);
                 }
 
-                // Update with the latset button style for the up/down buttons
+                // Update with the latest button style for the up/down buttons
                 _palette.SetStyles(NumericUpDown.UpDownButtonStyle);
 
                 // Find button rectangles
@@ -674,22 +732,22 @@ namespace ComponentFactory.Krypton.Toolkit
 
                 // Position and draw the up/down buttons
                 using (ViewLayoutContext layoutContext = new ViewLayoutContext(NumericUpDown, NumericUpDown.Renderer))
-                    using (RenderContext renderContext = new RenderContext(NumericUpDown, g, clientRect, NumericUpDown.Renderer))
-                    {
-                        // Up button
-                        layoutContext.DisplayRectangle = upRect;
-                        _viewButton.ElementState = ButtonElementState(upRect);
-                        _viewButton.Layout(layoutContext);
-                        _viewButton.Render(renderContext);
-                        renderContext.Renderer.RenderGlyph.DrawInputControlNumericUpGlyph(renderContext, _viewButton.ClientRectangle, _palette.PaletteContent, _viewButton.ElementState);
+                using (RenderContext renderContext = new RenderContext(NumericUpDown, g, clientRect, NumericUpDown.Renderer))
+                {
+                    // Up button
+                    layoutContext.DisplayRectangle = upRect;
+                    _viewButton.ElementState = ButtonElementState(upRect);
+                    _viewButton.Layout(layoutContext);
+                    _viewButton.Render(renderContext);
+                    renderContext.Renderer.RenderGlyph.DrawInputControlNumericUpGlyph(renderContext, _viewButton.ClientRectangle, _palette.PaletteContent, _viewButton.ElementState);
 
-                        // Down button
-                        layoutContext.DisplayRectangle = downRect;
-                        _viewButton.ElementState = ButtonElementState(downRect);
-                        _viewButton.Layout(layoutContext);
-                        _viewButton.Render(renderContext);
-                        renderContext.Renderer.RenderGlyph.DrawInputControlNumericDownGlyph(renderContext, _viewButton.ClientRectangle, _palette.PaletteContent, _viewButton.ElementState);
-                    }
+                    // Down button
+                    layoutContext.DisplayRectangle = downRect;
+                    _viewButton.ElementState = ButtonElementState(downRect);
+                    _viewButton.Layout(layoutContext);
+                    _viewButton.Render(renderContext);
+                    renderContext.Renderer.RenderGlyph.DrawInputControlNumericDownGlyph(renderContext, _viewButton.ClientRectangle, _palette.PaletteContent, _viewButton.ElementState);
+                }
             }
 
             private PaletteState ButtonElementState(Rectangle buttonRect)
@@ -730,8 +788,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <summary>
         /// Collection for managing ButtonSpecAny instances.
         /// </summary>
-        public class NumericUpDownButtonSpecCollection : ButtonSpecCollection<ButtonSpecAny> 
-        { 
+        public class NumericUpDownButtonSpecCollection : ButtonSpecCollection<ButtonSpecAny>
+        {
             #region Identity
             /// <summary>
             /// Initialize a new instance of the NumericUpDownButtonSpecCollection class.
@@ -835,7 +893,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonNumericUpDown class.
-		/// </summary>
+        /// </summary>
         public KryptonNumericUpDown()
         {
             // Contains another control and needs marking as such for validation to work
@@ -878,7 +936,7 @@ namespace ComponentFactory.Krypton.Toolkit
             _numericUpDown.Validating += OnNumericUpDownValidating;
             _numericUpDown.Validated += OnNumericUpDownValidated;
 
-            // Create the element that fills the remainder space and remembers fill rectange
+            // Create the element that fills the remainder space and remembers fill rectangle
             _layoutFill = new ViewLayoutFill(_numericUpDown)
             {
                 DisplayPadding = new Padding(1, 1, 1, 0)
@@ -940,7 +998,7 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Gets and sets if the control is in the tab chain.
         /// </summary>
@@ -1060,10 +1118,35 @@ namespace ComponentFactory.Krypton.Toolkit
         [Category("Data")]
         [Description("Indicates the number of decimal places to display.")]
         [DefaultValue(0)]
+        [Browsable(false)]
         public int DecimalPlaces
         {
             get => _numericUpDown.DecimalPlaces;
             set => _numericUpDown.DecimalPlaces = value;
+        }
+
+        /// <summary>
+        /// Gets or sets whether the control accepts decimal values.
+        /// </summary>
+        [Category("Behavior")]
+        [Description("Indicates whether the control can accept decimal values, rather than integer values only.")]
+        [DefaultValue(true)]
+        public bool AllowDecimals
+        {
+            get => _numericUpDown.AllowDecimals;
+            set => _numericUpDown.AllowDecimals = value;
+        }
+
+        /// <summary>
+        /// Gets or sets whether the control displays trailing zeroes.
+        /// </summary>
+        [Category("Behavior")]
+        [Description("Indicates whether the control will display traling zeroes.")]
+        [DefaultValue(false)]
+        public bool TrailingZeroes
+        {
+            get => _numericUpDown.TrailingZeroes;
+            set => _numericUpDown.TrailingZeroes = value;
         }
 
         /// <summary>
@@ -1164,7 +1247,7 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-        /// Gets or sets wheather the numeric up-down should display its value in hexadecimal.
+        /// Gets or sets weather the numeric up-down should display its value in hexadecimal.
         /// </summary>
         [Category("Appearance")]
         [Description("Indicates wheather the numeric up-down should display its value in hexadecimal.")]
@@ -1234,24 +1317,24 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets and sets the input control style.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Input control style.")]
+        /// Gets and sets the input control style.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Input control style.")]
         public InputControlStyle InputControlStyle
-		{
+        {
             get => _inputControlStyle;
 
             set
-			{
+            {
                 if (_inputControlStyle != value)
-				{
+                {
                     _inputControlStyle = value;
                     StateCommon.SetStyles(value);
-					PerformNeedPaint(true);
-				}
-			}
-		}
+                    PerformNeedPaint(true);
+                }
+            }
+        }
 
         private void ResetInputControlStyle() => InputControlStyle = InputControlStyle.Standalone;
 
@@ -1310,8 +1393,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Gets access to the disabled textbox appearance entries.
         /// </summary>
         [Category("Visuals")]
-		[Description("Overrides for defining disabled textbox appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [Description("Overrides for defining disabled textbox appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteInputControlTripleStates StateDisabled { get; }
 
         private bool ShouldSerializeStateDisabled() => !StateDisabled.IsDefault;
@@ -1320,8 +1403,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Gets access to the normal textbox appearance entries.
         /// </summary>
         [Category("Visuals")]
-		[Description("Overrides for defining normal textbox appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [Description("Overrides for defining normal textbox appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteInputControlTripleStates StateNormal { get; }
 
         private bool ShouldSerializeStateNormal() => !StateNormal.IsDefault;
@@ -1410,7 +1493,7 @@ namespace ComponentFactory.Krypton.Toolkit
             // Do we have a manager to ask for a preferred size?
             if (ViewManager != null)
             {
-                // Ask the view to peform a layout
+                // Ask the view to perform a layout
                 Size retSize = ViewManager.GetPreferredSize(Renderer, proposedSize);
 
                 // Apply the maximum sizing
@@ -1445,19 +1528,19 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets the rectangle that represents the display area of the control.
-		/// </summary>
-		public override Rectangle DisplayRectangle
-		{
-			get
-			{
+        /// Gets the rectangle that represents the display area of the control.
+        /// </summary>
+        public override Rectangle DisplayRectangle
+        {
+            get
+            {
                 // Ensure that the layout is calculated in order to know the remaining display space
                 ForceViewLayout();
 
                 // The inside text box is the client rectangle size
                 return new Rectangle(_numericUpDown.Location, _numericUpDown.Size);
-			}
-		}
+            }
+        }
 
         /// <summary>
         /// Override the display padding for the layout fill.
@@ -1527,7 +1610,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <summary>
         /// Gets or sets a value indicating whether a value has been entered by the user.
         /// </summary>
-        protected bool UserEdit 
+        protected bool UserEdit
         {
             get => _numericUpDown.InternalUserEdit;
             set => _numericUpDown.InternalUserEdit = value;
@@ -1535,6 +1618,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Protected Virtual
+        // ReSharper disable VirtualMemberNeverOverridden.Global
         /// <summary>
         /// Raises the ValueChanged event.
         /// </summary>
@@ -1552,6 +1636,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         /// <param name="e">An EventArgs containing the event data.</param>
         protected virtual void OnTrackMouseLeave(EventArgs e) => TrackMouseLeave?.Invoke(this, e);
+        // ReSharper restore VirtualMemberNeverOverridden.Global
         #endregion
 
         #region Protected Overrides
@@ -1586,12 +1671,12 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Raises the EnabledChanged event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnEnabledChanged(EventArgs e)
-		{
-			// Change in enabled state requires a layout and repaint
+        /// Raises the EnabledChanged event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            // Change in enabled state requires a layout and repaint
             UpdateStateAndPalettes();
 
             // Ensure we have subclassed the contained edit control
@@ -1683,7 +1768,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 // Update to match the new palette settings
                 Height = PreferredHeight;
 
-                // Let base class calulcate fill rectangle
+                // Let base class calculate fill rectangle
                 base.OnLayout(levent);
 
                 // Only use layout logic if control is fully initialized or if being forced
@@ -1738,8 +1823,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="width">The new Width property value of the control.</param>
         /// <param name="height">The new Height property value of the control.</param>
         /// <param name="specified">A bitwise combination of the BoundsSpecified values.</param>
-        protected override void SetBoundsCore(int x, int y, 
-                                              int width, int height, 
+        protected override void SetBoundsCore(int x, int y,
+                                              int width, int height,
                                               BoundsSpecified specified)
         {
             // If setting the actual height
@@ -1801,7 +1886,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     _numericUpDown.Font = font;
                 }
             }
-            
+
             base.OnNeedPaint(sender, e);
         }
 
@@ -1845,10 +1930,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             switch (m.Msg)
             {
-                case PI.WM_NCHITTEST:
+                case PI.WM_.NCHITTEST:
                     if (InTransparentDesignMode)
                     {
-                        m.Result = (IntPtr)PI.HTTRANSPARENT;
+                        m.Result = (IntPtr)PI.HT.TRANSPARENT;
                     }
                     else
                     {
@@ -1883,7 +1968,7 @@ namespace ComponentFactory.Krypton.Toolkit
         private void SubclassEditControl()
         {
             // If the edit control has been recreated, then release our current subclassing
-            if (_subclassEdit != null) 
+            if (_subclassEdit != null)
             {
                 if (_numericUpDown.Controls.Count >= 2)
                 {
@@ -1944,7 +2029,7 @@ namespace ComponentFactory.Krypton.Toolkit
             // Get the correct palette settings to use
             IPaletteTriple tripleState = GetTripleState();
             _drawDockerOuter.SetPalettes(tripleState.PaletteBack, tripleState.PaletteBorder);
-            
+
             // Update enabled state
             _drawDockerOuter.Enabled = Enabled;
 
@@ -2056,9 +2141,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                      CommonHelper.ContentStyleFromLabelStyle(toolTipStyle));
 
                         _visualPopupToolTip.Disposed += OnVisualPopupToolTipDisposed;
-
-                        // Show relative to the provided screen rectangle
-                        _visualPopupToolTip.ShowCalculatingSize(RectangleToScreen(e.Target.ClientRectangle));
+                        _visualPopupToolTip.ShowRelativeTo(e.Target, e.ControlMousePosition);
                     }
                 }
             }
@@ -2097,10 +2180,12 @@ namespace ComponentFactory.Krypton.Toolkit
                 if (_trackingMouseEnter)
                 {
                     OnTrackMouseEnter(EventArgs.Empty);
+                    OnMouseEnter(e);
                 }
                 else
                 {
                     OnTrackMouseLeave(EventArgs.Empty);
+                    OnMouseLeave(e);
                 }
             }
         }

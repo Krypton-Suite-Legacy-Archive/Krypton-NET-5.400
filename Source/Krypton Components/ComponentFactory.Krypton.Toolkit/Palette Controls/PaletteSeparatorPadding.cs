@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -15,22 +15,22 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Implement storage for palette border,background and separator padding.
-	/// </summary>
+    /// </summary>
     public class PaletteSeparatorPadding : PaletteDouble,
                                            IPaletteMetric
                                             
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private readonly IPaletteMetric _inherit;
         private Padding _separatorPadding;
-		#endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteSeparatorPadding class.
-		/// </summary>
+        /// </summary>
         /// <param name="inheritDouble">Source for inheriting border and background values.</param>
         /// <param name="inheritMetric">Source for inheriting metric values.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
@@ -38,7 +38,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                        IPaletteMetric inheritMetric,
                                        NeedPaintHandler needPaint)
             : base(inheritDouble, needPaint)
-		{
+        {
             Debug.Assert(inheritDouble != null);
             Debug.Assert(inheritMetric != null);
 
@@ -47,18 +47,18 @@ namespace ComponentFactory.Krypton.Toolkit
 
             // Set default value for padding property
             _separatorPadding = CommonHelper.InheritPadding;
-		}
-		#endregion
+        }
+        #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (base.IsDefault &&
-		                                   Padding.Equals(CommonHelper.InheritPadding));
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (base.IsDefault &&
+                                           Padding.Equals(CommonHelper.InheritPadding));
 
-	    #endregion
+        #endregion
 
         #region PopulateFromBase
         /// <summary>
@@ -83,38 +83,38 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new PaletteBorder Border => base.Border;
 
-	    #endregion
+        #endregion
 
-		#region Padding
-		/// <summary>
-		/// Gets the padding used to position the separator.
-		/// </summary>
+        #region Padding
+        /// <summary>
+        /// Gets the padding used to position the separator.
+        /// </summary>
         [KryptonPersist(false)]
         [Category("Visuals")]
-		[Description("Padding used to position the separator.")]
-		[DefaultValue(typeof(Padding), "-1,-1,-1,-1")]
-		[RefreshPropertiesAttribute(RefreshProperties.All)]
-		public Padding Padding
-		{
-			get => _separatorPadding;
+        [Description("Padding used to position the separator.")]
+        [DefaultValue(typeof(Padding), "-1,-1,-1,-1")]
+        [RefreshPropertiesAttribute(RefreshProperties.All)]
+        public Padding Padding
+        {
+            get => _separatorPadding;
 
-		    set
-			{
-				if (_separatorPadding != value)
-				{
-					_separatorPadding = value;
-					PerformNeedPaint(true);
-				}
-			}
-		}
+            set
+            {
+                if (_separatorPadding != value)
+                {
+                    _separatorPadding = value;
+                    PerformNeedPaint(true);
+                }
+            }
+        }
 
-		/// <summary>
-		/// Reset the Padding to the default value.
-		/// </summary>
-		public void ResetPadding()
-		{
+        /// <summary>
+        /// Reset the Padding to the default value.
+        /// </summary>
+        public void ResetPadding()
+        {
             Padding = CommonHelper.InheritPadding;
-		}
+        }
         #endregion
 
         #region IPaletteMetric
@@ -153,8 +153,11 @@ namespace ComponentFactory.Krypton.Toolkit
             // Is this the metric we provide?
             if ((metric == PaletteMetricPadding.SeparatorPaddingLowProfile) ||
                 (metric == PaletteMetricPadding.SeparatorPaddingHighProfile) ||
-                (metric == PaletteMetricPadding.SeparatorPaddingHighInternalProfile) ||
-                (metric == PaletteMetricPadding.SeparatorPaddingCustom1))
+                (metric == PaletteMetricPadding.SeparatorPaddingHighInternalProfile) 
+                || (metric == PaletteMetricPadding.SeparatorPaddingCustom1)
+                || (metric == PaletteMetricPadding.SeparatorPaddingCustom2)
+                || (metric == PaletteMetricPadding.SeparatorPaddingCustom3)
+                )
             {
                 // If the user has defined an actual value to use
                 if (!Padding.Equals(CommonHelper.InheritPadding))

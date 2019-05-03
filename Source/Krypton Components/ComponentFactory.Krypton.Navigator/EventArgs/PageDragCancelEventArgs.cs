@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Windows.Forms;
@@ -15,19 +15,19 @@ using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Navigator
 {
-	/// <summary>
-	/// Details for an cancellable event that provides pages associated with a page dragging event.
-	/// </summary>
-	public class PageDragCancelEventArgs : CancelEventArgs
-	{
-		#region Instance Fields
+    /// <summary>
+    /// Details for an cancellable event that provides pages associated with a page dragging event.
+    /// </summary>
+    public class PageDragCancelEventArgs : CancelEventArgs
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PageDragCancelEventArgs class.
-		/// </summary>
+        /// </summary>
         /// <param name="elementOffset">Offset from the top left of the element.</param>
         /// <param name="screenPoint">Screen point of the mouse.</param>
         /// <param name="c">Control that started the drag operation.</param>
@@ -36,7 +36,7 @@ namespace ComponentFactory.Krypton.Navigator
                                        Point elementOffset,
                                        Control c,
                                        KryptonPage[] pages)
-		{
+        {
             ScreenPoint = screenPoint;
             ElementOffset = elementOffset;
             Control = c;
@@ -46,7 +46,7 @@ namespace ComponentFactory.Krypton.Navigator
             {
                 Pages.AddRange(pages);
             }
-		}
+        }
 
         /// <summary>
         /// Initialize a new instance of the PageDragCancelEventArgs class.
@@ -73,7 +73,7 @@ namespace ComponentFactory.Krypton.Navigator
         /// </summary>
         public Point ScreenPoint { get; }
 
-	    #endregion
+        #endregion
 
         #region ElementOffset
         /// <summary>
@@ -81,7 +81,7 @@ namespace ComponentFactory.Krypton.Navigator
         /// </summary>
         public Point ElementOffset { get; }
 
-	    #endregion
+        #endregion
 
         #region ElementOffset
         /// <summary>
@@ -89,7 +89,7 @@ namespace ComponentFactory.Krypton.Navigator
         /// </summary>
         public Control Control { get; }
 
-	    #endregion
+        #endregion
 
         #region Pages
         /// <summary>
@@ -97,6 +97,6 @@ namespace ComponentFactory.Krypton.Navigator
         /// </summary>
         public KryptonPageCollection Pages { get; }
 
-	    #endregion
+        #endregion
     }
 }

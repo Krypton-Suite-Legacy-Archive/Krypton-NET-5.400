@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -14,40 +14,40 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Implement storage for a KryptonDataGridView normal state.
-	/// </summary>
+    /// <summary>
+    /// Implement storage for a KryptonDataGridView normal state.
+    /// </summary>
     public class PaletteDataGridViewAll : PaletteDataGridViewCells
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private readonly PaletteDouble _background;
-		#endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteDataGridViewAll class.
-		/// </summary>
+        /// </summary>
         /// <param name="inherit">Source for inheriting values.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteDataGridViewAll(PaletteDataGridViewRedirect inherit,
                                       NeedPaintHandler needPaint)
             : base(inherit, needPaint)
-		{
+        {
             Debug.Assert(inherit != null);
 
-			// Create storage that maps onto the inherit instances
+            // Create storage that maps onto the inherit instances
             _background = new PaletteDouble(inherit.BackgroundDouble, needPaint);
         }
-		#endregion
+        #endregion
 
         #region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (Background.IsDefault && base.IsDefault);
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (Background.IsDefault && base.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region PopulateFromBase
         /// <summary>
@@ -91,10 +91,10 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual PaletteBack Background => _background.Back;
 
-	    private bool ShouldSerializeBackground()
+        private bool ShouldSerializeBackground()
         {
             return !_background.IsDefault;
         }
         #endregion
-	}
+    }
 }

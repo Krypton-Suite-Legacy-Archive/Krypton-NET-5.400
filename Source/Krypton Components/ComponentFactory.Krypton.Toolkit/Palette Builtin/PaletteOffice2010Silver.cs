@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Provides the Silver color scheme variant of the Office 2010 palette.
-	/// </summary>
+    /// <summary>
+    /// Provides the Silver color scheme variant of the Office 2010 palette.
+    /// </summary>
     public class PaletteOffice2010Silver : PaletteOffice2010Base
     {
         #region Static Fields
@@ -30,14 +30,14 @@ namespace ComponentFactory.Krypton.Toolkit
         private static readonly Image _formMax = Properties.Resources._2010ButtonMax;
         private static readonly Image _formMin = Properties.Resources._2010ButtonMin;
         private static readonly Image _formRestore = Properties.Resources._2010ButtonRestore;
-        private static readonly Color[] _trackBarColors = { Color.FromArgb(170, 170, 170),      // Tick marks
+        private static readonly Color[] _trackBarColors = new Color[] { Color.FromArgb(170, 170, 170),      // Tick marks
                                                                         Color.FromArgb(166, 170, 175),      // Top track
                                                                         Color.FromArgb(226, 220, 235),      // Bottom track
                                                                         Color.FromArgb(206, 200, 215),      // Fill track
                                                                         Color.FromArgb(64, Color.White),    // Outside position
                                                                         Color.FromArgb(80, 81, 82)          // Border (normal) position
                                                                       };
-        private static readonly Color[] _schemeColors = { Color.FromArgb( 59,  59,  59),    // TextLabelControl
+        private static readonly Color[] _schemeColors = new Color[] { Color.FromArgb( 59,  59,  59),    // TextLabelControl
                                                                       Color.FromArgb( 59,  59,  59),    // TextButtonNormal
                                                                       Color.Black,                      // TextButtonChecked
                                                                       Color.FromArgb(187, 191, 196),    // ButtonNormalBorder1
@@ -294,16 +294,16 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the PaletteOffice2010Silver class.
-		/// </summary>
+        /// </summary>
         public PaletteOffice2010Silver()
-            : base(_schemeColors, 
-                   _checkBoxList, 
-                   _galleryButtonList, 
+            : base(_schemeColors,
+                   _checkBoxList,
+                   _galleryButtonList,
                    _radioButtonArray,
                    _trackBarColors)
         {
-		}
-		#endregion
+        }
+        #endregion
 
         #region Images
         /// <summary>

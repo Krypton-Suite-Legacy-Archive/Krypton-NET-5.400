@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -19,6 +19,9 @@ using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class KryptonOffice2007Renderer : KryptonProfessionalRenderer
     {
         #region GradientItemColors
@@ -352,26 +355,26 @@ namespace ComponentFactory.Krypton.Toolkit
             // Make the border of the check box 1 pixel bigger on all sides, as a minimum
             checkBox.Inflate(1, 1);
 
-            // Can we extend upwards?
-            if (checkBox.Top > CHECK_INSET)
-            {
-                int diff = checkBox.Top - CHECK_INSET;
-                checkBox.Y -= diff;
-                checkBox.Height += diff;
-            }
+            //// Can we extend upwards?
+            //if (checkBox.Top > CHECK_INSET)
+            //{
+            //    int diff = checkBox.Top - CHECK_INSET;
+            //    checkBox.Y -= diff;
+            //    checkBox.Height += diff;
+            //}
 
-            // Can we extend downwards?
-            if (checkBox.Height <= (e.Item.Bounds.Height - (CHECK_INSET * 2)))
-            {
-                int diff = e.Item.Bounds.Height - (CHECK_INSET * 2) - checkBox.Height;
-                checkBox.Height += diff;
-            }
+            //// Can we extend downwards?
+            //if (checkBox.Height <= (e.Item.Bounds.Height - (CHECK_INSET * 2)))
+            //{
+            //    int diff = e.Item.Bounds.Height - (CHECK_INSET * 2) - checkBox.Height;
+            //    checkBox.Height += diff;
+            //}
 
             // Drawing with anti aliasing to create smoother appearance
             using (AntiAlias aa = new AntiAlias(e.Graphics))
             {
                 // Create border path for the check box
-                using (GraphicsPath borderPath = CreateBorderPath(checkBox, CUT_MENU_ITEM_BACK))
+                using (GraphicsPath borderPath = CreateBorderPath(checkBox, 0 /*CUT_MENU_ITEM_BACK*/))
                 {
                     // Fill the background in a solid color
                     using (SolidBrush fillBrush = new SolidBrush(KCT.CheckBackground))
@@ -554,7 +557,7 @@ namespace ComponentFactory.Krypton.Toolkit
                             }
                             else
                             {
-                                DrawGradientContextMenuItem(e.Graphics, e.Item, _gradientItem);
+                                DrawGradientContextMenuItem(e.Graphics, e.Item, _gradientTracking);
                             }
                         }
                         else
@@ -731,10 +734,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 case ContextMenuStrip _:
                 case ToolStripDropDownMenu _:
                     // Make sure the font is current
-                    if (e.ToolStrip.Font != KCT.MenuStripFont)
-                    {
-                        e.ToolStrip.Font = KCT.MenuStripFont;
-                    }
+                    e.ToolStrip.Font = KCT.MenuStripFont;
 
                     // Create border and clipping paths
                     using (GraphicsPath borderPath = CreateBorderPath(e.AffectedBounds, CUT_CONTEXT_MENU),
@@ -753,10 +753,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     break;
                 case StatusStrip _:
                     // Make sure the font is current
-                    if (e.ToolStrip.Font != KCT.StatusStripFont)
-                    {
-                        e.ToolStrip.Font = KCT.StatusStripFont;
-                    }
+                    e.ToolStrip.Font = KCT.StatusStripFont;
 
                     // We do not paint the top two pixel lines, so are drawn by the status strip border render method
                     RectangleF backRect = new RectangleF(0, 1.5f, e.ToolStrip.Width, e.ToolStrip.Height - 2);
@@ -849,7 +846,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     marginRect.X += MARGIN_INSET / 2;
                 }
 
-                // Draw the entire margine area in a solid color
+                // Draw the entire margin area in a solid color
                 using (SolidBrush backBrush = new SolidBrush(KCT.ImageMarginGradientBegin))
                 {
                     e.Graphics.FillRectangle(backBrush, marginRect);
@@ -1553,8 +1550,10 @@ namespace ComponentFactory.Krypton.Toolkit
             int y = rect.Y + (rect.Height / 2);
 
             GraphicsPath path = new GraphicsPath();
-            path.AddLine(x - 4, y, x - 2, y + 4);
-            path.AddLine(x - 2, y + 4, x + 3, y - 5);
+            //path.AddLine(x - 4, y, x - 2, y + 4);
+            //path.AddLine(x - 2, y + 4, x + 3, y - 5);
+            path.AddLine(x - 4, y - 1, x - 2, y - 1 + 4);
+            path.AddLine(x - 2, y - 1 + 4, x + 4, y - 5);
             return path;
         }
 

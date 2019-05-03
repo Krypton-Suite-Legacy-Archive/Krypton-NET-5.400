@@ -1,23 +1,23 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
+using ComponentFactory.Krypton.Toolkit;
 using System;
 using System.Drawing;
-using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Override the text colors for button specs that are drawn on aero glass.
-	/// </summary>
+    /// <summary>
+    /// Override the text colors for button specs that are drawn on aero glass.
+    /// </summary>
     public class PaletteRedirectRibbonAeroOverride : PaletteRedirect
     {
         #region Instance Fields
@@ -27,16 +27,16 @@ namespace ComponentFactory.Krypton.Ribbon
         #region Identity
         /// <summary>
         /// Initialize a new instance of the PaletteRedirectRibbonAeroOverride class.
-		/// </summary>
+        /// </summary>
         /// <param name="ribbon">Reference to owning Ribbon instance.</param>
         /// <param name="redirect">Source for inheriting values.</param>
         public PaletteRedirectRibbonAeroOverride(KryptonRibbon ribbon,
                                                  PaletteRedirect redirect)
             : base(redirect)
-		{
+        {
             _ribbon = ribbon;
         }
-		#endregion
+        #endregion
 
         #region ShortText
         /// <summary>
@@ -51,9 +51,9 @@ namespace ComponentFactory.Krypton.Ribbon
             if ((style == PaletteContentStyle.ButtonButtonSpec) && (state == PaletteState.Normal))
             {
                 // If the ribbon is showing in office 2010 style and using glass
-                if (_ribbon.CaptionArea.DrawCaptionOnComposition 
-                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013))
-                { 
+                if (_ribbon.CaptionArea.DrawCaptionOnComposition
+                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013 || _ribbon.RibbonShape == PaletteRibbonShape.Office365))
+                {
                     return LightBackground(base.GetContentShortTextColor1(style, state));
                 }
             }
@@ -73,9 +73,9 @@ namespace ComponentFactory.Krypton.Ribbon
             if ((style == PaletteContentStyle.ButtonButtonSpec) && (state == PaletteState.Normal))
             {
                 // If the ribbon is showing in office 2010 style and using glass
-                if (_ribbon.CaptionArea.DrawCaptionOnComposition 
-                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013))
-                { 
+                if (_ribbon.CaptionArea.DrawCaptionOnComposition
+                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013 || _ribbon.RibbonShape == PaletteRibbonShape.Office365))
+                {
                     return LightBackground(base.GetContentShortTextColor2(style, state));
                 }
             }
@@ -97,9 +97,9 @@ namespace ComponentFactory.Krypton.Ribbon
             if ((style == PaletteContentStyle.ButtonButtonSpec) && (state == PaletteState.Normal))
             {
                 // If the ribbon is showing in office 2010 style and using glass
-                if (_ribbon.CaptionArea.DrawCaptionOnComposition 
-                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013))
-                { 
+                if (_ribbon.CaptionArea.DrawCaptionOnComposition
+                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013 || _ribbon.RibbonShape == PaletteRibbonShape.Office365))
+                {
                     return LightBackground(base.GetContentLongTextColor1(style, state));
                 }
             }
@@ -119,9 +119,9 @@ namespace ComponentFactory.Krypton.Ribbon
             if ((style == PaletteContentStyle.ButtonButtonSpec) && (state == PaletteState.Normal))
             {
                 // If the ribbon is showing in office 2010 style and using glass
-                if (_ribbon.CaptionArea.DrawCaptionOnComposition 
-                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013))
-                { 
+                if (_ribbon.CaptionArea.DrawCaptionOnComposition
+                    && (_ribbon.RibbonShape == PaletteRibbonShape.Office2010 || _ribbon.RibbonShape == PaletteRibbonShape.Office2013 || _ribbon.RibbonShape == PaletteRibbonShape.Office365))
+                {
                     return LightBackground(base.GetContentLongTextColor2(style, state));
                 }
             }

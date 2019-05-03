@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -18,13 +18,13 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
+    /// <summary>
     /// Provides a gallery for selecting from a group of possible images.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonGallery), "ToolboxBitmaps.KryptonGallery.bmp")]
     [DefaultEvent("SelectedIndexChanged")]
-	[DefaultProperty("SelectedIndex")]
+    [DefaultProperty("SelectedIndex")]
     [Designer(typeof(ComponentFactory.Krypton.Ribbon.KryptonGalleryDesigner))]
     [DesignerCategory("code")]
     [Description("Select from a group of possible images.")]
@@ -91,9 +91,9 @@ namespace ComponentFactory.Krypton.Ribbon
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonGallery class.
-		/// </summary>
+        /// </summary>
         public KryptonGallery()
-		{
+        {
             // Defaults
             _mouseOver = false;
             _alwaysActive = true;
@@ -164,9 +164,9 @@ namespace ComponentFactory.Krypton.Ribbon
 
             base.Dispose(disposing);
         }
-		#endregion
+        #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Gets and sets the automatic resize of the control to fit contents.
         /// </summary>
@@ -699,9 +699,9 @@ namespace ComponentFactory.Krypton.Ribbon
         }
 
         /// <summary>
-		/// Gets the default size of the control.
-		/// </summary>
-		protected override Size DefaultSize => new Size(240, 30);
+        /// Gets the default size of the control.
+        /// </summary>
+        protected override Size DefaultSize => new Size(240, 30);
 
         /// <summary>
         /// Process Windows-based messages.
@@ -711,10 +711,10 @@ namespace ComponentFactory.Krypton.Ribbon
         {
             switch (m.Msg)
             {
-                case PI.WM_NCHITTEST:
+                case PI.WM_.NCHITTEST:
                     if (InTransparentDesignMode)
                     {
-                        m.Result = (IntPtr)PI.HTTRANSPARENT;
+                        m.Result = (IntPtr)PI.HT.TRANSPARENT;
                     }
                     else
                     {

@@ -1,22 +1,23 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Xml;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
-using ComponentFactory.Krypton.Workspace;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Xml;
+
 using ComponentFactory.Krypton.Navigator;
+using ComponentFactory.Krypton.Workspace;
 
 namespace ComponentFactory.Krypton.Docking
 {
@@ -94,7 +95,7 @@ namespace ComponentFactory.Krypton.Docking
         }
 
         /// <summary>
-        /// Propogates an action request down the hierarchy of docking elements.
+        /// Propagates an action request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="action">Action that is requested to be performed.</param>
         /// <param name="value">Integer value associated with the request.</param>
@@ -103,7 +104,7 @@ namespace ComponentFactory.Krypton.Docking
             switch (action)
             {
                 case DockingPropogateAction.RepositionDockspace:
-                    // Only processs if it applies to us
+                    // Only processes if it applies to us
                     if (value == Order)
                     {
                         Control parent = DockspaceControl.Parent;
@@ -157,7 +158,7 @@ namespace ComponentFactory.Krypton.Docking
         }
 
         /// <summary>
-        /// Propogates an integer state request down the hierarchy of docking elements.
+        /// Propagates an integer state request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="state">Integer state that is requested to be recovered.</param>
         /// <param name="value">Value discovered from matching </param>
@@ -168,7 +169,7 @@ namespace ComponentFactory.Krypton.Docking
         }
         
         /// <summary>
-        /// Propogates a request for drag targets down the hierarchy of docking elements.
+        /// Propagates a request for drag targets down the hierarchy of docking elements.
         /// </summary>
         /// <param name="floatingWindow">Reference to window being dragged.</param>
         /// <param name="dragData">Set of pages being dragged.</param>
@@ -257,12 +258,12 @@ namespace ComponentFactory.Krypton.Docking
 
         #region Protected
         /// <summary>
-        /// Gets the proprogate action used to clear a store page for this implementation.
+        /// Gets the propagate action used to clear a store page for this implementation.
         /// </summary>
         protected override DockingPropogateAction ClearStoreAction => DockingPropogateAction.ClearDockedStoredPages;
 
         /// <summary>
-        /// Raises the type specific space control removed event determinated by the derived class.
+        /// Raises the type specific space control removed event determined by the derived class.
         /// </summary>
         protected override void RaiseRemoved()
         {
@@ -279,9 +280,9 @@ namespace ComponentFactory.Krypton.Docking
         }
 
         /// <summary>
-        /// Raises the type specific cell adding event determinated by the derived class.
+        /// Raises the type specific cell adding event determined by the derived class.
         /// </summary>
-        /// <param name="cell">Referecence to new cell being added.</param>
+        /// <param name="cell">Reference to new cell being added.</param>
         protected override void RaiseCellAdding(KryptonWorkspaceCell cell)
         {
             // Generate event so the dockspace cell customization can be performed.
@@ -294,9 +295,9 @@ namespace ComponentFactory.Krypton.Docking
         }
 
         /// <summary>
-        /// Raises the type specific cell removed event determinated by the derived class.
+        /// Raises the type specific cell removed event determined by the derived class.
         /// </summary>
-        /// <param name="cell">Referecence to an existing cell being removed.</param>
+        /// <param name="cell">Reference to an existing cell being removed.</param>
         protected override void RaiseCellRemoved(KryptonWorkspaceCell cell)
         {
             // Generate event so the dockspace cell customization can be reversed.
@@ -348,7 +349,7 @@ namespace ComponentFactory.Krypton.Docking
         /// <summary>
         /// Gets the xml element name to use when saving.
         /// </summary>
-        protected override string XmlElementName => "DD";
+        protected override string XmlElementName => @"DD";
 
         /// <summary>
         /// Saves docking configuration information using a provider xml writer.
@@ -482,7 +483,7 @@ namespace ComponentFactory.Krypton.Docking
 
         private void OnDockspaceDropDownClicked(object sender, CancelDropDownEventArgs e)
         {
-            // Generate event so that the appropriate context menu options are preseted and actioned
+            // Generate event so that the appropriate context menu options are presented and actioned
             KryptonDockingManager dockingManager = DockingManager;
             if (dockingManager != null)
             {

@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -17,9 +17,9 @@ using System.Runtime.InteropServices;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Allocate a spacer for the right side of a window that prevents layout over the min/max/close buttons.
-	/// </summary>
+    /// <summary>
+    /// Allocate a spacer for the right side of a window that prevents layout over the min/max/close buttons.
+    /// </summary>
     internal class ViewDrawRibbonCompoRightBorder : ViewLeaf
     {
         #region Static Fields
@@ -36,20 +36,20 @@ namespace ComponentFactory.Krypton.Ribbon
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewDrawRibbonCompoRightBorder class.
-		/// </summary>
+        /// </summary>
         public ViewDrawRibbonCompoRightBorder()
         {
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewDrawRibbonCompoRightBorder:" + Id;
-		}
+        }
         #endregion
 
         #region CompOwnerForm
@@ -79,16 +79,16 @@ namespace ComponentFactory.Krypton.Ribbon
                     {
                         // Create structure that will be populated by call to WM_GETTITLEBARINFOEX
                         PI.TITLEBARINFOEX tbi = new PI.TITLEBARINFOEX();
-                        tbi.cbSize = (uint)Marshal.SizeOf(tbi);
+                        tbi.cbSize = (uint) Marshal.SizeOf(tbi);
 
                         // Ask the window for the title bar information
-                        PI.SendMessage(CompOwnerForm.Handle, PI.WM_GETTITLEBARINFOEX, IntPtr.Zero, ref tbi);
+                        PI.SendMessage(CompOwnerForm.Handle, PI.WM_.GETTITLEBARINFOEX, IntPtr.Zero, ref tbi);
 
                         // Find width of the button rectangle
                         int closeWidth = tbi.rcCloseButton.right - tbi.rcCloseButton.left;
                         int helpWidth = tbi.rcHelpButton.right - tbi.rcHelpButton.left;
-                        int minWidth = tbi.rcMinButton.right - tbi.rcMinButton.left;
-                        int maxWidth = tbi.rcMaxButton.right - tbi.rcMaxButton.left;
+                        int minWidth = tbi.rcMinimizeButton.right - tbi.rcMinimizeButton.left;
+                        int maxWidth = tbi.rcMaximizeButton.right - tbi.rcMaximizeButton.left;
 
                         int clientWidth = CompOwnerForm.ClientSize.Width;
                         int clientScreenRight = CompOwnerForm.RectangleToScreen(CompOwnerForm.ClientRectangle).Right;
@@ -107,12 +107,12 @@ namespace ComponentFactory.Krypton.Ribbon
 
                         if ((minWidth > 0) && (minWidth < clientWidth))
                         {
-                            leftMost = Math.Min(leftMost, tbi.rcMinButton.left);
+                            leftMost = Math.Min(leftMost, tbi.rcMinimizeButton.left);
                         }
 
                         if ((maxWidth > 0) && (maxWidth < clientWidth))
                         {
-                            leftMost = Math.Min(leftMost, tbi.rcMaxButton.left);
+                            leftMost = Math.Min(leftMost, tbi.rcMaximizeButton.left);
                         }
 
                         // Our width is the distance between the left most button edge and the right

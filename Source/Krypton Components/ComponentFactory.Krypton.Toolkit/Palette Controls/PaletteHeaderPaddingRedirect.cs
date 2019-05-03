@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -15,82 +15,82 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Redirect storage for headers within a HeaderGroup state.
-	/// </summary>
+    /// </summary>
     public class PaletteHeaderPaddingRedirect : PaletteHeaderButtonRedirect
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private PaletteRedirect _redirect;
         private Padding _headerPadding;
         #endregion
 
-		#region Identity
-		/// <summary>
-		/// Initialize a new instance of the PaletteHeaderPaddingRedirect class.
-		/// </summary>
-		/// <param name="redirect">Inheritence redirection instance.</param>
-		/// <param name="backStyle">Initial background style.</param>
-		/// <param name="borderStyle">Initial border style.</param>
-		/// <param name="contentStyle">Initial content style.</param>
+        #region Identity
+        /// <summary>
+        /// Initialize a new instance of the PaletteHeaderPaddingRedirect class.
+        /// </summary>
+        /// <param name="redirect">Inheritence redirection instance.</param>
+        /// <param name="backStyle">Initial background style.</param>
+        /// <param name="borderStyle">Initial border style.</param>
+        /// <param name="contentStyle">Initial content style.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteHeaderPaddingRedirect(PaletteRedirect redirect,
-											PaletteBackStyle backStyle,
-											PaletteBorderStyle borderStyle,
-											PaletteContentStyle contentStyle,
+                                            PaletteBackStyle backStyle,
+                                            PaletteBorderStyle borderStyle,
+                                            PaletteContentStyle contentStyle,
                                             NeedPaintHandler needPaint)
             : base(redirect, backStyle, borderStyle, contentStyle, needPaint)
-		{
+        {
             Debug.Assert(redirect != null);
 
             // Remember the redirect reference
             _redirect = redirect;
 
-			// Set default value for padding property
+            // Set default value for padding property
             _headerPadding = CommonHelper.InheritPadding;
         }
-		#endregion
+        #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (base.IsDefault &&
-		                                   HeaderPadding.Equals(CommonHelper.InheritPadding));
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (base.IsDefault &&
+                                           HeaderPadding.Equals(CommonHelper.InheritPadding));
 
-	    #endregion
+        #endregion
 
         #region HeaderPadding
         /// <summary>
         /// Gets and sets the padding used to inset the header within the HeaderGroup
-		/// </summary>
-		[Category("Visuals")]
+        /// </summary>
+        [Category("Visuals")]
         [Description("Padding used to inset the header within the HeaderGroup.")]
-		[DefaultValue(typeof(Padding), "-1,-1,-1,-1")]
-		[RefreshPropertiesAttribute(RefreshProperties.All)]
-		public Padding HeaderPadding
-		{
-			get => _headerPadding;
+        [DefaultValue(typeof(Padding), "-1,-1,-1,-1")]
+        [RefreshPropertiesAttribute(RefreshProperties.All)]
+        public Padding HeaderPadding
+        {
+            get => _headerPadding;
 
             set
-			{
-				if (_headerPadding != value)
-				{
-					_headerPadding = value;
-					PerformNeedPaint(true);
-				}
-			}
-		}
+            {
+                if (_headerPadding != value)
+                {
+                    _headerPadding = value;
+                    PerformNeedPaint(true);
+                }
+            }
+        }
 
-		/// <summary>
+        /// <summary>
         /// Reset the HeaderPadding to the default value.
-		/// </summary>
+        /// </summary>
         public void ResetHeaderPadding()
-		{
+        {
             HeaderPadding = CommonHelper.InheritPadding;
-		}
-		#endregion
+        }
+        #endregion
 
         #region IPaletteMetric
         /// <summary>

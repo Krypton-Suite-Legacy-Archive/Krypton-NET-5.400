@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -15,15 +15,15 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Allow the content values to be forced to fixed values.
-	/// </summary>
+    /// </summary>
     public class PaletteContentInheritForced : PaletteContentInherit
-	{
+    {
         #region Instance Fields
         private IPaletteContent _inherit;
 
-	    #endregion
+        #endregion
 
         #region Identity
         /// <summary>
@@ -109,7 +109,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <returns>Color value.</returns>
         public override Color GetContentImageColorTo(PaletteState state) => _inherit.GetContentImageColorTo(state);
 
-	    /// <summary>
+        /// <summary>
         /// Gets the font for the short text.
         /// </summary>
         /// <param name="state">Palette value should be applicable to this state.</param>
@@ -130,14 +130,14 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <returns>PaletteTextHint value.</returns>
         public override PaletteTextHint GetContentShortTextHint(PaletteState state) => _inherit.GetContentShortTextHint(state);
 
-	    /// <summary>
+        /// <summary>
         /// Gets the prefix drawing setting for short text.
         /// </summary>
         /// <param name="state">Palette value should be applicable to this state.</param>
         /// <returns>PaletteTextPrefix value.</returns>
         public override PaletteTextHotkeyPrefix GetContentShortTextPrefix(PaletteState state) => _inherit.GetContentShortTextPrefix(state);
 
-	    /// <summary>
+        /// <summary>
         /// Gets the flag indicating if multiline text is allowed for short text.
         /// </summary>
         /// <param name="state">Palette value should be applicable to this state.</param>
@@ -151,31 +151,31 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <returns>PaletteTextTrim value.</returns>
         public override PaletteTextTrim GetContentShortTextTrim(PaletteState state) => _inherit.GetContentShortTextTrim(state);
 
-	    /// <summary>
-		/// Gets the horizontal relative alignment of the short text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>RelativeAlignment value.</returns>
-		public override PaletteRelativeAlign GetContentShortTextH(PaletteState state) => ForceShortTextHCenter
-		    ? PaletteRelativeAlign.Center
-		    : _inherit.GetContentShortTextH(state);
+        /// <summary>
+        /// Gets the horizontal relative alignment of the short text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>RelativeAlignment value.</returns>
+        public override PaletteRelativeAlign GetContentShortTextH(PaletteState state) => ForceShortTextHCenter
+            ? PaletteRelativeAlign.Center
+            : _inherit.GetContentShortTextH(state);
 
-	    /// <summary>
-		/// Gets the vertical relative alignment of the short text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>RelativeAlignment value.</returns>
-		public override PaletteRelativeAlign GetContentShortTextV(PaletteState state)
+        /// <summary>
+        /// Gets the vertical relative alignment of the short text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>RelativeAlignment value.</returns>
+        public override PaletteRelativeAlign GetContentShortTextV(PaletteState state)
         {
             return _inherit.GetContentShortTextV(state);
         }
 
-		/// <summary>
-		/// Gets the vertical relative alignment of the short text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>RelativeAlignment value.</returns>
-		public override PaletteRelativeAlign GetContentShortTextMultiLineH(PaletteState state)
+        /// <summary>
+        /// Gets the vertical relative alignment of the short text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>RelativeAlignment value.</returns>
+        public override PaletteRelativeAlign GetContentShortTextMultiLineH(PaletteState state)
         {
             return _inherit.GetContentShortTextMultiLineH(state);
         }
@@ -260,12 +260,12 @@ namespace ComponentFactory.Krypton.Toolkit
             return _inherit.GetContentShortTextImageAlign(state);
         }
 
-		/// <summary>
-		/// Gets the font for the long text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Font value.</returns>
-		public override Font GetContentLongTextFont(PaletteState state)
+        /// <summary>
+        /// Gets the font for the long text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Font value.</returns>
+        public override Font GetContentLongTextFont(PaletteState state)
         {
             return _inherit.GetContentLongTextFont(state);
         }
@@ -281,11 +281,11 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         
         /// <summary>
-		/// Gets the rendering hint for the long text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>PaletteTextHint value.</returns>
-		public override PaletteTextHint GetContentLongTextHint(PaletteState state)
+        /// Gets the rendering hint for the long text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>PaletteTextHint value.</returns>
+        public override PaletteTextHint GetContentLongTextHint(PaletteState state)
         {
             return _inherit.GetContentLongTextHint(state);
         }
@@ -301,51 +301,51 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         
         /// <summary>
-		/// Gets the flag indicating if multiline text is allowed for long text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>InheritBool value.</returns>
-		public override InheritBool GetContentLongTextMultiLine(PaletteState state)
+        /// Gets the flag indicating if multiline text is allowed for long text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>InheritBool value.</returns>
+        public override InheritBool GetContentLongTextMultiLine(PaletteState state)
         {
             return _inherit.GetContentLongTextMultiLine(state);
         }
 
-		/// <summary>
-		/// Gets the text trimming to use for long text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>PaletteTextTrim value.</returns>
-		public override PaletteTextTrim GetContentLongTextTrim(PaletteState state)
+        /// <summary>
+        /// Gets the text trimming to use for long text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>PaletteTextTrim value.</returns>
+        public override PaletteTextTrim GetContentLongTextTrim(PaletteState state)
         {
             return _inherit.GetContentLongTextTrim(state);
         }
 
-		/// <summary>
-		/// Gets the horizontal relative alignment of the long text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>RelativeAlignment value.</returns>
-		public override PaletteRelativeAlign GetContentLongTextH(PaletteState state)
+        /// <summary>
+        /// Gets the horizontal relative alignment of the long text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>RelativeAlignment value.</returns>
+        public override PaletteRelativeAlign GetContentLongTextH(PaletteState state)
         {
             return _inherit.GetContentLongTextH(state);
         }
 
-		/// <summary>
-		/// Gets the vertical relative alignment of the long text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>RelativeAlignment value.</returns>
-		public override PaletteRelativeAlign GetContentLongTextV(PaletteState state)
+        /// <summary>
+        /// Gets the vertical relative alignment of the long text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>RelativeAlignment value.</returns>
+        public override PaletteRelativeAlign GetContentLongTextV(PaletteState state)
         {
             return _inherit.GetContentLongTextV(state);
         }
 
-		/// <summary>
-		/// Gets the vertical relative alignment of the long text.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>RelativeAlignment value.</returns>
-		public override PaletteRelativeAlign GetContentLongTextMultiLineH(PaletteState state)
+        /// <summary>
+        /// Gets the vertical relative alignment of the long text.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>RelativeAlignment value.</returns>
+        public override PaletteRelativeAlign GetContentLongTextMultiLineH(PaletteState state)
         {
             return _inherit.GetContentLongTextMultiLineH(state);
         }
@@ -431,21 +431,21 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets the padding between the border and content drawing.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Padding value.</returns>
-		public override Padding GetContentPadding(PaletteState state)
+        /// Gets the padding between the border and content drawing.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Padding value.</returns>
+        public override Padding GetContentPadding(PaletteState state)
         {
             return _inherit.GetContentPadding(state);
         }
 
-		/// <summary>
-		/// Gets the padding between adjacent content items.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Integer value.</returns>
-		public override int GetContentAdjacentGap(PaletteState state)
+        /// <summary>
+        /// Gets the padding between adjacent content items.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Integer value.</returns>
+        public override int GetContentAdjacentGap(PaletteState state)
         {
             return _inherit.GetContentAdjacentGap(state);
         }
@@ -459,5 +459,5 @@ namespace ComponentFactory.Krypton.Toolkit
             return _inherit.GetContentStyle();
         }
         #endregion
-	}
+    }
 }

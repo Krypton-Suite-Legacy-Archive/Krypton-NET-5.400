@@ -1,29 +1,31 @@
 ﻿// *****************************************************************************
-// 
-//  © Component Factory Pty Ltd, modifications by Peter Wagner (aka Wagnerp) & Simon Coghlan (aka Smurf-IV) 2010 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  The software and associated documentation supplied hereunder are the 
+// BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
+// The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Version 5.4000.0.0 	www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.IO;
-using System.Xml;
-using System.Text;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Threading;
 using System.Collections;
-using System.Windows.Forms;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Drawing.Text;
+using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -47,8 +49,8 @@ namespace ComponentFactory.Krypton.Toolkit
     #endregion
     
     /// <summary>
-	/// Set of common helper routines for the Toolkit
-	/// </summary>
+    /// Set of common helper routines for the Toolkit
+    /// </summary>
     public static class CommonHelper
     {
         #region Static Fields
@@ -122,14 +124,9 @@ namespace ComponentFactory.Krypton.Toolkit
             get
             {
                 // Generate a GUID that is guaranteed to be unique
-                PI.GUIDSTRUCT newGUID = new PI.GUIDSTRUCT();
-                PI.CoCreateGuid(ref newGUID);
-
+                Guid guid = Guid.NewGuid();
                 // Return as a hex formatted string.
-                return string.Format("{0:X4}{1:X4}{2:X4}{3:X4}{4:X4}{5:X4}{6:X4}{7:X4}",
-                                     newGUID.Data1, newGUID.Data2, newGUID.Data3, newGUID.Data4,
-                                     newGUID.Data5, newGUID.Data6, newGUID.Data7, newGUID.Data8);
-                                     
+                return guid.ToString(@"N");
             }
         }
 
@@ -704,7 +701,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Apply a reversed orientation so that when orientated again it comes out with the original value.
         /// </summary>
         /// <param name="borders">Border edges to be drawn.</param>
-        /// <param name="orientation">How to adjsut the border edges.</param>
+        /// <param name="orientation">How to adjust the border edges.</param>
         /// <returns>Border edges adjusted for orientation.</returns>
         public static PaletteDrawBorders ReverseOrientateDrawBorders(PaletteDrawBorders borders,
                                                                      VisualOrientation orientation)
@@ -1241,7 +1238,6 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             PI.RECT rect = new PI.RECT
             {
-
                 // Start with a zero sized rectangle
                 left = 0,
                 right = 0,
@@ -1265,9 +1261,9 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             // Get the current window style (cannot use the 
             // WindowState property as it can be slightly out of date)
-            uint style = PI.GetWindowLong(f.Handle, PI.GWL_STYLE);
+            uint style = PI.GetWindowLong(f.Handle, PI.GWL_.STYLE);
 
-            return ((style & PI.WS_MINIMIZE) != 0);
+            return ((style & PI.WS_.MINIMIZE) != 0);
         }
 
         /// <summary>
@@ -1279,9 +1275,9 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             // Get the current window style (cannot use the 
             // WindowState property as it can be slightly out of date)
-            uint style = PI.GetWindowLong(f.Handle, PI.GWL_STYLE);
+            uint style = PI.GetWindowLong(f.Handle, PI.GWL_.STYLE);
 
-            return ((style & PI.WS_MAXIMIZE) != 0);
+            return ((style & PI.WS_.MAXIMIZE) != 0);
         }
 
 
@@ -1394,6 +1390,10 @@ namespace ComponentFactory.Krypton.Toolkit
                     return PaletteMetricPadding.SeparatorPaddingHighInternalProfile;
                 case SeparatorStyle.Custom1:
                     return PaletteMetricPadding.SeparatorPaddingCustom1;
+                case SeparatorStyle.Custom2:
+                    return PaletteMetricPadding.SeparatorPaddingCustom2;
+                case SeparatorStyle.Custom3:
+                    return PaletteMetricPadding.SeparatorPaddingCustom3;
                 default:
                     // Should never happen!
                     Debug.Assert(false);
@@ -1408,7 +1408,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <returns>Corrected format.</returns>
         public static string MakeCustomDateFormat(string format)
         {
-            // Is this a single charater format?
+            // Is this a single character format?
             if (format.Length == 1)
             {
                 // If the character is one of the predefined entries...
@@ -1772,5 +1772,34 @@ namespace ComponentFactory.Krypton.Toolkit
         public static Form ActiveFloatingWindow { get; set; }
 
         #endregion
+
+        /// <summary>
+        /// Gets the current active cusrsor, and if that is null use the current default cursor
+        /// </summary>
+        /// <returns>Cursor Hotspot</returns>
+        public static Point CaptureCursor()
+        {
+            Cursor cur = Cursor.Current;
+            if (cur == null)
+            {
+                cur = Cursors.Default;
+            }
+
+            return cur.HotSpot;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="margins"></param>
+        public static void Deflate(this Rectangle rect, Padding margins)
+        {
+            rect.X += margins.Left;
+            rect.Y += margins.Top;
+            rect.Width -= (margins.Left+margins.Right);
+            rect.Height -= (margins.Top+margins.Bottom);
+        }
+
     }
 }

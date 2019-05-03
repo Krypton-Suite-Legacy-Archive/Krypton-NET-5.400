@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,26 +14,26 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Inherit properties from primary source in preference to the backup source.
-	/// </summary>
+    /// <summary>
+    /// Inherit properties from primary source in preference to the backup source.
+    /// </summary>
     public class PaletteElementColorInheritOverride : PaletteElementColorInherit
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
 
-	    private IPaletteElementColor _primary;
+        private IPaletteElementColor _primary;
         private IPaletteElementColor _backup;
         #endregion
 
-		#region Identity
+        #region Identity
         /// <summary>
         /// Initialize a new instance of the PaletteElementColorInheritOverride class.
-		/// </summary>
+        /// </summary>
         /// <param name="primary">First choice inheritence.</param>
         /// <param name="backup">Backup inheritence.</param>
         public PaletteElementColorInheritOverride(IPaletteElementColor primary,
                                                   IPaletteElementColor backup)
-		{
+        {
             Debug.Assert(primary != null);
             Debug.Assert(backup != null);
 
@@ -45,8 +45,8 @@ namespace ComponentFactory.Krypton.Toolkit
             Apply = true;
             Override = true;
             OverrideState = PaletteState.Normal;
-		}
-		#endregion
+        }
+        #endregion
 
         #region SetPalettes
         /// <summary>
@@ -63,13 +63,13 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Apply
-		/// <summary>
-		/// Gets and sets a value indicating if override should be applied.
-		/// </summary>
-		public bool Apply { get; set; }
+        #region Apply
+        /// <summary>
+        /// Gets and sets a value indicating if override should be applied.
+        /// </summary>
+        public bool Apply { get; set; }
 
-	    #endregion
+        #endregion
 
         #region Override
         /// <summary>
@@ -77,15 +77,15 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public bool Override { get; set; }
 
-	    #endregion
+        #endregion
 
         #region OverrideState
         /// <summary>
-		/// Gets and sets the override palette state to use.
-		/// </summary>
-		public PaletteState OverrideState { get; set; }
+        /// Gets and sets the override palette state to use.
+        /// </summary>
+        public PaletteState OverrideState { get; set; }
 
-	    #endregion    
+        #endregion    
 
         #region IPaletteElementColor
         /// <summary>

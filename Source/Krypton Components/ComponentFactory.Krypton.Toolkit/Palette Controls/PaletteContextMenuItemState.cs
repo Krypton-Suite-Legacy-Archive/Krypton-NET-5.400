@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -16,13 +16,13 @@ namespace ComponentFactory.Krypton.Toolkit
     /// <summary>
     /// Storage for KryptonContextMenuItem state values.
     /// </summary>
-	public class PaletteContextMenuItemState : Storage
-	{
-		#region Instance Fields
+    public class PaletteContextMenuItemState : Storage
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
+        #region Identity
         /// <summary>
         /// Initialize a new instance of the PaletteContextMenuItemState class.
         /// </summary>
@@ -47,7 +47,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the PaletteContextMenuItemState class.
-		/// </summary>
+        /// </summary>
         /// <param name="redirectItemHighlight">Redirector for ItemHighlight.</param>
         /// <param name="redirectItemImage">Redirector for ItemImage.</param>
         /// <param name="redirectItemShortcutText">Redirector for ItemShortcutText.</param>
@@ -60,7 +60,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                            PaletteDoubleRedirect redirectItemSplit,
                                            PaletteContentInheritRedirect redirectItemTextStandard,
                                            PaletteContentInheritRedirect redirectItemTextAlternate)
-		{
+        {
             ItemHighlight = new PaletteDoubleMetric(redirectItemHighlight);
             ItemImage = new PaletteTripleJustImage(redirectItemImage);
             ItemShortcutText = new PaletteContentJustShortText(redirectItemShortcutText);
@@ -68,21 +68,21 @@ namespace ComponentFactory.Krypton.Toolkit
             ItemTextStandard = new PaletteContentJustText(redirectItemTextStandard);
             ItemTextAlternate = new PaletteContentJustText(redirectItemTextAlternate);
         }
-		#endregion
+        #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (ItemHighlight.IsDefault &&
-		                                   ItemImage.IsDefault &&
-		                                   ItemShortcutText.IsDefault &&
-		                                   ItemSplit.IsDefault &&
-		                                   ItemTextStandard.IsDefault &&
-		                                   ItemTextAlternate.IsDefault);
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (ItemHighlight.IsDefault &&
+                                           ItemImage.IsDefault &&
+                                           ItemShortcutText.IsDefault &&
+                                           ItemSplit.IsDefault &&
+                                           ItemTextStandard.IsDefault &&
+                                           ItemTextAlternate.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region PopulateFromBase
         /// <summary>
@@ -122,7 +122,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteDoubleMetric ItemHighlight { get; }
 
-	    private bool ShouldSerializeItemHighlight()
+        private bool ShouldSerializeItemHighlight()
         {
             return !ItemHighlight.IsDefault;
         }
@@ -138,7 +138,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteTripleJustImage ItemImage { get; }
 
-	    private bool ShouldSerializeItemImage()
+        private bool ShouldSerializeItemImage()
         {
             return !ItemImage.IsDefault;
         }
@@ -154,7 +154,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteContentJustShortText ItemShortcutText { get; }
 
-	    private bool ShouldSerializeItemShortcutText()
+        private bool ShouldSerializeItemShortcutText()
         {
             return !ItemShortcutText.IsDefault;
         }
@@ -170,7 +170,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteDouble ItemSplit { get; }
 
-	    private bool ShouldSerializeItemSplit()
+        private bool ShouldSerializeItemSplit()
         {
             return !ItemSplit.IsDefault;
         }
@@ -186,7 +186,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteContentJustText ItemTextAlternate { get; }
 
-	    private bool ShouldSerializeItemTextAlternate()
+        private bool ShouldSerializeItemTextAlternate()
         {
             return !ItemTextAlternate.IsDefault;
         }
@@ -202,7 +202,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteContentJustText ItemTextStandard { get; }
 
-	    private bool ShouldSerializeItemTextStandard()
+        private bool ShouldSerializeItemTextStandard()
         {
             return !ItemTextStandard.IsDefault;
         }

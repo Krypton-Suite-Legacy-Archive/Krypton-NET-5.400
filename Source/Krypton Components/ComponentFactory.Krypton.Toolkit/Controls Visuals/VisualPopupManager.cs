@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -348,14 +348,14 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 // Intercept the non-client mouse move to prevent the custom
                 // chrome of the form from providing hot tracking feedback
-                if (m.Msg == PI.WM_NCMOUSEMOVE)
+                if (m.Msg == PI.WM_.NCMOUSEMOVE)
                 {
                     return true;
                 }
 
                 // A mouse move can occur because a context menu is showing with a popup also 
                 // already showing. We suppress the mouse move to prevent tracking of the popup
-                return m.Msg == PI.WM_MOUSEMOVE && ProcessMouseMoveWithCMS(ref m);
+                return m.Msg == PI.WM_.MOUSEMOVE && ProcessMouseMoveWithCMS(ref m);
             }
 
             if (CurrentPopup != null)
@@ -421,8 +421,8 @@ namespace ComponentFactory.Krypton.Toolkit
 
                 switch (m.Msg)
                 {
-                    case PI.WM_KEYDOWN:
-                    case PI.WM_SYSKEYDOWN:
+                    case PI.WM_.KEYDOWN:
+                    case PI.WM_.SYSKEYDOWN:
                         // If the popup is telling us to redirect keyboard to itself
                         if (!CurrentPopup.KeyboardInert)
                         {
@@ -443,12 +443,12 @@ namespace ComponentFactory.Krypton.Toolkit
                             return ProcessKeyboard(ref m);
                         }
                         break;
-                    case PI.WM_CHAR:
-                    case PI.WM_KEYUP:
-                    case PI.WM_DEADCHAR:
-                    case PI.WM_SYSCHAR:
-                    case PI.WM_SYSKEYUP:
-                    case PI.WM_SYSDEADCHAR:
+                    case PI.WM_.CHAR:
+                    case PI.WM_.KEYUP:
+                    case PI.WM_.DEADCHAR:
+                    case PI.WM_.SYSCHAR:
+                    case PI.WM_.SYSKEYUP:
+                    case PI.WM_.SYSDEADCHAR:
                         // If the popup is telling us to redirect keyboard to itself
                         if (!CurrentPopup.KeyboardInert)
                         {
@@ -456,16 +456,16 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
 
                         break;
-                    case PI.WM_MOUSEMOVE:
-                    case PI.WM_NCMOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
+                    case PI.WM_.NCMOUSEMOVE:
                         return ProcessMouseMove(ref m);
-                    case PI.WM_LBUTTONDOWN:
-                    case PI.WM_RBUTTONDOWN:
-                    case PI.WM_MBUTTONDOWN:
+                    case PI.WM_.LBUTTONDOWN:
+                    case PI.WM_.RBUTTONDOWN:
+                    case PI.WM_.MBUTTONDOWN:
                         return ProcessClientMouseDown(ref m);
-                    case PI.WM_NCLBUTTONDOWN:
-                    case PI.WM_NCRBUTTONDOWN:
-                    case PI.WM_NCMBUTTONDOWN:
+                    case PI.WM_.NCLBUTTONDOWN:
+                    case PI.WM_.NCRBUTTONDOWN:
+                    case PI.WM_.NCMBUTTONDOWN:
                         return ProcessNonClientMouseDown(ref m);
                 }
             }
@@ -677,8 +677,8 @@ namespace ComponentFactory.Krypton.Toolkit
             // Convert from a class to a structure
             PI.POINT screenPIPt = new PI.POINT
             {
-                x = screenPt.X,
-                y = screenPt.Y
+                X = screenPt.X,
+                Y = screenPt.Y
             };
 
             // Get the window handle of the window under this screen point
@@ -750,17 +750,17 @@ namespace ComponentFactory.Krypton.Toolkit
 
         private bool IsKeyOrMouseMessage(ref Message m)
         {
-            if ((m.Msg >= PI.WM_MOUSEMOVE) && (m.Msg <= PI.WM_MOUSEWHEEL))
+            if ((m.Msg >= PI.WM_.MOUSEMOVE) && (m.Msg <= PI.WM_.MOUSEWHEEL))
             {
                 return true;
             }
 
-            if ((m.Msg >= PI.WM_NCMOUSEMOVE) && (m.Msg <= PI.WM_NCMBUTTONDBLCLK))
+            if ((m.Msg >= PI.WM_.NCMOUSEMOVE) && (m.Msg <= PI.WM_.NCMBUTTONDBLCLK))
             {
                 return true;
             }
 
-            return (m.Msg >= PI.WM_KEYDOWN) && (m.Msg <= PI.WM_KEYLAST);
+            return (m.Msg >= PI.WM_.KEYDOWN) && (m.Msg <= PI.WM_.KEYLAST);
         }
 
         private void FilterMessages(bool filter)

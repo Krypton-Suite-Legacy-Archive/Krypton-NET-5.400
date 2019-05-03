@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -16,44 +16,44 @@ using System.Diagnostics;
 namespace ComponentFactory.Krypton.Toolkit
 {
     internal class ViewDrawMenuImageCanvas : ViewDrawCanvas, IContextMenuItemColumn
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
 
-	    private int _overridePreferredWidth;
+        private int _overridePreferredWidth;
         private readonly bool _zeroHeight;
         #endregion
 
-		#region Identity
+        #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewDrawMenuImageCanvas class.
-		/// </summary>
-		/// <param name="paletteBack">Palette source for the background.</param>		
-		/// <param name="paletteBorder">Palette source for the border.</param>
+        /// </summary>
+        /// <param name="paletteBack">Palette source for the background.</param>        
+        /// <param name="paletteBorder">Palette source for the border.</param>
         /// <param name="columnIndex">Menu item column index.</param>
         /// <param name="zeroHeight">Should the height be forced to zero.</param>
         public ViewDrawMenuImageCanvas(IPaletteBack paletteBack,
-							           IPaletteBorder paletteBorder,
+                                       IPaletteBorder paletteBorder,
                                        int columnIndex,
                                        bool zeroHeight)
             : base(paletteBack, paletteBorder, VisualOrientation.Top)
-		{
+        {
             ColumnIndex = columnIndex;
             _overridePreferredWidth = 0;
             _zeroHeight = zeroHeight;
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
-			return "ViewDrawMenuCanvas:" + Id;
-		}
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
+            return "ViewDrawMenuCanvas:" + Id;
+        }
         #endregion
 
-		#region Layout
+        #region Layout
         /// <summary>
         /// Discover the preferred size of the element.
         /// </summary>
@@ -88,28 +88,28 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public int ColumnIndex { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets the last calculated preferred size value.
         /// </summary>
         public Size LastPreferredSize { get; private set; }
 
-	    /// <summary>
+        /// <summary>
         /// Sets the preferred width value to use until further notice.
         /// </summary>
         public int OverridePreferredWidth
         {
             set => _overridePreferredWidth = value;
-	    }
+        }
         #endregion
 
         #region Layout
 
-	    /// <summary>
-	    /// Perform a layout of the elements.
-	    /// </summary>
-	    /// <param name="context">Layout context.</param>
-	    /// <exception cref="ArgumentNullException"></exception>
-	    public override void Layout(ViewLayoutContext context)
+        /// <summary>
+        /// Perform a layout of the elements.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public override void Layout(ViewLayoutContext context)
         {
             Debug.Assert(context != null);
 
@@ -125,12 +125,12 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Paint
 
-	    /// <summary>
-	    /// Perform rendering before child elements are rendered.
-	    /// </summary>
-	    /// <param name="context">Rendering context.</param>
-	    /// <exception cref="ArgumentNullException"></exception>
-	    public override void RenderBefore(RenderContext context)
+        /// <summary>
+        /// Perform rendering before child elements are rendered.
+        /// </summary>
+        /// <param name="context">Rendering context.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public override void RenderBefore(RenderContext context)
         {
             Debug.Assert(context != null);
 
@@ -144,5 +144,5 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-	}
+    }
 }

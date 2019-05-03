@@ -1,30 +1,33 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
+using System.Drawing;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+
+using ComponentFactory.Krypton.Toolkit.Values;
+
 using Microsoft.Win32;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Base class used for implementation of actual controls.
-	/// </summary>
-	[ToolboxItem(false)]
-	[DesignerCategory("code")]
+    /// <summary>
+    /// Base class used for implementation of actual controls.
+    /// </summary>
+    [ToolboxItem(false)]
+    [DesignerCategory("code")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
     [ComVisible(true)]
     public abstract class VisualControlBase : Control, 
@@ -42,55 +45,57 @@ namespace ComponentFactory.Krypton.Toolkit
         private bool _evalTransparent;
         private bool _globalEvents;
         private IPalette _localPalette;
-		private IPalette _palette;
+        private IPalette _palette;
         private PaletteMode _paletteMode;
         private readonly SimpleCall _refreshCall;
         private readonly SimpleCall _layoutCall;
         private KryptonContextMenu _kryptonContextMenu;
+        private VisualPopupToolTip _visualPopupToolTip;
+        private ToolTipManager _toolTipManager;
         #endregion
 
-		#region Events
-		/// <summary>
-		/// Occurs when the palette changes.
-		/// </summary>
+        #region Events
+        /// <summary>
+        /// Occurs when the palette changes.
+        /// </summary>
         [Category("Property Changed")]
         [Description("Occurs when the value of the Palette property is changed.")]
-		public event EventHandler PaletteChanged;
-		#endregion
+        public event EventHandler PaletteChanged;
+        #endregion
 
-		#region Identity
-		/// <summary>
-		/// Initialize a new instance of the VisualControl class.
-		/// </summary>
+        #region Identity
+        /// <summary>
+        /// Initialize a new instance of the VisualControl class.
+        /// </summary>
         protected VisualControlBase()
-		{
-			#region Default ControlStyle Values
-			// Default style values for Control are:-
-			//	True  - AllPaintingInWmPaint
-			//	False - CacheText
-			//	False - ContainerControl
-			//	False - EnableNotifyMessage
-			//	False - FixedHeight
-			//	False - FixedWidth
-			//	False - Opaque
-			//	False - OptimizedDoubleBuffer
-			//	False - ResizeRedraw
-			//	True  - Selectable
-			//	True  - StandardClick
-			//	True  - StandardDoubleClick
-			//	False - SupportsTransparentBackColor
-			//	False - UserMouse
-			//	True  - UserPaint
-			//	True  - UseTextForAccessibility
-			#endregion
+        {
+            #region Default ControlStyle Values
+            // Default style values for Control are:-
+            //    True  - AllPaintingInWmPaint
+            //    False - CacheText
+            //    False - ContainerControl
+            //    False - EnableNotifyMessage
+            //    False - FixedHeight
+            //    False - FixedWidth
+            //    False - Opaque
+            //    False - OptimizedDoubleBuffer
+            //    False - ResizeRedraw
+            //    True  - Selectable
+            //    True  - StandardClick
+            //    True  - StandardDoubleClick
+            //    False - SupportsTransparentBackColor
+            //    False - UserMouse
+            //    True  - UserPaint
+            //    True  - UseTextForAccessibility
+            #endregion
 
-			// We use double buffering to reduce drawing flicker
-			SetStyle(ControlStyles.OptimizedDoubleBuffer |
-					 ControlStyles.AllPaintingInWmPaint |
-					 ControlStyles.UserPaint, true);
+            // We use double buffering to reduce drawing flicker
+            SetStyle(ControlStyles.OptimizedDoubleBuffer |
+                     ControlStyles.AllPaintingInWmPaint |
+                     ControlStyles.UserPaint, true);
 
-			// We need to repaint entire control whenever resized
-			SetStyle(ControlStyles.ResizeRedraw, true);
+            // We need to repaint entire control whenever resized
+            SetStyle(ControlStyles.ResizeRedraw, true);
 
             // Yes, we want to be drawn double buffered by default
             DoubleBuffered = true;
@@ -103,8 +108,8 @@ namespace ComponentFactory.Krypton.Toolkit
             NeedPaintDelegate = OnNeedPaint;
             NeedPaintPaletteDelegate = OnPaletteNeedPaint;
 
-			// Must layout before first draw attempt
-			_layoutDirty = true;
+            // Must layout before first draw attempt
+            _layoutDirty = true;
             _evalTransparent = true;
             DirtyPaletteCounter = 1;
 
@@ -117,6 +122,14 @@ namespace ComponentFactory.Krypton.Toolkit
             Redirector = CreateRedirector();
 
             AttachGlobalEvents();
+
+            // Do the Tooltip Magic
+            ToolTipValues = new ToolTipValues(NeedPaintDelegate);
+            // Create the manager for handling tooltips
+            // ReSharper disable once UseObjectOrCollectionInitializer
+            _toolTipManager = new ToolTipManager();
+            _toolTipManager.ShowToolTip += OnShowToolTip;
+            _toolTipManager.CancelToolTip += OnCancelToolTip;
         }
 
         /// <summary>
@@ -127,6 +140,9 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             if (disposing)
             {
+                // Remove any showing tooltip
+                OnCancelToolTip(this, EventArgs.Empty);
+
                 // Unhook from any current menu strip
                 if (base.ContextMenuStrip != null)
                 {
@@ -155,9 +171,9 @@ namespace ComponentFactory.Krypton.Toolkit
 
             base.Dispose(disposing);
         }
-		#endregion
+        #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Gets or sets the ContextMenuStrip associated with this control.
         /// </summary>
@@ -260,18 +276,18 @@ namespace ComponentFactory.Krypton.Toolkit
             }
         }
 
-		/// <summary>
-		/// Gets or sets the palette to be applied.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Palette applied to drawing.")]
+        /// <summary>
+        /// Gets or sets the palette to be applied.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Palette applied to drawing.")]
         public PaletteMode PaletteMode
-		{
+        {
             [DebuggerStepThrough]
             get { return _paletteMode; }
 
-			set
-			{
+            set
+            {
                 if (_paletteMode != value)
                 {
                     // Action despends on new value
@@ -297,81 +313,81 @@ namespace ComponentFactory.Krypton.Toolkit
                             break;
                     }
                 }
-			}
-		}
+            }
+        }
 
         private bool ShouldSerializePaletteMode()
         {
             return (PaletteMode != PaletteMode.Global);
         }
 
-		/// <summary>
-		/// Resets the PaletteMode property to its default value.
-		/// </summary>
-		public void ResetPaletteMode()
-		{
-			PaletteMode = PaletteMode.Global;
-		}
+        /// <summary>
+        /// Resets the PaletteMode property to its default value.
+        /// </summary>
+        public void ResetPaletteMode()
+        {
+            PaletteMode = PaletteMode.Global;
+        }
 
-		/// <summary>
-		/// Gets and sets the custom palette implementation.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Custom palette applied to drawing.")]
-		[DefaultValue(null)]
-		public IPalette Palette
-		{
+        /// <summary>
+        /// Gets and sets the custom palette implementation.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Custom palette applied to drawing.")]
+        [DefaultValue(null)]
+        public IPalette Palette
+        {
             [DebuggerStepThrough]
             get { return _localPalette; }
 
-			set
-			{
-				// Only interested in changes of value
+            set
+            {
+                // Only interested in changes of value
                 if (_localPalette != value)
-				{
-					// Remember the starting palette
+                {
+                    // Remember the starting palette
                     IPalette old = _localPalette;
 
-					// Use the provided palette value
+                    // Use the provided palette value
                     SetPalette(value);
 
-					// If no custom palette is required
-					if (value == null)
-					{
+                    // If no custom palette is required
+                    if (value == null)
+                    {
                         // No custom palette, so revert back to the global setting
                         _paletteMode = PaletteMode.Global;
 
                         // Get the appropriate palette for the global mode
                         _localPalette = null;
                         SetPalette(KryptonManager.GetPaletteForMode(_paletteMode));
-					}
-					else
-					{
-						// No longer using a standard palette
+                    }
+                    else
+                    {
+                        // No longer using a standard palette
                         _localPalette = value;
-						_paletteMode = PaletteMode.Custom;
-					}
+                        _paletteMode = PaletteMode.Custom;
+                    }
 
-					// If real change has occured
+                    // If real change has occured
                     if (old != _localPalette)
-					{
-						// Raise the change event
-						OnPaletteChanged(EventArgs.Empty);
+                    {
+                        // Raise the change event
+                        OnPaletteChanged(EventArgs.Empty);
 
                         // Need to layout again use new palette
                         PerformLayout();
                     }
-				}
-			}
-		}
+                }
+            }
+        }
 
-		/// <summary>
-		/// Resets the Palette property to its default value.
-		/// </summary>
-		public void ResetPalette()
-		{
-			PaletteMode = PaletteMode.Global;
-		}
+        /// <summary>
+        /// Resets the Palette property to its default value.
+        /// </summary>
+        public void ResetPalette()
+        {
+            PaletteMode = PaletteMode.Global;
+        }
 
         /// <summary>
         /// Gets access to the current renderer.
@@ -396,27 +412,27 @@ namespace ComponentFactory.Krypton.Toolkit
             return Renderer.RenderToolStrip(GetResolvedPalette());
         }
 
-		/// <summary>
-		/// Gets or sets the background image displayed in the control.
-		/// </summary>
-		[Browsable(false)]
-		[Bindable(false)]
-		public override Image BackgroundImage
-		{
-			get => base.BackgroundImage;
-		    set => base.BackgroundImage = value;
-		}
+        /// <summary>
+        /// Gets or sets the background image displayed in the control.
+        /// </summary>
+        [Browsable(false)]
+        [Bindable(false)]
+        public override Image BackgroundImage
+        {
+            get => base.BackgroundImage;
+            set => base.BackgroundImage = value;
+        }
 
-		/// <summary>
-		/// Gets or sets the background image layout.
-		/// </summary>
-		[Browsable(false)]
-		[Bindable(false)]
-		public override ImageLayout BackgroundImageLayout
-		{
-			get => base.BackgroundImageLayout;
-		    set => base.BackgroundImageLayout = value;
-		}
+        /// <summary>
+        /// Gets or sets the background image layout.
+        /// </summary>
+        [Browsable(false)]
+        [Bindable(false)]
+        public override ImageLayout BackgroundImageLayout
+        {
+            get => base.BackgroundImageLayout;
+            set => base.BackgroundImageLayout = value;
+        }
 
         /// <summary>
         /// Gets the ViewManager instance.
@@ -473,6 +489,28 @@ namespace ComponentFactory.Krypton.Toolkit
                 _globalEvents = false;
             }
         }
+
+        /// <summary>
+        /// Gets access to the button content.
+        /// </summary>
+        [Category("ToolTip")]
+        [Description("Control ToolTip Text")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ToolTipValues ToolTipValues { get; set; }
+
+        private bool ShouldSerializeToolTipValues()
+        {
+            return !ToolTipValues.IsDefault;
+        }
+
+        /// <summary>
+        /// Resets the ToolTipValues property to its default value.
+        /// </summary>
+        public void ResetToolTipValues()
+        {
+            ToolTipValues.Reset();
+        }
+
         #endregion
 
         #region Public IKryptonDebug
@@ -524,9 +562,9 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets access to the palette redirector.
-		/// </summary>
-		protected PaletteRedirect Redirector
+        /// Gets access to the palette redirector.
+        /// </summary>
+        protected PaletteRedirect Redirector
         {
             [DebuggerStepThrough]
             get;
@@ -554,7 +592,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 // Do we have a manager to use for laying out?
                 if (ViewManager != null)
                 {
-                    // Ask the view to peform a layout
+                    // Ask the view to perform a layout
                     ViewManager.Layout(Renderer);
 
                     return true;
@@ -591,7 +629,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get
             {
-                // Do we need to evaluate the need for a tranparent paint
+                // Do we need to evaluate the need for a transparent paint
                 if (_evalTransparent)
                 {
                     _paintTransparent = EvalTransparentPaint();
@@ -615,33 +653,34 @@ namespace ComponentFactory.Krypton.Toolkit
             g.FillRectangle(backBrush, backRect);
         }
 
-		/// <summary>
-		/// Gets a value indicating is processing of mnemonics should be allowed.
-		/// </summary>
-		/// <returns>True to allow; otherwise false.</returns>
-		protected bool CanProcessMnemonic()
-		{
-			Control c = this;
+        /// <summary>
+        /// Gets a value indicating is processing of mnemonics should be allowed.
+        /// </summary>
+        /// <returns>True to allow; otherwise false.</returns>
+        protected bool CanProcessMnemonic()
+        {
+            Control c = this;
 
-			// Test each control in parent chain
-			while (c != null)
-			{
-				// Control must be visible and enabled
-				if (!c.Visible || !c.Enabled)
+            // Test each control in parent chain
+            while (c != null)
+            {
+                // Control must be visible and enabled
+                if (!c.Visible || !c.Enabled)
                 {
                     return false;
                 }
 
                 // Move up one level
                 c = c.Parent;
-			}
+            }
 
-			// Every control in chain is visible and enabled, so allow mnemonics
-			return true;
-		}
+            // Every control in chain is visible and enabled, so allow mnemonics
+            return true;
+        }
         #endregion
 
         #region Protected Virtual
+        // ReSharper disable VirtualMemberNeverOverridden.Global
         /// <summary>
         /// Work out if this control needs to paint transparent areas.
         /// </summary>
@@ -788,6 +827,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 SystemEvents.UserPreferenceChanged -= OnUserPreferenceChanged;
             }
         }
+        // ReSharper restore VirtualMemberNeverOverridden.Global
         #endregion
 
         #region Protected Overrides
@@ -806,12 +846,12 @@ namespace ComponentFactory.Krypton.Toolkit
             base.OnRightToLeftChanged(e);
         }
 
-		/// <summary>
-		/// Raises the Layout event.
-		/// </summary>
+        /// <summary>
+        /// Raises the Layout event.
+        /// </summary>
         /// <param name="levent">A LayoutEventArgs that contains the event data.</param>
-		protected override void OnLayout(LayoutEventArgs levent)
-		{
+        protected override void OnLayout(LayoutEventArgs levent)
+        {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
@@ -826,22 +866,22 @@ namespace ComponentFactory.Krypton.Toolkit
                         // Layout cannot now be dirty
                         _layoutDirty = false;
 
-                        // Ask the view to peform a layout
+                        // Ask the view to perform a layout
                         ViewManager.Layout(Renderer);
 
                     } while (_layoutDirty && (max-- > 0));
                 }
             }
 
-			// Let base class layout child controls
-			base.OnLayout(levent);
-		}
+            // Let base class layout child controls
+            base.OnLayout(levent);
+        }
 
-		/// <summary>
-		/// Raises the Paint event.
-		/// </summary>
-		/// <param name="e">A PaintEventArgs that contains the event data.</param>
-		protected override void OnPaint(PaintEventArgs e)
+        /// <summary>
+        /// Raises the Paint event.
+        /// </summary>
+        /// <param name="e">A PaintEventArgs that contains the event data.</param>
+        protected override void OnPaint(PaintEventArgs e)
         {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
@@ -879,75 +919,91 @@ namespace ComponentFactory.Krypton.Toolkit
                     _refreshAll = false;
                 }
             }
-		}
+        }
 
-		/// <summary>
-		/// Raises the MouseMove event.
-		/// </summary>
-		/// <param name="e">A MouseEventArgs that contains the event data.</param>
-		protected override void OnMouseMove(MouseEventArgs e)
-		{
+        protected override void OnMouseEnter(EventArgs e)
+        {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
-                // Do we have a manager for processing mouse messages?
-                ViewManager?.MouseMove(e, new Point(e.X, e.Y));
+                _toolTipManager.MouseEnter(ViewManager?.ActiveView??ViewManager?.Root, this);
             }
 
-			// Let base class fire events
-			base.OnMouseMove(e);
-		}
+            // Let base class fire events
+            base.OnMouseEnter(e);
+        }
 
-		/// <summary>
-		/// Raises the MouseDown event.
-		/// </summary>
-		/// <param name="e">A MouseEventArgs that contains the event data.</param>
-		protected override void OnMouseDown(MouseEventArgs e)
-		{
+        /// <summary>
+        /// Raises the MouseMove event.
+        /// </summary>
+        /// <param name="e">A MouseEventArgs that contains the event data.</param>
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
+                _toolTipManager.MouseMove(ViewManager?.ActiveView??ViewManager?.Root, this, e.Location);
                 // Do we have a manager for processing mouse messages?
-                ViewManager?.MouseDown(e, new Point(e.X, e.Y));
+                ViewManager?.MouseMove(e, e.Location);
             }
 
-			// Let base class fire events
-			base.OnMouseDown(e);
-		}
+            // Let base class fire events
+            base.OnMouseMove(e);
+        }
 
-		/// <summary>
-		/// Raises the MouseUp event.
-		/// </summary>
-		/// <param name="e">A MouseEventArgs that contains the event data.</param>
-		protected override void OnMouseUp(MouseEventArgs e)
-		{
+        /// <summary>
+        /// Raises the MouseDown event.
+        /// </summary>
+        /// <param name="e">A MouseEventArgs that contains the event data.</param>
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
+                _toolTipManager.MouseDown(ViewManager?.ActiveView??ViewManager?.Root, this, e.Location, e.Button);
                 // Do we have a manager for processing mouse messages?
-                ViewManager?.MouseUp(e, new Point(e.X, e.Y));
+                ViewManager?.MouseDown(e, e.Location);
             }
 
-			// Let base class fire events
-			base.OnMouseUp(e);
-		}
+            // Let base class fire events
+            base.OnMouseDown(e);
+        }
 
-		/// <summary>
-		/// Raises the MouseLeave event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnMouseLeave(EventArgs e)
-		{
+        /// <summary>
+        /// Raises the MouseUp event.
+        /// </summary>
+        /// <param name="e">A MouseEventArgs that contains the event data.</param>
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
+                _toolTipManager.MouseUp(ViewManager?.ActiveView??ViewManager?.Root, this, e.Location, e.Button);
+                // Do we have a manager for processing mouse messages?
+                ViewManager?.MouseUp(e, e.Location);
+            }
+
+            // Let base class fire events
+            base.OnMouseUp(e);
+        }
+
+        /// <summary>
+        /// Raises the MouseLeave event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            // Cannot process a message for a disposed control
+            if (!IsDisposed && !Disposing)
+            {
+                _toolTipManager.MouseLeave(null, this, null);
                 // Do we have a manager for processing mouse messages?
                 ViewManager?.MouseLeave(e);
             }
 
-			// Let base class fire events
-			base.OnMouseLeave(e);
-		}
+            // Let base class fire events
+            base.OnMouseLeave(e);
+        }
 
 
         /// <summary>
@@ -959,8 +1015,10 @@ namespace ComponentFactory.Krypton.Toolkit
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
+                Point location = PointToClient(MousePosition);
+                _toolTipManager.DoubleClick(ViewManager?.ActiveView??ViewManager?.Root, location);
                 // Do we have a manager for processing mouse messages?
-                ViewManager?.DoubleClick(PointToClient(MousePosition));
+                ViewManager?.DoubleClick(location);
             }
 
             // Let base class fire events
@@ -1018,12 +1076,12 @@ namespace ComponentFactory.Krypton.Toolkit
             base.OnKeyUp(e);
         }
 
-		/// <summary>
-		/// Raises the GotFocus event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnGotFocus(EventArgs e)
-		{
+        /// <summary>
+        /// Raises the GotFocus event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnGotFocus(EventArgs e)
+        {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
@@ -1031,16 +1089,16 @@ namespace ComponentFactory.Krypton.Toolkit
                 ViewManager?.GotFocus();
             }
 
-			// Let base class fire standard event
-			base.OnGotFocus(e);
-		}
+            // Let base class fire standard event
+            base.OnGotFocus(e);
+        }
 
-		/// <summary>
-		/// Raises the LostFocus event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnLostFocus(EventArgs e)
-		{
+        /// <summary>
+        /// Raises the LostFocus event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnLostFocus(EventArgs e)
+        {
             // Cannot process a message for a disposed control
             if (!IsDisposed && !Disposing)
             {
@@ -1048,9 +1106,9 @@ namespace ComponentFactory.Krypton.Toolkit
                 ViewManager?.LostFocus();
             }
 
-			// Let base class fire standard event
-			base.OnLostFocus(e);
-		}
+            // Let base class fire standard event
+            base.OnLostFocus(e);
+        }
 
         /// <summary>
         /// Occurs when the global palette has been changed.
@@ -1117,7 +1175,7 @@ namespace ComponentFactory.Krypton.Toolkit
         protected override void WndProc(ref Message m)
         {
             // We need to snoop the need to show a context menu
-            if (m.Msg == PI.WM_CONTEXTMENU)
+            if (m.Msg == PI.WM_.CONTEXTMENU)
             {
                 // Only interested in overriding the behaviour when we have a krypton context menu...
                 if (KryptonContextMenu != null)
@@ -1200,12 +1258,12 @@ namespace ComponentFactory.Krypton.Toolkit
             Renderer = _palette.GetRenderer();
         }
 
-		private void PaintTransparentBackground(PaintEventArgs e)
-		{
+        private void PaintTransparentBackground(PaintEventArgs e)
+        {
             // Get the parent control for transparent drawing purposes
             Control parent = TransparentParent;
 
-			// Do we have a parent control and we need to paint background?
+            // Do we have a parent control and we need to paint background?
             if ((parent != null) && NeedTransparentPaint)
             {
                 // Only grab the required reference once
@@ -1220,13 +1278,13 @@ namespace ComponentFactory.Krypton.Toolkit
                 }
 
                 _miPTB.Invoke(this, new object[] { e, ClientRectangle, null });
-			}
-			else
-			{
+            }
+            else
+            {
                 // Request the background be painted in the system colors
                 PaintBackground(e.Graphics, SystemBrushes.Control, ClientRectangle);
-			}
-		}
+            }
+        }
 
         private void OnPerformRefresh()
         {
@@ -1284,6 +1342,57 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             ContextMenuClosed();
         }
+
+        private void OnShowToolTip(object sender, ToolTipEventArgs e)
+        {
+            if (!IsDisposed)
+            {
+                // Do not show tooltips when the form we are in does not have focus
+                // SKC: Not sure that this should be done, as other "Window apps" show tooltips when they are not topmost
+                if (FindForm()?.ContainsFocus == false)
+                {
+                    return;
+                }
+
+                // Never show tooltips are design time
+                if (!DesignMode
+                    && ToolTipValues.EnableToolTips
+                    )
+                {
+                    // Remove any currently showing tooltip
+                    _visualPopupToolTip?.Dispose();
+
+                    // Create the actual tooltip popup object
+                    // ReSharper disable once UseObjectOrCollectionInitializer
+                    _visualPopupToolTip = new VisualPopupToolTip(Redirector,
+                        ToolTipValues,
+                        Renderer,
+                        PaletteBackStyle.ControlToolTip,
+                        PaletteBorderStyle.ControlToolTip,
+                        CommonHelper.ContentStyleFromLabelStyle(ToolTipValues.ToolTipStyle));
+
+                    _visualPopupToolTip.Disposed += OnVisualPopupToolTipDisposed;
+                    _visualPopupToolTip.ShowRelativeTo(e.Target, e.ControlMousePosition);
+                }
+            }
+        }
+
+        private void OnCancelToolTip(object sender, EventArgs e)
+        {
+            // Remove any currently showing tooltip
+            _visualPopupToolTip?.Dispose();
+        }
+
+        private void OnVisualPopupToolTipDisposed(object sender, EventArgs e)
+        {
+            // Unhook events from the specific instance that generated event
+            VisualPopupToolTip popupToolTip = (VisualPopupToolTip)sender;
+            popupToolTip.Disposed -= OnVisualPopupToolTipDisposed;
+
+            // Not showing a popup page any more
+            _visualPopupToolTip = null;
+        }
         #endregion
+
     }
 }

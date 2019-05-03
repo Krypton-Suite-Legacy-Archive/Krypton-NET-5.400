@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Windows.Forms;
@@ -14,32 +14,32 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Implement a triple palette that exposes palette metrics.
-	/// </summary>
-	public class PaletteTripleMetric : PaletteTriple, 
+    /// </summary>
+    public class PaletteTripleMetric : PaletteTriple, 
                                        IPaletteMetric
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private PaletteTripleMetricRedirect _inherit;
         #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteTripleMetric class.
-		/// </summary>
+        /// </summary>
         /// <param name="inherit">Source for palette defaulted values.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteTripleMetric(PaletteTripleMetricRedirect inherit,
                                    NeedPaintHandler needPaint)
             : base(inherit, needPaint)
-		{
+        {
             Debug.Assert(inherit != null);
             
             // Remember inheritance for metric values
             _inherit = inherit;
         }
-		#endregion
+        #endregion
 
         #region SetInherit
         /// <summary>

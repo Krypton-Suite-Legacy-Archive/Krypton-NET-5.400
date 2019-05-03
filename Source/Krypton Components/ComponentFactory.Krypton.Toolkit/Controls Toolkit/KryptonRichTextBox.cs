@@ -1,33 +1,33 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.IO;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.ComponentModel;
-using System.Windows.Forms;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Provide a RichTextBox with Krypton styling applied.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonRichTextBox), "ToolboxBitmaps.KryptonRichTextBox.bmp")]
     [DefaultEvent("TextChanged")]
-	[DefaultProperty("Text")]
+    [DefaultProperty("Text")]
     [DefaultBindingProperty("Text")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonRichTextBoxDesigner))]
+    [Designer(typeof(KryptonRichTextBoxDesigner))]
     [DesignerCategory("code")]
     [Description("Enables the user to enter text, and provides multi-line editing and password character masking.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -86,7 +86,7 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 get => _mouseOver;
 
-                set 
+                set
                 {
                     // Only interested in changes
                     if (_mouseOver != value)
@@ -169,10 +169,10 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 switch (m.Msg)
                 {
-                    case PI.WM_NCHITTEST:
+                    case PI.WM_.NCHITTEST:
                         if (_kryptonRichTextBox.InTransparentDesignMode)
                         {
-                            m.Result = (IntPtr)PI.HTTRANSPARENT;
+                            m.Result = (IntPtr)PI.HT.TRANSPARENT;
                         }
                         else
                         {
@@ -180,14 +180,14 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
 
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // Mouse is not over the control
                         MouseOver = false;
                         _kryptonRichTextBox.PerformNeedPaint(true);
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Mouse is over the control
                         if (!MouseOver)
                         {
@@ -197,7 +197,7 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_CONTEXTMENU:
+                    case PI.WM_.CONTEXTMENU:
                         // Only interested in overriding the behavior when we have a krypton context menu...
                         if (_kryptonRichTextBox.KryptonContextMenu != null)
                         {
@@ -260,8 +260,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <summary>
         /// Collection for managing ButtonSpecAny instances.
         /// </summary>
-        public class RichTextBoxButtonSpecCollection : ButtonSpecCollection<ButtonSpecAny> 
-        { 
+        public class RichTextBoxButtonSpecCollection : ButtonSpecCollection<ButtonSpecAny>
+        {
             #region Identity
             /// <summary>
             /// Initialize a new instance of the RichTextBoxButtonSpecCollection class.
@@ -412,7 +412,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonRichTextBox class.
-		/// </summary>
+        /// </summary>
         public KryptonRichTextBox()
         {
             // Contains another control and needs marking as such for validation to work
@@ -528,7 +528,7 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Gets and sets if the control is in the tab chain.
         /// </summary>
@@ -744,7 +744,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.Rtf;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
                 _richTextBox.Rtf = value;
@@ -761,10 +761,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectedRtf;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectedRtf = value; 
+                _richTextBox.SelectedRtf = value;
             }
         }
 
@@ -777,10 +777,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectedText;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectedText = value; 
+                _richTextBox.SelectedText = value;
             }
         }
 
@@ -794,10 +794,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionAlignment;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionAlignment = value; 
+                _richTextBox.SelectionAlignment = value;
             }
         }
 
@@ -810,10 +810,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionBackColor;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionBackColor = value; 
+                _richTextBox.SelectionBackColor = value;
             }
         }
 
@@ -826,10 +826,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionBullet;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionBullet = value; 
+                _richTextBox.SelectionBullet = value;
             }
         }
 
@@ -842,10 +842,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionCharOffset;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionCharOffset = value; 
+                _richTextBox.SelectionCharOffset = value;
             }
         }
 
@@ -858,10 +858,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionColor;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionColor = value; 
+                _richTextBox.SelectionColor = value;
             }
         }
 
@@ -874,10 +874,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionFont;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionFont = value; 
+                _richTextBox.SelectionFont = value;
             }
         }
 
@@ -890,10 +890,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionHangingIndent;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionHangingIndent = value; 
+                _richTextBox.SelectionHangingIndent = value;
             }
         }
 
@@ -906,10 +906,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionIndent;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionIndent = value; 
+                _richTextBox.SelectionIndent = value;
             }
         }
 
@@ -922,10 +922,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionLength;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionLength = value; 
+                _richTextBox.SelectionLength = value;
             }
         }
 
@@ -938,10 +938,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionLength;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionLength = value; 
+                _richTextBox.SelectionLength = value;
             }
         }
 
@@ -954,10 +954,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionRightIndent;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionRightIndent = value; 
+                _richTextBox.SelectionRightIndent = value;
             }
         }
 
@@ -970,10 +970,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionStart;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionStart = value; 
+                _richTextBox.SelectionStart = value;
             }
         }
 
@@ -986,10 +986,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _richTextBox.SelectionTabs;
 
-            set 
+            set
             {
                 PerformNeedPaint(true);
-                _richTextBox.SelectionTabs = value; 
+                _richTextBox.SelectionTabs = value;
             }
         }
 
@@ -1245,24 +1245,24 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets and sets the input control style.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Input control style.")]
+        /// Gets and sets the input control style.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Input control style.")]
         public InputControlStyle InputControlStyle
-		{
+        {
             get => _inputControlStyle;
 
             set
-			{
+            {
                 if (_inputControlStyle != value)
-				{
+                {
                     _inputControlStyle = value;
                     StateCommon.SetStyles(value);
-					PerformNeedPaint(true);
-				}
-			}
-		}
+                    PerformNeedPaint(true);
+                }
+            }
+        }
 
         private bool ShouldSerializeInputControlStyle()
         {
@@ -1302,32 +1302,32 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             return !StateCommon.IsDefault;
         }
-        
+
         /// <summary>
         /// Gets access to the disabled textbox appearance entries.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Overrides for defining disabled textbox appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Overrides for defining disabled textbox appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteInputControlTripleStates StateDisabled { get; }
 
         private bool ShouldSerializeStateDisabled()
-		{
-			return !StateDisabled.IsDefault;
-		}
+        {
+            return !StateDisabled.IsDefault;
+        }
 
-		/// <summary>
+        /// <summary>
         /// Gets access to the normal textbox appearance entries.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Overrides for defining normal textbox appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Overrides for defining normal textbox appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteInputControlTripleStates StateNormal { get; }
 
         private bool ShouldSerializeStateNormal()
-		{
-			return !StateNormal.IsDefault;
-		}
+        {
+            return !StateNormal.IsDefault;
+        }
 
         /// <summary>
         /// Gets access to the active textbox appearance entries.
@@ -1679,7 +1679,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsActive
         {
-            get 
+            get
             {
                 if (_fixedActive != null)
                 {
@@ -1748,19 +1748,19 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets the rectangle that represents the display area of the control.
-		/// </summary>
-		public override Rectangle DisplayRectangle
-		{
-			get
-			{
+        /// Gets the rectangle that represents the display area of the control.
+        /// </summary>
+        public override Rectangle DisplayRectangle
+        {
+            get
+            {
                 // Ensure that the layout is calculated in order to know the remaining display space
                 ForceViewLayout();
 
                 // The inside text box is the client rectangle size
                 return new Rectangle(_richTextBox.Location, _richTextBox.Size);
-			}
-		}		
+            }
+        }
 
         /// <summary>
         /// Print the specified range of characters.
@@ -1973,18 +1973,18 @@ namespace ComponentFactory.Krypton.Toolkit
 
             // Force the font to be set into the text box child control
             PerformNeedPaint(false);
-            
+
             // We need a layout to occur before any painting
             InvokeLayout();
         }
 
         /// <summary>
-		/// Raises the EnabledChanged event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnEnabledChanged(EventArgs e)
-		{
-			// Change in enabled state requires a layout and repaint
+        /// Raises the EnabledChanged event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            // Change in enabled state requires a layout and repaint
             UpdateStateAndPalettes();
 
             // Update view elements
@@ -2205,10 +2205,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             switch (m.Msg)
             {
-                case PI.WM_NCHITTEST:
+                case PI.WM_.NCHITTEST:
                     if (InTransparentDesignMode)
                     {
-                        m.Result = (IntPtr)PI.HTTRANSPARENT;
+                        m.Result = (IntPtr)PI.HT.TRANSPARENT;
                     }
                     else
                     {
@@ -2245,7 +2245,7 @@ namespace ComponentFactory.Krypton.Toolkit
             // Get the correct palette settings to use
             IPaletteTriple tripleState = GetTripleState();
             _drawDockerOuter.SetPalettes(tripleState.PaletteBack, tripleState.PaletteBorder);
-            
+
             // Update enabled state
             _drawDockerOuter.Enabled = Enabled;
 
@@ -2268,10 +2268,12 @@ namespace ComponentFactory.Krypton.Toolkit
                 if (_trackingMouseEnter)
                 {
                     OnTrackMouseEnter(EventArgs.Empty);
+                    OnMouseEnter(e);
                 }
                 else
                 {
                     OnTrackMouseLeave(EventArgs.Empty);
+                    OnMouseLeave(e);
                 }
             }
         }
@@ -2427,9 +2429,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                      CommonHelper.ContentStyleFromLabelStyle(toolTipStyle));
 
                         _visualPopupToolTip.Disposed += OnVisualPopupToolTipDisposed;
-
-                        // Show relative to the provided screen rectangle
-                        _visualPopupToolTip.ShowCalculatingSize(RectangleToScreen(e.Target.ClientRectangle));
+                        _visualPopupToolTip.ShowRelativeTo(e.Target, e.ControlMousePosition);
                     }
                 }
             }

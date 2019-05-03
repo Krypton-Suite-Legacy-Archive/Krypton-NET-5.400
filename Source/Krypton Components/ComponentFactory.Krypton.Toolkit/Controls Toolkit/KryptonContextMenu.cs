@@ -1,20 +1,20 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -26,7 +26,7 @@ namespace ComponentFactory.Krypton.Toolkit
     [DefaultEvent("Opening")]
     [DefaultProperty("PaletteMode")]
     [DesignerCategory("code")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonContextMenuDesigner))]
+    [Designer(typeof(KryptonContextMenuDesigner))]
     [Description("Displays a shortcut menu in popup window.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
     [ComVisible(true)]
@@ -110,7 +110,7 @@ namespace ComponentFactory.Krypton.Toolkit
             }
 
             base.Dispose(disposing);
-        }        
+        }
         #endregion
 
         #region Public
@@ -126,7 +126,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             return !Images.IsDefault;
         }
-        
+
         /// <summary>
         /// Gets access to the common context menu appearance entries that other states can override.
         /// </summary>
@@ -405,7 +405,7 @@ namespace ComponentFactory.Krypton.Toolkit
                     CloseReason = ToolStripDropDownCloseReason.AppFocusChange;
 
                     // Create the actual control used to show the context menu
-                    VisualContextMenu = CreateContextMenu(this, Palette, PaletteMode, 
+                    VisualContextMenu = CreateContextMenu(this, Palette, PaletteMode,
                                                      _redirector, _redirectorImages,
                                                      Items, Enabled, keyboardActivated);
 
@@ -464,6 +464,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Protected Virtual
+        // ReSharper disable VirtualMemberNeverOverridden.Global
         /// <summary>
         /// Create a new visual context menu for showing the defined items.
         /// </summary>
@@ -472,7 +473,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="paletteMode">Drawing palette mode.</param>
         /// <param name="redirector">Redirector for sourcing base values.</param>
         /// <param name="redirectorImages">Redirector for sourcing base images.</param>
-        /// <param name="items">Colletion of menu items.</param>
+        /// <param name="items">Collection of menu items.</param>
         /// <param name="enabled">Enabled state of the menu.</param>
         /// <param name="keyboardActivated">True is menu was keyboard initiated.</param>
         /// <returns>VisualContextMenu reference.</returns>
@@ -510,7 +511,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Raises the Closing event.
         /// </summary>
         /// <param name="e">A CancelEventArgs containing the event data.</param>
-        internal protected virtual void OnClosing(CancelEventArgs e)
+        protected internal virtual void OnClosing(CancelEventArgs e)
         {
             Closing?.Invoke(this, e);
         }
@@ -523,6 +524,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             Closed?.Invoke(this, e);
         }
+        // ReSharper restore VirtualMemberNeverOverridden.Global
         #endregion
 
         #region Internal

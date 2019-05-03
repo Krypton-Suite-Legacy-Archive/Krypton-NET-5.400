@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,9 +14,9 @@ using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Storage of user supplied values not used by Krypton.
-	/// </summary>
+    /// <summary>
+    /// Storage of user supplied values not used by Krypton.
+    /// </summary>
     public class KryptonPaletteCargo : Storage
     {
         #region Instance Fields
@@ -26,10 +26,10 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonPaletteCargo class.
-		/// </summary>
+        /// </summary>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public KryptonPaletteCargo(NeedPaintHandler needPaint) 
-		{
+        {
             // Store the provided paint notification delegate
             NeedPaint = needPaint;
 
@@ -42,31 +42,31 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (Color1 == Color.Empty) &&
-		                                  (Color2 == Color.Empty) &&
-		                                  (Color3 == Color.Empty) &&
-		                                  (Color4 == Color.Empty) &&
-		                                  (Color5 == Color.Empty) &&
-		                                  (Font1 == null) &&
-		                                  (Font2 == null);
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (Color1 == Color.Empty) &&
+                                          (Color2 == Color.Empty) &&
+                                          (Color3 == Color.Empty) &&
+                                          (Color4 == Color.Empty) &&
+                                          (Color5 == Color.Empty) &&
+                                          (Font1 == null) &&
+                                          (Font2 == null);
 
         #endregion
 
         #region Color1
         /// <summary>
-		/// Gets and sets a user supplied color value.
-		/// </summary>
+        /// Gets and sets a user supplied color value.
+        /// </summary>
         [KryptonPersist(false)]
         [Category("Visuals")]
-		[Description("User supplied color value.")]
+        [Description("User supplied color value.")]
         [KryptonDefaultColorAttribute()]
-		[RefreshPropertiesAttribute(RefreshProperties.All)]
-		public Color Color1 { get; set; }
+        [RefreshPropertiesAttribute(RefreshProperties.All)]
+        public Color Color1 { get; set; }
 
         /// <summary>
         /// esets the Color1 property to its default value.

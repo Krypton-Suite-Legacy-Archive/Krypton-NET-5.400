@@ -1,19 +1,19 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -46,6 +46,7 @@ namespace ComponentFactory.Krypton.Toolkit
         private string _checkboxText;
         private bool _checkboxState;
         private bool _allowDialogClose;
+        private string _textExtra;
 
         #endregion
 
@@ -74,6 +75,7 @@ namespace ComponentFactory.Krypton.Toolkit
             RadioButtons = new KryptonTaskDialogCommandCollection();
             CommandButtons = new KryptonTaskDialogCommandCollection();
             _commonButtons = TaskDialogButtons.OK;
+            _textExtra = @"Ctrl+C to copy";
         }
 
         /// <summary> 
@@ -92,7 +94,7 @@ namespace ComponentFactory.Krypton.Toolkit
             }
 
             base.Dispose(disposing);
-        }        
+        }
         #endregion
 
         #region Public
@@ -108,7 +110,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get => _windowTitle;
 
-            set 
+            set
             {
                 if (_windowTitle != value)
                 {
@@ -283,7 +285,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets and sets the predefined footer icon.
         /// </summary>
@@ -440,6 +442,27 @@ namespace ComponentFactory.Krypton.Toolkit
         [TypeConverter(typeof(StringConverter))]
         [Bindable(true)]
         public object Tag { get; set; }
+
+        /// <summary>
+        /// Allows user to override the default "Ctrl+c to copy" in window caption
+        /// </summary>
+        [Category("Appearance")]
+        [Description("'ExtraText' in Caption of the window.")]
+        [DefaultValue("")]
+        [Localizable(true)]
+        [Bindable(true)]
+        public string TextExtra
+        {
+            get => _textExtra;
+            set
+            {
+                if (_textExtra != value)
+                {
+                    _textExtra = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs(@"TextExtra"));
+                }
+            }
+        }
 
         private void ResetTag()
         {

@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -69,7 +69,7 @@ namespace ComponentFactory.Krypton.Navigator
         public void ShowWithoutActivate()
         {
             // Show the window without activating it (i.e. do not take focus)
-            PI.ShowWindow(Handle, PI.SW_SHOWNOACTIVATE);
+            PI.ShowWindow(Handle, PI.ShowWindowCommands.SW_SHOWNOACTIVATE);
         }
 
         /// <summary>
@@ -118,10 +118,10 @@ namespace ComponentFactory.Krypton.Navigator
         protected override void WndProc(ref Message m)
         {
             // We are a transparent window, so mouse is never over us
-            if (m.Msg == PI.WM_NCHITTEST)
+            if (m.Msg == PI.WM_.NCHITTEST)
             {
                 // Allow actions to occur to window beneath us
-                m.Result = (IntPtr)PI.HTTRANSPARENT;
+                m.Result = (IntPtr)PI.HT.TRANSPARENT;
             }
             else
             {

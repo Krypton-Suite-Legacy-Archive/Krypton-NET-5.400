@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -15,22 +15,22 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Redirect storage for a header state.
-	/// </summary>
+    /// </summary>
     public class PaletteHeaderRedirect : PaletteTripleMetricRedirect
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private PaletteRedirect _redirect;
         private Padding _buttonPadding;
         private int _buttonEdgeInset;
         #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteHeaderRedirect class.
-		/// </summary>
-		/// <param name="redirect">Inheritence redirection instance.</param>
+        /// </summary>
+        /// <param name="redirect">Inheritence redirection instance.</param>
         /// <param name="backStyle">Style for the background.</param>
         /// <param name="borderStyle">Style for the border.</param>
         /// <param name="contentStyle">Style for the content.</param>
@@ -40,13 +40,13 @@ namespace ComponentFactory.Krypton.Toolkit
                                      PaletteBorderStyle borderStyle,
                                      PaletteContentStyle contentStyle,
                                      NeedPaintHandler needPaint)
-			: base(redirect,
+            : base(redirect,
                    backStyle,
                    borderStyle,
                    contentStyle,
                    needPaint)
-		{
-			Debug.Assert(redirect != null);
+        {
+            Debug.Assert(redirect != null);
 
             // Remember the redirect reference
             _redirect = redirect;
@@ -55,7 +55,7 @@ namespace ComponentFactory.Krypton.Toolkit
             _buttonPadding = CommonHelper.InheritPadding;
             _buttonEdgeInset = -1;
         }
-		#endregion
+        #endregion
 
         #region SetRedirector
         /// <summary>
@@ -69,16 +69,16 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (base.IsDefault &&
-		                                   ButtonPadding.Equals(CommonHelper.InheritPadding) &&
-		                                   (ButtonEdgeInset == -1));
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (base.IsDefault &&
+                                           ButtonPadding.Equals(CommonHelper.InheritPadding) &&
+                                           (ButtonEdgeInset == -1));
 
-	    #endregion
+        #endregion
 
         #region ButtonEdgeInset
         /// <summary>
@@ -158,8 +158,10 @@ namespace ComponentFactory.Krypton.Toolkit
                 (metric == PaletteMetricInt.HeaderButtonEdgeInsetDockActive) ||
                 (metric == PaletteMetricInt.HeaderButtonEdgeInsetForm) ||
                 (metric == PaletteMetricInt.HeaderButtonEdgeInsetInputControl) ||
-                (metric == PaletteMetricInt.HeaderButtonEdgeInsetCustom1) ||
-                (metric == PaletteMetricInt.HeaderButtonEdgeInsetCustom2))
+                (metric == PaletteMetricInt.HeaderButtonEdgeInsetCustom1) 
+                || (metric == PaletteMetricInt.HeaderButtonEdgeInsetCustom2)
+                || (metric == PaletteMetricInt.HeaderButtonEdgeInsetCustom3)
+                )
             {
                 // If the user has defined an actual value to use
                 if (ButtonEdgeInset != -1)
@@ -199,8 +201,10 @@ namespace ComponentFactory.Krypton.Toolkit
                 (metric == PaletteMetricPadding.HeaderButtonPaddingDockActive) ||
                 (metric == PaletteMetricPadding.HeaderButtonPaddingForm) ||
                 (metric == PaletteMetricPadding.HeaderButtonPaddingInputControl) ||
-                (metric == PaletteMetricPadding.HeaderButtonPaddingCustom1) ||
-                (metric == PaletteMetricPadding.HeaderButtonPaddingCustom2))
+                (metric == PaletteMetricPadding.HeaderButtonPaddingCustom1) 
+                || (metric == PaletteMetricPadding.HeaderButtonPaddingCustom2)
+                || (metric == PaletteMetricPadding.HeaderButtonPaddingCustom3)
+                )
             {
                 // If the user has defined an actual value to use
                 if (!ButtonPadding.Equals(CommonHelper.InheritPadding))

@@ -1,24 +1,24 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
+using ComponentFactory.Krypton.Toolkit;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Diagnostics;
-using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Draws a separator between ribbon tabs.
-	/// </summary>
+    /// <summary>
+    /// Draws a separator between ribbon tabs.
+    /// </summary>
     internal class ViewDrawRibbonTabSep : ViewLayoutRibbonSeparator
     {
         #region Static Fields
@@ -45,7 +45,7 @@ namespace ComponentFactory.Krypton.Ribbon
 
         /// <summary>
         /// Initialize a new instance of the ViewDrawRibbonTabSep class.
-		/// </summary>
+        /// </summary>
         /// <param name="palette">Source for palette values.</param>
         public ViewDrawRibbonTabSep(IPaletteRibbonGeneral palette)
             : base(SEP_WIDTH, true)
@@ -54,16 +54,16 @@ namespace ComponentFactory.Krypton.Ribbon
             _palette = palette;
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewDrawRibbonTabSep:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
         #region Draw
         /// <summary>
@@ -78,7 +78,7 @@ namespace ComponentFactory.Krypton.Ribbon
         /// Perform rendering before child elements are rendered.
         /// </summary>
         /// <param name="context">Rendering context.</param>
-        public override void RenderBefore(RenderContext context) 
+        public override void RenderBefore(RenderContext context)
         {
             if (Draw)
             {
@@ -92,6 +92,9 @@ namespace ComponentFactory.Krypton.Ribbon
                         default:
                         case PaletteRibbonShape.Office2007:
                         case PaletteRibbonShape.Office2013:
+                            context.Graphics.FillRectangle(sepBrush, ClientLocation.X + 2, ClientLocation.Y, 1, ClientHeight - 1);
+                            break;
+                        case PaletteRibbonShape.Office365:
                             context.Graphics.FillRectangle(sepBrush, ClientLocation.X + 2, ClientLocation.Y, 1, ClientHeight - 1);
                             break;
                         case PaletteRibbonShape.Office2010:

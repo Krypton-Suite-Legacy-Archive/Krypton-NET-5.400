@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -16,10 +16,10 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// View element that allows scrolling around a contained view element.
-	/// </summary>
-	public class ViewLayoutViewport : ViewComposite
+    /// <summary>
+    /// View element that allows scrolling around a contained view element.
+    /// </summary>
+    public class ViewLayoutViewport : ViewComposite
     {
         #region Static Fields
         private const float _scrollPercentage = 0.66f;
@@ -52,7 +52,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewLayoutViewport class.
-		/// </summary>
+        /// </summary>
         /// <param name="paletteMetrics">Palette source for metrics.</param>
         /// <param name="metricPadding">Metric used to get view padding.</param>
         /// <param name="metricOvers">Metric used to get overposition.</param>
@@ -65,7 +65,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                   VisualOrientation orientation,
                                   RelativePositionAlign alignment,
                                   bool animateChange)
-		{
+        {
             // Remember the source information
             _paletteMetrics = paletteMetrics;
             _metricPadding = metricPadding;
@@ -88,7 +88,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 Interval = _animationInterval
             };
             _animationTimer.Tick += OnAnimationTick;
-		}
+        }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -106,16 +106,16 @@ namespace ComponentFactory.Krypton.Toolkit
             base.Dispose(disposing);
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewLayoutViewport:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
         #region SetMetrics
         /// <summary>
@@ -443,9 +443,9 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Layout
         /// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
         public override Size GetPreferredSize(ViewLayoutContext context)
         {
             // Remember the original display rect for restoring late

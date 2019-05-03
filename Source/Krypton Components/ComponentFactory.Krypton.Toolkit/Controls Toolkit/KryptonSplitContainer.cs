@@ -1,31 +1,31 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Control the sizing of two panels.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonSplitContainer), "ToolboxBitmaps.KryptonSplitContainer.bmp")]
     [DefaultEvent("SplitterMoved")]
-	[DefaultProperty("Orientation")]
-	[DesignerCategory("code")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonSplitContainerDesigner))]
+    [DefaultProperty("Orientation")]
+    [DesignerCategory("code")]
+    [Designer(typeof(KryptonSplitContainerDesigner))]
     [Description("Divide the container inside two resizable panels.")]
     [Docking(DockingBehavior.AutoDock)]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -111,13 +111,13 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Identity
         /// <summary>
-		/// Initialize a new instance of the KryptonSplitContainer class.
-		/// </summary>
-		public KryptonSplitContainer()
-		{
+        /// Initialize a new instance of the KryptonSplitContainer class.
+        /// </summary>
+        public KryptonSplitContainer()
+        {
             // Create the palette storage
-            StateCommon = new PaletteSplitContainerRedirect(Redirector, PaletteBackStyle.PanelClient, 
-                                                             PaletteBorderStyle.ControlClient, PaletteBackStyle.SeparatorLowProfile, 
+            StateCommon = new PaletteSplitContainerRedirect(Redirector, PaletteBackStyle.PanelClient,
+                                                             PaletteBorderStyle.ControlClient, PaletteBackStyle.SeparatorLowProfile,
                                                              PaletteBorderStyle.SeparatorLowProfile, NeedPaintDelegate);
 
             StateDisabled = new PaletteSplitContainer(StateCommon, StateCommon.Separator, StateCommon.Separator, NeedPaintDelegate);
@@ -178,12 +178,12 @@ namespace ComponentFactory.Krypton.Toolkit
                 // message filter that would prevent it from being garbage collected
                 _separatorController.Dispose();
             }
-            
+
             base.Dispose(disposing);
         }
-		#endregion
+        #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Gets and sets the name of the control.
         /// </summary>
@@ -853,7 +853,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Rectangle SeparatorMoveBox 
+        public Rectangle SeparatorMoveBox
         {
             get
             {
@@ -1413,7 +1413,7 @@ namespace ComponentFactory.Krypton.Toolkit
             return new KryptonReadOnlyControls(this);
         }
         #endregion
-        
+
         #region Protected Overrides (Events)
         /// <summary>
         /// Raises the AutoSizeChanged event.
@@ -1468,6 +1468,6 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             StateCommon.Separator.SetStyles(separatorStyle);
         }
-		#endregion
+        #endregion
     }
 }

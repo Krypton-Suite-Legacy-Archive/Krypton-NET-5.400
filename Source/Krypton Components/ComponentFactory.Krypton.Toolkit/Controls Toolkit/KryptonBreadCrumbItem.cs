@@ -1,18 +1,18 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -22,14 +22,14 @@ namespace ComponentFactory.Krypton.Toolkit
     [ToolboxItem(false)]
     [ToolboxBitmap(typeof(KryptonBreadCrumb), "ToolboxBitmaps.KryptonBreadCrumbItem.bmp")]
     [DesignTimeVisible(false)]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonBreadCrumbItemDesigner))]
+    [Designer(typeof(KryptonBreadCrumbItemDesigner))]
     public class KryptonBreadCrumbItem : KryptonListItem
     {
         #region Type Definitons
         /// <summary>
         /// Manages a collection of KryptonBreadCrumbItems
         /// </summary>
-        [Editor(typeof(ComponentFactory.Krypton.Toolkit.KryptonBreadCrumbItemsEditor), typeof(UITypeEditor))]
+        [Editor(typeof(KryptonBreadCrumbItemsEditor), typeof(UITypeEditor))]
         public class BreadCrumbItems : TypedCollection<KryptonBreadCrumbItem>
         {
             #region Instance Fields
@@ -59,7 +59,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 {
                     if (!string.IsNullOrEmpty(name))
                     {
-                        foreach(KryptonBreadCrumbItem item in this)
+                        foreach (KryptonBreadCrumbItem item in this)
                         {
                             string text = item.ShortText;
                             if (!string.IsNullOrEmpty(text) && (text == name))

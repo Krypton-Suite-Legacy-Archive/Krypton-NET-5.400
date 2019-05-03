@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -17,9 +17,9 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Extends the ViewLayoutPile so that menu items are layed out in columns.
-	/// </summary>
+    /// <summary>
+    /// Extends the ViewLayoutPile so that menu items are layed out in columns.
+    /// </summary>
     public class ViewLayoutMenuItemsPile : ViewLayoutPile
     {
         #region Type Definitions
@@ -35,7 +35,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewLayoutMenuItemsPile class.
-		/// </summary>
+        /// </summary>
         /// <param name="provider">Provider of context menu values.</param>
         /// <param name="items">Reference to the owning collection.</param>
         /// <param name="standardStyle">Draw items with standard or alternate style.</param>
@@ -84,16 +84,16 @@ namespace ComponentFactory.Krypton.Toolkit
             Add(stackDocker);
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewLayoutMenuItemsPile:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
         #region ItemStack
         /// <summary>
@@ -104,13 +104,13 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Layout
-		/// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override Size GetPreferredSize(ViewLayoutContext context)
-		{
-			Debug.Assert(context != null);
+        /// <summary>
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override Size GetPreferredSize(ViewLayoutContext context)
+        {
+            Debug.Assert(context != null);
 
             // Reset the column size information
             _columnToWidth = new ColumnToWidth();
@@ -130,18 +130,18 @@ namespace ComponentFactory.Krypton.Toolkit
             UpdateImageColumnWidth(context.Renderer);
 
             return base.GetPreferredSize(context);
-		}
+        }
 
         /// <summary>
-		/// Perform a layout of the elements.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override void Layout(ViewLayoutContext context)
-		{
-			Debug.Assert(context != null);
+        /// Perform a layout of the elements.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override void Layout(ViewLayoutContext context)
+        {
+            Debug.Assert(context != null);
             base.Layout(context);
-		}
-		#endregion  
+        }
+        #endregion  
   
         #region Implementation
         private void GatherMenuItemColumns(ViewBase element)

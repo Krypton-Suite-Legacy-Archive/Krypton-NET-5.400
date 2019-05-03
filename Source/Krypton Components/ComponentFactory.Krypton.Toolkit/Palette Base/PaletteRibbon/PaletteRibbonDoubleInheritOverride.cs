@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,9 +14,9 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Inherit properties from primary source in preference to the backup source.
-	/// </summary>
+    /// <summary>
+    /// Inherit properties from primary source in preference to the backup source.
+    /// </summary>
     public class PaletteRibbonDoubleInheritOverride : PaletteRibbonDoubleInherit
     {
         #region Instance Fields
@@ -30,7 +30,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the PaletteRibbonDoubleInheritOverride class.
-		/// </summary>
+        /// </summary>
         /// <param name="primaryBack">First choice inheritence background.</param>
         /// <param name="primaryText">First choice inheritence text.</param>
         /// <param name="backupBack">Backup inheritence background.</param>
@@ -41,7 +41,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                   IPaletteRibbonBack backupBack,
                                                   IPaletteRibbonText backupText,
                                                   PaletteState state) 
-		{
+        {
             Debug.Assert(primaryBack != null);
             Debug.Assert(primaryText != null);
             Debug.Assert(backupBack != null);

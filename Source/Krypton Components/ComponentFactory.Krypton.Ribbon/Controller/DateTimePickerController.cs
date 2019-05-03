@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Windows.Forms;
@@ -15,31 +15,31 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Process mouse events for a ribbon group date time picker.
-	/// </summary>
+    /// <summary>
+    /// Process mouse events for a ribbon group date time picker.
+    /// </summary>
     internal class DateTimePickerController : GlobalId,
                                               ISourceController,   
                                               IKeyController,
                                               IRibbonKeyTipTarget
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private readonly KryptonRibbon _ribbon;
         private readonly KryptonRibbonGroupDateTimePicker _dateTimePicker;
         private readonly ViewDrawRibbonGroupDateTimePicker _target;
         #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the DateTimePickerController class.
-		/// </summary>
+        /// </summary>
         /// <param name="ribbon">Reference to owning ribbon instance.</param>
         /// <param name="dateTimePicker">Source definition.</param>
         /// <param name="target">Target view element.</param>
         public DateTimePickerController(KryptonRibbon ribbon,
                                         KryptonRibbonGroupDateTimePicker dateTimePicker,
                                         ViewDrawRibbonGroupDateTimePicker target)
-		{
+        {
             Debug.Assert(ribbon != null);
             Debug.Assert(dateTimePicker != null);
             Debug.Assert(target != null);
@@ -48,7 +48,7 @@ namespace ComponentFactory.Krypton.Ribbon
             _dateTimePicker = dateTimePicker;
             _target = target;
         }
-		#endregion
+        #endregion
 
         #region Focus Notifications
         /// <summary>

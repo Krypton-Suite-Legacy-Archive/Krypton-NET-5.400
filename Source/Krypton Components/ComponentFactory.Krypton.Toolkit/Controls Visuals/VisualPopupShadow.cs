@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -16,10 +16,10 @@ using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Displays a shadow effect for a visual popup.
-	/// </summary>
-	public class VisualPopupShadow : Form
+    /// <summary>
+    /// Displays a shadow effect for a visual popup.
+    /// </summary>
+    public class VisualPopupShadow : Form
     {
         #region Static Fields
 
@@ -46,9 +46,9 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the VisualPopupShadow class. 
-		/// </summary>
+        /// </summary>
         public VisualPopupShadow()
-		{
+        {
             // Update form properties so we do not have a border and do not show
             // in the task bar. We draw the background in Magenta and set that as
             // the transparency key so it is a see through window.
@@ -57,7 +57,7 @@ namespace ComponentFactory.Krypton.Toolkit
             ShowInTaskbar = false;
             TransparencyKey = Color.Magenta;
             Opacity = 0.18f;
-		}
+        }
 
         /// <summary>
         /// Disposing of instance resources.
@@ -80,7 +80,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         /// <param name="screenRect">Screen rectangle for showing the popup.</param>
         public virtual void Show(Rectangle screenRect)
-		{
+        {
             // Offset by the width/height of the shadow
             screenRect.X += SHADOW_SIZE;
             screenRect.Y += SHADOW_SIZE;
@@ -90,7 +90,7 @@ namespace ComponentFactory.Krypton.Toolkit
             ClientSize = screenRect.Size;
 
             // Show the window without activating it (i.e. do not take focus)
-			PI.ShowWindow(Handle, PI.SW_SHOWNOACTIVATE);
+            PI.ShowWindow(Handle, PI.ShowWindowCommands.SW_SHOWNOACTIVATE);
         }
 
         /// <summary>
@@ -126,8 +126,8 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 CreateParams cp = base.CreateParams;
                 cp.Parent = IntPtr.Zero;
-                cp.Style |= unchecked((int)PI.WS_POPUP);
-                cp.ExStyle |= PI.WS_EX_TOPMOST + PI.WS_EX_TOOLWINDOW;
+                cp.Style |= unchecked((int)PI.WS_.POPUP);
+                cp.ExStyle |= PI.WS_EX_.TOPMOST + PI.WS_EX_.TOOLWINDOW;
                 return cp;
             }
         }
@@ -189,7 +189,7 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         private void DrawShadow(Graphics g, Rectangle area)
-		{
+        {
             using (GraphicsPath outside1 = CommonHelper.RoundedRectanglePath(area, 6))
             {
                 area.Inflate(-1, -1);

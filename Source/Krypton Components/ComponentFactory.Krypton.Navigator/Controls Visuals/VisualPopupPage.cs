@@ -1,19 +1,20 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
-using System.Diagnostics;
 using System.Reflection;
+using System.Windows.Forms;
+
 using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Navigator
@@ -117,7 +118,7 @@ namespace ComponentFactory.Krypton.Navigator
 
                 // Move the panel back to a minus position so it does not show
                 // until it is layed out again by the owning navigator instance
-                _navigator.ChildPanel.Location = new Point(-_navigator.ChildPanel.Width, 
+                _navigator.ChildPanel.Location = new Point(-_navigator.ChildPanel.Width,
                                                            -_navigator.ChildPanel.Height);
 
                 _navigator.ReturnChildPanel();
@@ -211,7 +212,7 @@ namespace ComponentFactory.Krypton.Navigator
                     break;
             }
 
-            PopupPageEventArgs e = new PopupPageEventArgs(_page, 
+            PopupPageEventArgs e = new PopupPageEventArgs(_page,
                                                           _navigator.Pages.IndexOf(_page),
                                                           parentScreenRect);
 

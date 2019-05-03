@@ -1,32 +1,32 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.ComponentModel;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Provide a ListBox with Krypton styling applied.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonListBox), "ToolboxBitmaps.KryptonListBox.bmp")]
     [DefaultEvent("SelectedIndexChanged")]
     [DefaultProperty("Items")]
     [DefaultBindingProperty("SelectedValue")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonListBoxDesigner))]
+    [Designer(typeof(KryptonListBoxDesigner))]
     [DesignerCategory("code")]
     [Description("Represents a list box control that allows single or multiple item selection.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -187,28 +187,28 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 switch (m.Msg)
                 {
-                    case PI.WM_ERASEBKGND:
+                    case PI.WM_.ERASEBKGND:
                         // Do not draw the background here, always do it in the paint 
                         // instead to prevent flicker because of a two stage drawing process
                         break;
-                    case PI.WM_PRINTCLIENT:
-                    case PI.WM_PAINT:
+                    case PI.WM_.PRINTCLIENT:
+                    case PI.WM_.PAINT:
                         WmPaint(ref m);
                         break;
-                    case PI.WM_VSCROLL:
-                    case PI.WM_HSCROLL:
-                    case PI.WM_MOUSEWHEEL:
+                    case PI.WM_.VSCROLL:
+                    case PI.WM_.HSCROLL:
+                    case PI.WM_.MOUSEWHEEL:
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // Mouse is not over the control
                         MouseOver = false;
                         _kryptonListBox.PerformNeedPaint(true);
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Mouse is over the control
                         if (!MouseOver)
                         {
@@ -323,7 +323,7 @@ namespace ComponentFactory.Krypton.Toolkit
                             if (Items.Count == 0)
                             {
                                 using (Graphics g = Graphics.FromHdc(hdc))
-                                    using (RenderContext context = new RenderContext(this, _kryptonListBox, g, realRect, _kryptonListBox.Renderer))
+                                using (RenderContext context = new RenderContext(this, _kryptonListBox, g, realRect, _kryptonListBox.Renderer))
                                 {
                                     ViewDrawPanel.Render(context);
                                 }
@@ -510,7 +510,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             // Contains another control and needs marking as such for validation to work
             SetStyle(ControlStyles.ContainerControl, true);
-            
+
             // Cannot select this control, only the child ListBox and does not generate a click event
             SetStyle(ControlStyles.Selectable | ControlStyles.StandardClick, false);
 
@@ -546,7 +546,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                              _overrideTracking, _overridePressed,
                                              _overrideCheckedNormal, _overrideCheckedTracking,
                                              _overrideCheckedPressed,
-                                             new PaletteMetricRedirect(Redirector), 
+                                             new PaletteMetricRedirect(Redirector),
                                              _contentValues, VisualOrientation.Top, false);
 
             // Create the internal list box used for containing content
@@ -1750,7 +1750,7 @@ namespace ComponentFactory.Krypton.Toolkit
             }
 
             return false;
-        }            
+        }
 
         private void OnListBoxSelectedValueChanged(object sender, EventArgs e)
         {
@@ -1806,10 +1806,12 @@ namespace ComponentFactory.Krypton.Toolkit
                 if (_trackingMouseEnter)
                 {
                     OnTrackMouseEnter(EventArgs.Empty);
+                    OnMouseEnter(e);
                 }
                 else
                 {
                     OnTrackMouseLeave(EventArgs.Empty);
+                    OnMouseLeave(e);
                 }
             }
         }

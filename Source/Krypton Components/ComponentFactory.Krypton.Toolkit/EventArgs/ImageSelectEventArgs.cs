@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -14,39 +14,39 @@ using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Image select event data.
-	/// </summary>
-	public class ImageSelectEventArgs : EventArgs
-	{
-		#region Instance Fields
+    /// <summary>
+    /// Image select event data.
+    /// </summary>
+    public class ImageSelectEventArgs : EventArgs
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the ImageSelectEventArgs class.
-		/// </summary>
+        /// </summary>
         /// <param name="imageList">Defined image list.</param>
         /// <param name="imageIndex">Index within the image list.</param>
         public ImageSelectEventArgs(ImageList imageList, int imageIndex)
-		{
+        {
             ImageList = imageList;
             ImageIndex = imageIndex;
-		}
-		#endregion
+        }
+        #endregion
 
-		#region Public
-		/// <summary>
-		/// Gets the image list.
-		/// </summary>
+        #region Public
+        /// <summary>
+        /// Gets the image list.
+        /// </summary>
         public ImageList ImageList { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets the image index.
         /// </summary>
         public int ImageIndex { get; }
 
-	    #endregion
-	}
+        #endregion
+    }
 }

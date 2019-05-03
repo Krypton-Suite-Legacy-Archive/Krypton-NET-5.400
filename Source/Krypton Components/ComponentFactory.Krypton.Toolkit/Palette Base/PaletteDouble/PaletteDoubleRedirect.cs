@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -14,26 +14,26 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Implement storage for palette border and background.
-	/// </summary>
-	public class PaletteDoubleRedirect : Storage,
-										 IPaletteDouble
-	{
-		#region Instance Fields
-		private PaletteBack _back;
-		private PaletteBorder _border;
-		private PaletteBackInheritRedirect _backInherit;
+    /// <summary>
+    /// Implement storage for palette border and background.
+    /// </summary>
+    public class PaletteDoubleRedirect : Storage,
+                                         IPaletteDouble
+    {
+        #region Instance Fields
+        private PaletteBack _back;
+        private PaletteBorder _border;
+        private PaletteBackInheritRedirect _backInherit;
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
-		/// Initialize a new instance of the PaletteDoubleRedirect class.
-		/// </summary>
-		/// <param name="redirect">Inheritence redirection instance.</param>
-		/// <param name="backStyle">Initial background style.</param>
-		/// <param name="borderStyle">Initial border style.</param>
+        #region Identity
+        /// <summary>
+        /// Initialize a new instance of the PaletteDoubleRedirect class.
+        /// </summary>
+        /// <param name="redirect">Inheritence redirection instance.</param>
+        /// <param name="backStyle">Initial background style.</param>
+        /// <param name="borderStyle">Initial border style.</param>
         public PaletteDoubleRedirect(PaletteRedirect redirect,
                                      PaletteBackStyle backStyle,
                                      PaletteBorderStyle borderStyle)
@@ -42,22 +42,22 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Initialize a new instance of the PaletteDoubleRedirect class.
-		/// </summary>
-		/// <param name="redirect">Inheritence redirection instance.</param>
-		/// <param name="backStyle">Initial background style.</param>
-		/// <param name="borderStyle">Initial border style.</param>
+        /// Initialize a new instance of the PaletteDoubleRedirect class.
+        /// </summary>
+        /// <param name="redirect">Inheritence redirection instance.</param>
+        /// <param name="backStyle">Initial background style.</param>
+        /// <param name="borderStyle">Initial border style.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteDoubleRedirect(PaletteRedirect redirect,
-									 PaletteBackStyle backStyle,
-									 PaletteBorderStyle borderStyle,
+                                     PaletteBackStyle backStyle,
+                                     PaletteBorderStyle borderStyle,
                                      NeedPaintHandler needPaint)
-		{
+        {
             // Store the inherit instances
             PaletteBackInheritRedirect backInherit = new PaletteBackInheritRedirect(redirect, backStyle);
             PaletteBorderInheritRedirect borderInherit = new PaletteBorderInheritRedirect(redirect, borderStyle);
 
-			// Create storage that maps onto the inherit instances
+            // Create storage that maps onto the inherit instances
             PaletteBack back = new PaletteBack(backInherit, needPaint);
             PaletteBorder border = new PaletteBorder(borderInherit, needPaint);
 
@@ -121,14 +121,14 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region IsDefault
         /// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (Back.IsDefault && Border.IsDefault);
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (Back.IsDefault && Border.IsDefault);
 
-	    #endregion
+        #endregion
 
-		#region SetStyles
+        #region SetStyles
         /// <summary>
         /// Update the palette styles to the separator style.
         /// </summary>
@@ -141,9 +141,9 @@ namespace ComponentFactory.Krypton.Toolkit
             BorderStyle = borderStyle;
         }
 
-		/// <summary>
-		/// Update the palette styles to the separator style.
-		/// </summary>
+        /// <summary>
+        /// Update the palette styles to the separator style.
+        /// </summary>
         /// <param name="separatorStyle">New separator style.</param>
         public void SetStyles(SeparatorStyle separatorStyle)
         {
@@ -160,6 +160,12 @@ namespace ComponentFactory.Krypton.Toolkit
                     break;
                 case SeparatorStyle.Custom1:
                     SetStyles(PaletteBackStyle.SeparatorCustom1, PaletteBorderStyle.SeparatorCustom1);
+                    break;
+                case SeparatorStyle.Custom2:
+                    SetStyles(PaletteBackStyle.SeparatorCustom2, PaletteBorderStyle.SeparatorCustom2);
+                    break;
+                case SeparatorStyle.Custom3:
+                    SetStyles(PaletteBackStyle.SeparatorCustom3, PaletteBorderStyle.SeparatorCustom3);
                     break;
                 default:
                     // Should never happen!
@@ -190,77 +196,77 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Back
-		/// <summary>
-		/// Gets access to the background palette details.
-		/// </summary>
+        #region Back
+        /// <summary>
+        /// Gets access to the background palette details.
+        /// </summary>
         [KryptonPersist]
         [Category("Visuals")]
-		[Description("Overrides for defining background appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [Description("Overrides for defining background appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual PaletteBack Back => _back;
 
-	    private bool ShouldSerializeBack()
-		{
-			return !_back.IsDefault;
-		}
+        private bool ShouldSerializeBack()
+        {
+            return !_back.IsDefault;
+        }
 
-		/// <summary>
-		/// Gets the background palette.
-		/// </summary>
-		[Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        /// <summary>
+        /// Gets the background palette.
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual IPaletteBack PaletteBack => Back;
 
-	    /// <summary>
-		/// Gets and sets the back palette style.
-		/// </summary>
-		[Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public PaletteBackStyle BackStyle
-		{
-			get => _backInherit.Style;
-		    set => _backInherit.Style = value;
-		}
-		#endregion
+        /// <summary>
+        /// Gets and sets the back palette style.
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public PaletteBackStyle BackStyle
+        {
+            get => _backInherit.Style;
+            set => _backInherit.Style = value;
+        }
+        #endregion
 
-		#region Border
-		/// <summary>
-		/// Gets access to the border palette details.
-		/// </summary>
+        #region Border
+        /// <summary>
+        /// Gets access to the border palette details.
+        /// </summary>
         [KryptonPersist]
         [Category("Visuals")]
-		[Description("Overrides for defining border appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public virtual PaletteBorder Border => _border;
+        [Description("Overrides for defining border appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public virtual PaletteBorder Border => _border;
 
-	    private bool ShouldSerializeBorder()
-		{
-			return !_border.IsDefault;
-		}
+        private bool ShouldSerializeBorder()
+        {
+            return !_border.IsDefault;
+        }
 
-		/// <summary>
-		/// Gets the border palette.
-		/// </summary>
-		[Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        /// <summary>
+        /// Gets the border palette.
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual IPaletteBorder PaletteBorder => Border;
 
-	    /// <summary>
-		/// Gets and sets the border palette style.
-		/// </summary>
-		[Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public PaletteBorderStyle BorderStyle
-		{
-			get => BorderRedirect.Style;
-		    set => BorderRedirect.Style = value;
-		}
-		#endregion
+        /// <summary>
+        /// Gets and sets the border palette style.
+        /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public PaletteBorderStyle BorderStyle
+        {
+            get => BorderRedirect.Style;
+            set => BorderRedirect.Style = value;
+        }
+        #endregion
 
         #region Protected
         /// <summary>
@@ -278,7 +284,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Internal
         internal PaletteBorderInheritRedirect BorderRedirect { get; private set; }
 
-	    #endregion
+        #endregion
 
         #region Private
         private void Construct(PaletteRedirect redirect,

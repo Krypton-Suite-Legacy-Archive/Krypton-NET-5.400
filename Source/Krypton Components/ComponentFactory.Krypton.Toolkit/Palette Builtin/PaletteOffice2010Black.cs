@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Provides the Black color scheme variant of the Office 2010 palette.
-	/// </summary>
+    /// <summary>
+    /// Provides the Black color scheme variant of the Office 2010 palette.
+    /// </summary>
     public class PaletteOffice2010Black : PaletteOffice2010Base
-	{
+    {
         #region Static Fields
         private static readonly ImageList _checkBoxList;
         private static readonly ImageList _galleryButtonList;
@@ -273,7 +273,7 @@ namespace ComponentFactory.Krypton.Toolkit
         };        
         #endregion
 
-		#region Identity
+        #region Identity
         static PaletteOffice2010Black()
         {
             _checkBoxList = new ImageList
@@ -299,26 +299,26 @@ namespace ComponentFactory.Krypton.Toolkit
                                             Properties.Resources.RB2010SilverPC};
         }
 
-		/// <summary>
+        /// <summary>
         /// Initialize a new instance of the PaletteOffice2010Black class.
-		/// </summary>
+        /// </summary>
         public PaletteOffice2010Black()
             : base(_schemeColors, 
                    _checkBoxList, 
                    _galleryButtonList, 
                    _radioButtonArray,
                    _trackBarColors)
-		{
-		}
-		#endregion
+        {
+        }
+        #endregion
 
         #region Back
-		/// <summary>
-		/// Gets the color background drawing style.
-		/// </summary>
-		/// <param name="style">Background style.</param>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Color drawing style.</returns>
+        /// <summary>
+        /// Gets the color background drawing style.
+        /// </summary>
+        /// <param name="style">Background style.</param>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Color drawing style.</returns>
         public override PaletteColorStyle GetBackColorStyle(PaletteBackStyle style, PaletteState state)
         {
             // We do not provide override values
@@ -346,11 +346,11 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets the second back color.
-		/// </summary>
-		/// <param name="style">Background style.</param>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Color value.</returns>
+        /// Gets the second back color.
+        /// </summary>
+        /// <param name="style">Background style.</param>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Color value.</returns>
         public override Color GetBackColor2(PaletteBackStyle style, PaletteState state)
         {
             switch (style)
@@ -369,12 +369,12 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Border
-		/// <summary>
-		/// Gets the first border color.
-		/// </summary>
-		/// <param name="style">Border style.</param>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>Color value.</returns>
+        /// <summary>
+        /// Gets the first border color.
+        /// </summary>
+        /// <param name="style">Border style.</param>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>Color value.</returns>
         public override Color GetBorderColor1(PaletteBorderStyle style, PaletteState state)
         {
             switch (style)

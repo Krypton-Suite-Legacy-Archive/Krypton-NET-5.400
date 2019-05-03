@@ -1,52 +1,52 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
 
 namespace ComponentFactory.Krypton.Docking
 {
-	/// <summary>
+    /// <summary>
     /// Event arguments for a AutoHiddenGroupPanelAdding/AutoHiddenGroupPanelRemoved events.
-	/// </summary>
-	public class AutoHiddenGroupPanelEventArgs : EventArgs
-	{
-		#region Instance Fields
+    /// </summary>
+    public class AutoHiddenGroupPanelEventArgs : EventArgs
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the AutoHiddenGroupPanelEventArgs class.
-		/// </summary>
+        /// </summary>
         /// <param name="autoHiddenPanel">Reference to auto hidden panel control instance.</param>
         /// <param name="element">Reference to docking auto hidden edge element that is managing the panel.</param>
         public AutoHiddenGroupPanelEventArgs(KryptonAutoHiddenPanel autoHiddenPanel,
                                              KryptonDockingEdgeAutoHidden element)
-		{
+        {
             AutoHiddenPanelControl = autoHiddenPanel;
             EdgeAutoHiddenElement = element;
-		}
-		#endregion
+        }
+        #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Gets a reference to the KryptonAutoHiddenPanel control.
         /// </summary>
         public KryptonAutoHiddenPanel AutoHiddenPanelControl { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets a reference to the KryptonDockingEdgeAutoHidden that is managing the edge.
         /// </summary>
         public KryptonDockingEdgeAutoHidden EdgeAutoHiddenElement { get; }
 
-	    #endregion
-	}
+        #endregion
+    }
 }

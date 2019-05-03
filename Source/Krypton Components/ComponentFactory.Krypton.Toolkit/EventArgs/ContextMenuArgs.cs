@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -14,16 +14,16 @@ using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Details for context menu related events.
-	/// </summary>
-	public class ContextMenuArgs : CancelEventArgs
-	{
-		#region Instance Fields
+    /// <summary>
+    /// Details for context menu related events.
+    /// </summary>
+    public class ContextMenuArgs : CancelEventArgs
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
+        #region Identity
         /// <summary>
         /// Initialize a new instance of the ContextMenuArgs class.
         /// </summary>
@@ -34,12 +34,12 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the ContextMenuArgs class.
-		/// </summary>
+        /// </summary>
         /// <param name="cms">Context menu strip that can be customized.</param>
         public ContextMenuArgs(ContextMenuStrip cms)
             : this(cms, null)
-		{
-		}
+        {
+        }
 
         /// <summary>
         /// Initialize a new instance of the ContextMenuArgs class.
@@ -63,17 +63,17 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Public
-		/// <summary>
-		/// Gets access to the context menu strip instance.
-		/// </summary>
+        #region Public
+        /// <summary>
+        /// Gets access to the context menu strip instance.
+        /// </summary>
         public ContextMenuStrip ContextMenuStrip { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets access to the KryptonContextMenu instance.
         /// </summary>
         public KryptonContextMenu KryptonContextMenu { get; }
 
-	    #endregion
-	}
+        #endregion
+    }
 }

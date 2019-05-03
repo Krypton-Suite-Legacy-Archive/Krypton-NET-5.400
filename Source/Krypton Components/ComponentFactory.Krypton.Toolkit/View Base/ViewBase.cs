@@ -1,20 +1,20 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
@@ -142,9 +142,9 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Enabled
         /// <summary>
-		/// Gets and sets the enabled state of the element.
-		/// </summary>
-		public virtual bool Enabled
+        /// Gets and sets the enabled state of the element.
+        /// </summary>
+        public virtual bool Enabled
         {
             [System.Diagnostics.DebuggerStepThrough]
             get { return _enabled; }
@@ -254,10 +254,10 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Layout
         /// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public abstract Size GetPreferredSize(ViewLayoutContext context);
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public abstract Size GetPreferredSize(ViewLayoutContext context);
 
         /// <summary>
         /// Perform a layout of the elements.
@@ -457,8 +457,8 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Mouse has entered the view.
-		/// </summary>
+        /// Mouse has entered the view.
+        /// </summary>
         public virtual void MouseEnter()
         {
             // Use mouse controller as first preference
@@ -798,11 +798,11 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region ViewFromPoint
         /// <summary>
-		/// Find the view that contains the specified point.
-		/// </summary>
-		/// <param name="pt">Point in view coordinates.</param>
-		/// <returns>ViewBase if a match is found; otherwise false.</returns>
-		public abstract ViewBase ViewFromPoint(Point pt);
+        /// Find the view that contains the specified point.
+        /// </summary>
+        /// <param name="pt">Point in view coordinates.</param>
+        /// <returns>ViewBase if a match is found; otherwise false.</returns>
+        public abstract ViewBase ViewFromPoint(Point pt);
         #endregion
     }
 }

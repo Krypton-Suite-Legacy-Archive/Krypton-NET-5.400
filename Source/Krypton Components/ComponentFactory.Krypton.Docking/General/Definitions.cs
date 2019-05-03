@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Xml;
@@ -46,28 +46,28 @@ namespace ComponentFactory.Krypton.Docking
         IDockingElement Parent { get; set; }
 
         /// <summary>
-        /// Propogates an action request down the hierarchy of docking elements.
+        /// Propagates an action request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="action">Action that is requested to be performed.</param>
         /// <param name="uniqueNames">Array of unique names of the pages the action relates to.</param>
         void PropogateAction(DockingPropogateAction action, string[] uniqueNames);
 
         /// <summary>
-        /// Propogates an action request down the hierarchy of docking elements.
+        /// Propagates an action request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="action">Action that is requested to be performed.</param>
         /// <param name="pages">Array of pages the action relates to.</param>
         void PropogateAction(DockingPropogateAction action, KryptonPage[] pages);
 
         /// <summary>
-        /// Propogates an action request down the hierarchy of docking elements.
+        /// Propagates an action request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="action">Action that is requested to be performed.</param>
         /// <param name="value">Integer value associated with the request.</param>
         void PropogateAction(DockingPropogateAction action, int value);
 
         /// <summary>
-        /// Propogates a boolean state request down the hierarchy of docking elements.
+        /// Propagates a boolean state request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="state">Boolean state that is requested to be recovered.</param>
         /// <param name="uniqueName">Unique name of the page the request relates to.</param>
@@ -75,14 +75,14 @@ namespace ComponentFactory.Krypton.Docking
         bool? PropogateBoolState(DockingPropogateBoolState state, string uniqueName);
 
         /// <summary>
-        /// Propogates an integer state request down the hierarchy of docking elements.
+        /// Propagates an integer state request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="state">Integer state that is requested to be recovered.</param>
         /// <param name="value">Value discovered from matching </param>
         void PropogateIntState(DockingPropogateIntState state, ref int value);
 
         /// <summary>
-        /// Propogates a request for drag targets down the hierarchy of docking elements.
+        /// Propagates a request for drag targets down the hierarchy of docking elements.
         /// </summary>
         /// <param name="floatingWindow">Reference to window being dragged.</param>
         /// <param name="dragData">Set of pages being dragged.</param>
@@ -92,7 +92,7 @@ namespace ComponentFactory.Krypton.Docking
                                   DragTargetList targets);
 
         /// <summary>
-        /// Propogates a page request down the hierarchy of docking elements.
+        /// Propagates a page request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="state">Request that should result in a page reference if found.</param>
         /// <param name="uniqueName">Unique name of the page the request relates to.</param>
@@ -100,14 +100,14 @@ namespace ComponentFactory.Krypton.Docking
         KryptonPage PropogatePageState(DockingPropogatePageState state, string uniqueName);
 
         /// <summary>
-        /// Propogates a page list request down the hierarchy of docking elements.
+        /// Propagates a page list request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="state">Request that should result in pages collection being modified.</param>
         /// <param name="pages">Pages collection for modification by the docking elements.</param>
         void PropogatePageList(DockingPropogatePageList state, KryptonPageCollection pages);
 
         /// <summary>
-        /// Propogates a workspace cell list request down the hierarchy of docking elements.
+        /// Propagates a workspace cell list request down the hierarchy of docking elements.
         /// </summary>
         /// <param name="state">Request that should result in the cells collection being modified.</param>
         /// <param name="cells">Cells collection for modification by the docking elements.</param>

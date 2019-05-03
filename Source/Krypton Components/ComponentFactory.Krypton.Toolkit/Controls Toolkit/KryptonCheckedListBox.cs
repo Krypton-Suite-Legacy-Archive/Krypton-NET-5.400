@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -28,7 +28,7 @@ namespace ComponentFactory.Krypton.Toolkit
     [DefaultEvent("SelectedIndexChanged")]
     [DefaultProperty("Items")]
     [DefaultBindingProperty("SelectedValue")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonCheckedListBoxDesigner))]
+    [Designer(typeof(KryptonCheckedListBoxDesigner))]
     [DesignerCategory("code")]
     [Description("Represents a checked list box control that allows single or multiple item selection.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -683,32 +683,32 @@ namespace ComponentFactory.Krypton.Toolkit
 
                 switch (m.Msg)
                 {
-                    case PI.WM_KEYDOWN:
+                    case PI.WM_.KEYDOWN:
                         WmKeyDown(ref m);
                         base.WndProc(ref m);
                         return;
-                    case PI.WM_ERASEBKGND:
+                    case PI.WM_.ERASEBKGND:
                         // Do not draw the background here, always do it in the paint 
                         // instead to prevent flicker because of a two stage drawing process
                         break;
-                    case PI.WM_PRINTCLIENT:
-                    case PI.WM_PAINT:
+                    case PI.WM_.PRINTCLIENT:
+                    case PI.WM_.PAINT:
                         WmPaint(ref m);
                         break;
-                    case PI.WM_VSCROLL:
-                    case PI.WM_HSCROLL:
-                    case PI.WM_MOUSEWHEEL:
+                    case PI.WM_.VSCROLL:
+                    case PI.WM_.HSCROLL:
+                    case PI.WM_.MOUSEWHEEL:
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // Mouse is not over the control
                         MouseOver = false;
                         _kryptonCheckedListBox.PerformNeedPaint(true);
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Mouse is over the control
                         if (!MouseOver)
                         {
@@ -852,7 +852,7 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 if (_miGetEntryObject == null)
                 {
-                    _miGetEntryObject = InnerArray.GetType().GetMethod("GetEntryObject", BindingFlags.NonPublic | BindingFlags.Instance );
+                    _miGetEntryObject = InnerArray.GetType().GetMethod("GetEntryObject", BindingFlags.NonPublic | BindingFlags.Instance);
                 }
 
                 return _miGetEntryObject.Invoke(InnerArray, new object[] { index, stateMask });
@@ -952,7 +952,7 @@ namespace ComponentFactory.Krypton.Toolkit
                             if (Items.Count == 0)
                             {
                                 using (Graphics g = Graphics.FromHdc(hdc))
-                                    using (RenderContext context = new RenderContext(this, _kryptonCheckedListBox, g, realRect, _kryptonCheckedListBox.Renderer))
+                                using (RenderContext context = new RenderContext(this, _kryptonCheckedListBox, g, realRect, _kryptonCheckedListBox.Renderer))
                                 {
                                     ViewDrawPanel.Render(context);
                                 }
@@ -1212,7 +1212,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                              _overrideTracking, _overridePressed,
                                              _overrideCheckedNormal, _overrideCheckedTracking,
                                              _overrideCheckedPressed,
-                                             new PaletteMetricRedirect(Redirector), 
+                                             new PaletteMetricRedirect(Redirector),
                                              _contentValues, VisualOrientation.Top, false);
 
             // Place check box on the left and the label in the remainder
@@ -1545,8 +1545,8 @@ namespace ComponentFactory.Krypton.Toolkit
                         return CheckedSelectionMode.One;
                 }
             }
-            
-            set 
+
+            set
             {
                 switch (value)
                 {
@@ -2457,7 +2457,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
             // Update the view with the calculated state
             _drawButton.ElementState = buttonState;
-            
+
             // Update check box to show correct checked image
             _drawCheckBox.CheckState = GetItemCheckState(e.Index);
 
@@ -2616,10 +2616,12 @@ namespace ComponentFactory.Krypton.Toolkit
                 if (_trackingMouseEnter)
                 {
                     OnTrackMouseEnter(EventArgs.Empty);
+                    OnMouseEnter(e);
                 }
                 else
                 {
                     OnTrackMouseLeave(EventArgs.Empty);
+                    OnMouseLeave(e);
                 }
             }
         }

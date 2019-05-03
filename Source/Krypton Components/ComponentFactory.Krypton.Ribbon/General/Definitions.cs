@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -19,10 +19,10 @@ namespace ComponentFactory.Krypton.Ribbon
 {
     #region IQuickAccessToolbarButton
     /// <summary>
-	/// Information needed for a quick access toolbar entry.
-	/// </summary>
+    /// Information needed for a quick access toolbar entry.
+    /// </summary>
     public interface IQuickAccessToolbarButton
-	{
+    {
         /// <summary>
         /// Occurs when the quick access toolbar button has been clicked.
         /// </summary>
@@ -43,7 +43,7 @@ namespace ComponentFactory.Krypton.Ribbon
         /// Gets the entry image.
         /// </summary>
         /// <returns>Image value.</returns>
-		Image GetImage();
+        Image GetImage();
 
         /// <summary>
         /// Gets the entry text.
@@ -105,7 +105,7 @@ namespace ComponentFactory.Krypton.Ribbon
         /// </summary>
         void PerformClick();
     }
-	#endregion
+    #endregion
 
     #region IRibbonGroupItem
     /// <summary>

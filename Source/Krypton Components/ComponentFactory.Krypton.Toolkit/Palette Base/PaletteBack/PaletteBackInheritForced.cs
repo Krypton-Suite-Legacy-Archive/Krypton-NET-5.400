@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,15 +14,15 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Allow the background values to be forced to fixed values.
-	/// </summary>
+    /// </summary>
     public class PaletteBackInheritForced : PaletteBackInherit
-	{
+    {
         #region Instance Fields
         private IPaletteBack _inherit;
 
-	    #endregion
+        #endregion
 
         #region Identity
         /// <summary>
@@ -59,7 +59,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public bool BorderIgnoreNormal { get; set; }
 
-	    #endregion
+        #endregion
 
         #region ForceGraphicsHint
         /// <summary>
@@ -67,7 +67,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public PaletteGraphicsHint ForceGraphicsHint { get; set; }
 
-	    #endregion
+        #endregion
 
         #region ForceDraw
         /// <summary>
@@ -75,14 +75,14 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public InheritBool ForceDraw { get; set; }
 
-	    #endregion
+        #endregion
 
         #region IPaletteBack
-		/// <summary>
-		/// Gets a value indicating if background should be drawn.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>InheritBool value.</returns>
+        /// <summary>
+        /// Gets a value indicating if background should be drawn.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>InheritBool value.</returns>
         public override InheritBool GetBackDraw(PaletteState state)
         {
             if (ForceDraw != InheritBool.Inherit)
@@ -102,13 +102,13 @@ namespace ComponentFactory.Krypton.Toolkit
             }
         }
 
-		/// <summary>
-		/// Gets the graphics drawing hint.
-		/// </summary>
-		/// <param name="state">Palette value should be applicable to this state.</param>
-		/// <returns>PaletteGraphicsHint value.</returns>
+        /// <summary>
+        /// Gets the graphics drawing hint.
+        /// </summary>
+        /// <param name="state">Palette value should be applicable to this state.</param>
+        /// <returns>PaletteGraphicsHint value.</returns>
         public override PaletteGraphicsHint GetBackGraphicsHint(PaletteState state) =>
-		    ForceGraphicsHint != PaletteGraphicsHint.Inherit ? ForceGraphicsHint : _inherit.GetBackGraphicsHint(state);
+            ForceGraphicsHint != PaletteGraphicsHint.Inherit ? ForceGraphicsHint : _inherit.GetBackGraphicsHint(state);
 
         /// <summary>
         /// Gets the first background color.

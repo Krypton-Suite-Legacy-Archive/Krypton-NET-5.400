@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -27,50 +27,50 @@ namespace ComponentFactory.Krypton.Navigator
 
         #region Identity
         /// <summary>
-		/// Release resources.
-		/// </summary>
+        /// Release resources.
+        /// </summary>
         ~DragFeedback()
-		{
-			// Only dispose of resources once
-			if (!IsDisposed)
-			{
-				// Only dispose of managed resources
-				Dispose(false);
-			}
-		}
+        {
+            // Only dispose of resources once
+            if (!IsDisposed)
+            {
+                // Only dispose of managed resources
+                Dispose(false);
+            }
+        }
 
-		/// <summary>
-		/// Release managed and unmanaged resources.
-		/// </summary>
-		public void Dispose()
-		{
-			// Only dispose of resources once
-			if (!IsDisposed)
-			{
-				// Dispose of managed and unmanaged resources
-				Dispose(true);
-			}
-		}
+        /// <summary>
+        /// Release managed and unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            // Only dispose of resources once
+            if (!IsDisposed)
+            {
+                // Dispose of managed and unmanaged resources
+                Dispose(true);
+            }
+        }
 
-		/// <summary>
-		/// Release unmanaged and optionally managed resources.
-		/// </summary>
-		/// <param name="disposing">Called from Dispose method.</param>
-		protected virtual void Dispose(bool disposing)
-		{
-			// If called from explicit call to Dispose
-			if (disposing)
-			{
-				// No need to call destructor once dispose has occured
-				GC.SuppressFinalize(this);
+        /// <summary>
+        /// Release unmanaged and optionally managed resources.
+        /// </summary>
+        /// <param name="disposing">Called from Dispose method.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // If called from explicit call to Dispose
+            if (disposing)
+            {
+                // No need to call destructor once dispose has occured
+                GC.SuppressFinalize(this);
 
                 PageDragEndData = null;
                 DragTargets = null;
-			}
+            }
 
-			// Mark as disposed
-			IsDisposed = true;
-		}
+            // Mark as disposed
+            IsDisposed = true;
+        }
 
         /// <summary>
         /// Gets a value indicating if the view has been disposed.

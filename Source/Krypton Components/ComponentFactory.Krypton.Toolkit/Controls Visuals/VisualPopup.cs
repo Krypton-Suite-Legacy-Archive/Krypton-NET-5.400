@@ -1,40 +1,40 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Text;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Base class used for implementation of popup controls.
-	/// </summary>
-	[ToolboxItem(false)]
-	[DesignerCategory("code")]
+    /// <summary>
+    /// Base class used for implementation of popup controls.
+    /// </summary>
+    [ToolboxItem(false)]
+    [DesignerCategory("code")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
     [ComVisible(true)]
     public class VisualPopup : ContainerControl
-	{
+    {
         #region Instance Fields
         private bool _layoutDirty;
         private bool _refresh;
         private bool _refreshAll;
         private readonly SimpleCall _refreshCall;
-	    private VisualPopupShadow _shadow;
+        private VisualPopupShadow _shadow;
         #endregion
 
         #region Identity
@@ -49,7 +49,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the VisualPopup class.
-		/// </summary>
+        /// </summary>
         /// <param name="renderer">Drawing renderer.</param>
         /// <param name="shadow">Does the popup need a shadow effect.</param>
         public VisualPopup(IRenderer renderer,
@@ -60,41 +60,41 @@ namespace ComponentFactory.Krypton.Toolkit
 
         /// <summary>
         /// Initialize a new instance of the VisualPopup class.
-		/// </summary>
+        /// </summary>
         /// <param name="viewManager">View manager instance for managing view display.</param>
         /// <param name="renderer">Drawing renderer.</param>
         /// <param name="shadow">Does the popup need a shadow effect.</param>
         public VisualPopup(ViewManager viewManager,
                            IRenderer renderer,
                            bool shadow)
-		{
-			#region Default ControlStyle Values
-			// Default style values for Control are:-
-			//	True  - AllPaintingInWmPaint
-			//	False - CacheText
-			//	False - ContainerControl
-			//	False - EnableNotifyMessage
-			//	False - FixedHeight
-			//	False - FixedWidth
-			//	False - Opaque
-			//	False - OptimizedDoubleBuffer
-			//	False - ResizeRedraw
-			//	False - Selectable
-			//	True  - StandardClick
-			//	True  - StandardDoubleClick
-			//	False - SupportsTransparentBackColor
-			//	False - UserMouse
-			//	True  - UserPaint
-			//	True  - UseTextForAccessibility
-			#endregion
+        {
+            #region Default ControlStyle Values
+            // Default style values for Control are:-
+            //    True  - AllPaintingInWmPaint
+            //    False - CacheText
+            //    False - ContainerControl
+            //    False - EnableNotifyMessage
+            //    False - FixedHeight
+            //    False - FixedWidth
+            //    False - Opaque
+            //    False - OptimizedDoubleBuffer
+            //    False - ResizeRedraw
+            //    False - Selectable
+            //    True  - StandardClick
+            //    True  - StandardDoubleClick
+            //    False - SupportsTransparentBackColor
+            //    False - UserMouse
+            //    True  - UserPaint
+            //    True  - UseTextForAccessibility
+            #endregion
 
-			// We use double buffering to reduce drawing flicker
-			SetStyle(ControlStyles.OptimizedDoubleBuffer |
-					 ControlStyles.AllPaintingInWmPaint |
-					 ControlStyles.UserPaint, true);
+            // We use double buffering to reduce drawing flicker
+            SetStyle(ControlStyles.OptimizedDoubleBuffer |
+                                                                                                     ControlStyles.AllPaintingInWmPaint |
+                                                                                                     ControlStyles.UserPaint, true);
 
-			// We need to repaint entire control whenever resized
-			SetStyle(ControlStyles.ResizeRedraw, true);
+            // We need to repaint entire control whenever resized
+            SetStyle(ControlStyles.ResizeRedraw, true);
 
             // Cannot select control by using mouse to click it
             SetStyle(ControlStyles.Selectable, false);
@@ -153,7 +153,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 DismissedDelegate = null;
             }
         }
-		#endregion
+        #endregion
 
         #region Public
         /// <summary>
@@ -163,28 +163,28 @@ namespace ComponentFactory.Krypton.Toolkit
         public virtual void Show(Rectangle screenRect)
         {
             // Update the screen position
-            SetBounds(screenRect.X, screenRect.Y, 
+            SetBounds(screenRect.X, screenRect.Y,
                       screenRect.Width, screenRect.Height);
 
             // If we have a shadow then update it now
             _shadow?.Show(screenRect);
 
             // Show the window without activating it (i.e. do not take focus)
-            PI.ShowWindow(Handle, PI.SW_SHOWNOACTIVATE);
+            PI.ShowWindow(Handle, PI.ShowWindowCommands.SW_SHOWNOACTIVATE);
 
             // Use manager to track mouse/keyboard input and to dismiss the window
             VisualPopupManager.Singleton.StartTracking(this);
         }
 
         /// <summary>
-        /// Show the popup with the given size but relative to the provided parent rectangle.
+        /// Show the popup with the given size but relative to the provided top left point.
         /// </summary>
-        /// <param name="parentScreenRect">Screen rectangle of parent area.</param>
+        /// <param name="popupLocation">Intended top left of parent area.</param>
         /// <param name="popupSize">Size of the popup to show.</param>
-        public virtual void Show(Rectangle parentScreenRect, Size popupSize)
+        public void Show(Point popupLocation, Size popupSize)
         {
             // Show the requested popup below the parent screen rectangle
-            Show(CalculateBelowPopupRect(parentScreenRect, popupSize));
+            Show(CalculateBelowPopupRect(popupLocation, popupSize));
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="path1">Outer path.</param>
         /// <param name="path2">Middle path.</param>
         /// <param name="path3">Inside path.</param>
-        public virtual void DefineShadowPaths(GraphicsPath path1,
+        public void DefineShadowPaths(GraphicsPath path1,
                                               GraphicsPath path2,
                                               GraphicsPath path3)
         {
@@ -226,8 +226,8 @@ namespace ComponentFactory.Krypton.Toolkit
                 Point screenPt = PointToScreen(pt);
                 PI.POINT screenPIPt = new PI.POINT
                 {
-                    x = screenPt.X,
-                    y = screenPt.Y
+                    X = screenPt.X,
+                    Y = screenPt.Y
                 };
                 IntPtr hWnd = PI.WindowFromPoint(screenPIPt);
 
@@ -291,17 +291,17 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public virtual bool AllowBecomeActiveWhenCurrent => true;
 
-	    /// <summary>
+        /// <summary>
         /// Should the mouse move at provided screen point be allowed.
         /// </summary>
         /// <param name="m">Original message.</param>
         /// <param name="pt">Client coordinates point.</param>
-        /// <returns>True to alow; otherwise false.</returns>
+        /// <returns>True to allow; otherwise false.</returns>
         public virtual bool AllowMouseMove(Message m, Point pt)
-	    {
-	        // If we have the focus then we always allow the mouse move
-	        return ContainsFocus || RectangleToScreen(ClientRectangle).Contains(pt);
-	    }
+        {
+            // If we have the focus then we always allow the mouse move
+            return ContainsFocus || RectangleToScreen(ClientRectangle).Contains(pt);
+        }
 
         /// <summary>
         /// Create a tool strip renderer appropriate for the current renderer/palette pair.
@@ -334,9 +334,9 @@ namespace ComponentFactory.Krypton.Toolkit
             [DebuggerStepThrough]
             get;
             set;
-	    }
+        }
 
-	    /// <summary>
+        /// <summary>
         /// Fires the NeedPaint event.
         /// </summary>
         /// <param name="needLayout">Does the palette change require a layout.</param>
@@ -354,14 +354,14 @@ namespace ComponentFactory.Krypton.Toolkit
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public EventHandler DismissedDelegate { get; set; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets a value indicating if the keyboard is passed to this popup.
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public virtual bool KeyboardInert => false;
 
-	    /// <summary>
+        /// <summary>
         /// Gets access to the view manager of the popup.
         /// </summary>
         /// <returns></returns>
@@ -380,32 +380,33 @@ namespace ComponentFactory.Krypton.Toolkit
             [DebuggerStepThrough]
             get;
             set;
-	    }
+        }
 
-	    /// <summary>
+        /// <summary>
         /// Gets access to the need paint delegate.
         /// </summary>
         protected NeedPaintHandler NeedPaintDelegate
-	    {
-	        [DebuggerStepThrough]
-	        get;
-	    }
+        {
+            [DebuggerStepThrough]
+            get;
+        }
 
-	    #endregion
+        #endregion
 
         #region Protected Virtual
+        // ReSharper disable VirtualMemberNeverOverridden.Global
         /// <summary>
         /// Work out if this control needs to use Invoke to force a repaint.
         /// </summary>
         protected virtual bool EvalInvokePaint => false;
 
-	    /// <summary>
-	    /// Processes a notification from palette storage of a paint and optional layout required.
-	    /// </summary>
-	    /// <param name="sender">Source of notification.</param>
-	    /// <param name="e">An NeedLayoutEventArgs containing event data.</param>
-	    /// <exception cref="ArgumentNullException"></exception>
-	    protected virtual void OnNeedPaint(object sender, NeedLayoutEventArgs e)
+        /// <summary>
+        /// Processes a notification from palette storage of a paint and optional layout required.
+        /// </summary>
+        /// <param name="sender">Source of notification.</param>
+        /// <param name="e">An NeedLayoutEventArgs containing event data.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected virtual void OnNeedPaint(object sender, NeedLayoutEventArgs e)
         {
             Debug.Assert(e != null);
 
@@ -444,6 +445,7 @@ namespace ComponentFactory.Krypton.Toolkit
                 _refresh = true;
             }
         }
+        // ReSharper restore VirtualMemberNeverOverridden.Global
         #endregion
 
         #region Protected Override
@@ -456,8 +458,8 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 CreateParams cp = base.CreateParams;
                 cp.Parent = IntPtr.Zero;
-                cp.Style = unchecked((int)PI.WS_POPUP);
-                cp.ExStyle = PI.WS_EX_TOPMOST + PI.WS_EX_TOOLWINDOW;
+                cp.Style = unchecked((int)PI.WS_.POPUP);
+                cp.ExStyle = PI.WS_EX_.TOPMOST + PI.WS_EX_.TOOLWINDOW;
                 return cp;
             }
         }
@@ -465,8 +467,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <summary>
         /// Raises the Layout event.
         /// </summary>
-        /// <param name="levent">A LayoutEventArgs that contains the event data.</param>
-        protected override void OnLayout(LayoutEventArgs levent)
+        /// <param name="lEvent">A LayoutEventArgs that contains the event data.</param>
+        protected override void OnLayout(LayoutEventArgs lEvent)
         {
             // Cannot process a message for a disposed control
             if (!IsDisposed)
@@ -482,7 +484,7 @@ namespace ComponentFactory.Krypton.Toolkit
                         // Layout cannot now be dirty
                         _layoutDirty = false;
 
-                        // Ask the view to peform a layout
+                        // Ask the view to perform a layout
                         ViewManager.Layout(Renderer);
 
                     } while (_layoutDirty && (max-- > 0));
@@ -490,7 +492,7 @@ namespace ComponentFactory.Krypton.Toolkit
             }
 
             // Let base class layout child controls
-            base.OnLayout(levent);
+            base.OnLayout(lEvent);
         }
 
         /// <summary>
@@ -709,7 +711,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             switch (m.Msg)
             {
-                case PI.WM_MOUSEACTIVATE:
+                case PI.WM_.MOUSEACTIVATE:
                     // Prevent the popup window becoming active just because the user has
                     // pressed the mouse over the window, so return NOACTIVATE as result.
                     m.Result = (IntPtr)PI.MA_NOACTIVATE;
@@ -721,49 +723,39 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Implementation
-        private Rectangle CalculateBelowPopupRect(Rectangle parentScreenRect, Size popupSize)
+        private Rectangle CalculateBelowPopupRect(Point popupLocation, Size popupSize)
         {
             // Get the screen that the parent rectangle is mostly within, this is the
             // screen we will attempt to place the entire popup within
-            Screen screen = Screen.FromRectangle(parentScreenRect);
-
-            Point popupLocation = new Point(parentScreenRect.X, parentScreenRect.Bottom);
+            Rectangle screenRect = Screen.GetWorkingArea(popupLocation);
 
             // Is there enough room below the parent for the entire popup height?
-            if ((parentScreenRect.Bottom + popupSize.Height) <= screen.WorkingArea.Bottom)
+            if ((popupLocation.Y + popupSize.Height) >= screenRect.Bottom)
             {
-                // Place the popup below the parent
-                popupLocation.Y = parentScreenRect.Bottom;
-            }
-            else
-            {
-                // Is there enough room above the parent for the enture popup height?
-                if ((parentScreenRect.Top - popupSize.Height) >= screen.WorkingArea.Top)
+                // Is there enough room above the parent for the entire popup height?
+                if ((popupLocation.Y - popupSize.Height) >= screenRect.Top)
                 {
                     // Place the popup above the parent
-                    popupLocation.Y = parentScreenRect.Top - popupSize.Height;
+                    popupLocation.Y -= popupSize.Height;
                 }
                 else
                 {
                     // Cannot show entire popup above or below, find which has most space
-                    int spareAbove = parentScreenRect.Top - screen.WorkingArea.Top;
-                    int spareBelow = screen.WorkingArea.Bottom - parentScreenRect.Bottom;
-
                     // Place it in the area with the most space
-                    popupLocation.Y = spareAbove > spareBelow ? screen.WorkingArea.Top : parentScreenRect.Bottom;
+                    popupLocation.Y = screenRect.Top;
                 }
             }
 
             // Prevent the popup from being off the left side of the screen
-            if (popupLocation.X < screen.WorkingArea.Left)
+            if (popupLocation.X < screenRect.Left)
             {
-                popupLocation.X = screen.WorkingArea.Left;
+                popupLocation.X = screenRect.Left;
             }
 
-            // Preven the popup from being off the right size of the screen
-            if ((popupLocation.X + popupSize.Width) > screen.WorkingArea.Right)
+            // Prevent the popup from being off the right size of the screen
+            if ((popupLocation.X + popupSize.Width) > screenRect.Right)
             {
-                popupLocation.X = screen.WorkingArea.Right - popupSize.Width;
+                popupLocation.X = screenRect.Right - popupSize.Width;
             }
 
             return new Rectangle(popupLocation, popupSize);

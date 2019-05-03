@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -16,13 +16,13 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// View element that represents a single gallery item.
-	/// </summary>
+    /// <summary>
+    /// View element that represents a single gallery item.
+    /// </summary>
     internal class ViewDrawRibbonGalleryItem : ViewDrawButton,
                                                IContentValues
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private readonly KryptonGallery _gallery;
         private readonly GalleryItemController _controller;
         private ImageList _imageList;
@@ -30,10 +30,10 @@ namespace ComponentFactory.Krypton.Ribbon
         private int _imageIndex;
         #endregion
 
-		#region Identity
+        #region Identity
         /// <summary>
-		/// Initialize a new instance of the ViewDrawButton class.
-		/// </summary>
+        /// Initialize a new instance of the ViewDrawButton class.
+        /// </summary>
         /// <param name="gallery">Owning gallery instance.</param>
         /// <param name="palette">Palette used to recover values.</param>
         /// <param name="layout">Reference to item layout.</param>
@@ -58,15 +58,15 @@ namespace ComponentFactory.Krypton.Ribbon
             KeyController = _controller;
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
-			return "ViewDrawRibbonGalleryItem:" + Id;
-		}
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
+            return "ViewDrawRibbonGalleryItem:" + Id;
+        }
 
         /// <summary>
         /// Clean up any resources being used.

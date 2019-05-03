@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -36,12 +36,12 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewDrawToday class.
-		/// </summary>
+        /// </summary>
         /// <param name="calendar">Provider of month calendar values.</param>
         /// <param name="paletteDisabled">Palette source for the disabled state.</param>
         /// <param name="paletteNormal">Palette source for the normal state.</param>
-		/// <param name="paletteTracking">Palette source for the tracking state.</param>
-		/// <param name="palettePressed">Palette source for the pressed state.</param>
+        /// <param name="paletteTracking">Palette source for the tracking state.</param>
+        /// <param name="palettePressed">Palette source for the pressed state.</param>
         /// <param name="needPaintHandler">Delegate for requested repainting.</param>
         public ViewDrawToday(IKryptonMonthCalendar calendar,
                              IPaletteTriple paletteDisabled,
@@ -66,16 +66,16 @@ namespace ComponentFactory.Krypton.Toolkit
             KeyController = controller;
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewDrawToday:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
         #region IContentValues
         /// <summary>
@@ -124,10 +124,10 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		/// <summary>
-		/// Perform a layout of the elements.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
+        /// <summary>
+        /// Perform a layout of the elements.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
         public override void Layout(ViewLayoutContext context)
         {
             Debug.Assert(context != null);

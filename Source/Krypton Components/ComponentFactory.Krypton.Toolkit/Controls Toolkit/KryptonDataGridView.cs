@@ -1,24 +1,25 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Reflection;
+
 using Microsoft.Win32;
 
 namespace ComponentFactory.Krypton.Toolkit
@@ -29,8 +30,8 @@ namespace ComponentFactory.Krypton.Toolkit
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonDataGridView), "ToolboxBitmaps.KryptonDataGridView.bmp")]
     [DesignerCategory("code")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonDataGridViewDesigner))]
-    [Description("Display rows and columns of data if a grid you can customize.")]
+    [Designer(typeof(KryptonDataGridViewDesigner))]
+    [Description("Display rows and columns of data of a grid you can customize.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
     [ComVisible(true)]
     public class KryptonDataGridView : DataGridView
@@ -1203,6 +1204,27 @@ namespace ComponentFactory.Krypton.Toolkit
                                 // Draw the sort glyph and update the remainder cell bounds left over
                                 tempCellBounds = Renderer.RenderGlyph.DrawGridSortGlyph(renderContext, Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection, tempCellBounds, paletteContent, state, rtl);
                             }
+
+                            // If this column supports icons, see if it has any.
+                            IIconCell iconColumn = Columns[e.ColumnIndex] as IIconCell;
+                            if (iconColumn != null)
+                            {
+                                foreach (IconSpec spec in iconColumn.IconSpecs)
+                                {
+                                    if (spec.Icon == null)
+                                    {
+                                        continue;
+                                    }
+                                    // Draw icon and update the remainder cell bounds left over
+                                    int iconWidth = spec.Icon.Width + 5;
+                                    int width = tempCellBounds.Width - iconWidth;
+                                    Rectangle iconBounds = new Rectangle(tempCellBounds.X + (spec.Alignment == IconSpec.IconAlignment.Left ? 5 : width),
+                                        tempCellBounds.Y + 3, spec.Icon.Width, spec.Icon.Height);
+                                    renderContext.Graphics.DrawImage(spec.Icon, iconBounds);
+                                    tempCellBounds = new Rectangle(tempCellBounds.X +
+                                                                   (spec.Alignment == IconSpec.IconAlignment.Left ? iconWidth : 0), tempCellBounds.Y, width, tempCellBounds.Height);
+                                }
+                            }
                         }
                         else
                         {
@@ -1291,6 +1313,28 @@ namespace ComponentFactory.Krypton.Toolkit
                                 // Is this a data cell
                                 if ((e.RowIndex >= 0) && (e.ColumnIndex >= 0))
                                 {
+                                    // If this cell supports icons, see if it has any.
+                                    IIconCell iconColumn = Rows[e.RowIndex].Cells[e.ColumnIndex] as IIconCell;
+                                    if (iconColumn != null)
+                                    {
+                                        foreach (IconSpec spec in iconColumn.IconSpecs)
+                                        {
+                                            if (spec.Icon == null)
+                                            {
+                                                continue;
+                                            }
+
+                                            // Draw icon and update the remainder cell bounds left over
+                                            int iconWidth = spec.Icon.Width + 5;
+                                            int width = tempCellBounds.Width - iconWidth;
+                                            Rectangle iconBounds = new Rectangle(tempCellBounds.X + (spec.Alignment == IconSpec.IconAlignment.Left ? 5 : width),
+                                                tempCellBounds.Y + 3, spec.Icon.Width, spec.Icon.Height);
+                                            renderContext.Graphics.DrawImage(spec.Icon, iconBounds);
+                                            tempCellBounds = new Rectangle(tempCellBounds.X +
+                                                                           (spec.Alignment == IconSpec.IconAlignment.Left ? iconWidth : 0), tempCellBounds.Y, width, tempCellBounds.Height);
+                                        }
+                                    }                                    
+                                    
                                     // Is there an error icon associated with the cell that needs showing
                                     if (ShowCellErrors && !string.IsNullOrEmpty(Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText))
                                     {
@@ -1611,7 +1655,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
         private void SetupViewAndStates()
         {
-            // Create the state storgate objects
+            // Create the state storage objects
             StateCommon = new PaletteDataGridViewRedirect(Redirector, NeedPaintDelegate);
             StateDisabled = new PaletteDataGridViewAll(StateCommon, NeedPaintDelegate);
             StateNormal = new PaletteDataGridViewAll(StateCommon, NeedPaintDelegate);
@@ -1729,7 +1773,7 @@ namespace ComponentFactory.Krypton.Toolkit
 
             // If the column headers default font is null or if the same as when we last
             // set the value then we do need to update with the latest value. Otherwise
-            // the programmer has modified the value and so leave it alone as overrriden.
+            // the programmer has modified the value and so leave it alone as over-ridden.
             if ((ColumnHeadersDefaultCellStyle.Font == null) ||
                 (ColumnHeadersDefaultCellStyle.Font.Equals(_columnFont)))
             {
@@ -2169,7 +2213,7 @@ namespace ComponentFactory.Krypton.Toolkit
                         // Layout cannot now be dirty
                         _layoutDirty = false;
 
-                        // Ask the view to peform a layout
+                        // Ask the view to perform a layout
                         ViewManager.Layout(Renderer);
 
                     } while (_layoutDirty && (max-- > 0));

@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -15,9 +15,9 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Workspace
 {
-	/// <summary>
-	/// Workspace specific separator that works relative to a specific workspace item.
-	/// </summary>
+    /// <summary>
+    /// Workspace specific separator that works relative to a specific workspace item.
+    /// </summary>
     public class ViewDrawWorkspaceSeparator : ViewDrawSeparator,
                                               ISeparatorSource
     {
@@ -29,7 +29,7 @@ namespace ComponentFactory.Krypton.Workspace
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewDrawWorkspaceSeparator class.
-		/// </summary>
+        /// </summary>
         /// <param name="workspace">Associated workspace instance.</param>
         /// <param name="workspaceItem">Associated workspace item.</param>
         /// <param name="orientation">Visual orientation of the content.</param>
@@ -39,21 +39,21 @@ namespace ComponentFactory.Krypton.Workspace
             : base(workspace.StateDisabled.Separator, workspace.StateNormal.Separator, workspace.StateTracking, workspace.StatePressed,
                    workspace.StateDisabled.Separator, workspace.StateNormal.Separator, workspace.StateTracking, workspace.StatePressed,
                    CommonHelper.SeparatorStyleToMetricPadding(workspace.SeparatorStyle), orientation)
-		{
+        {
             _workspace = workspace;
             WorkspaceItem = workspaceItem;
-		}
+        }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewDrawWorkspaceSeparator:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
         #region Public
         /// <summary>

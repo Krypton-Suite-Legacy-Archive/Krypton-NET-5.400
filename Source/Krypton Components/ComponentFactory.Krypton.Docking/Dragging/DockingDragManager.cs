@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Security.Permissions;
 using ComponentFactory.Krypton.Navigator;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Docking
 {
@@ -52,12 +53,12 @@ namespace ComponentFactory.Krypton.Docking
             _moveTimer.Tick += OnFloatingWindowMove;
         }
 
-		/// <summary>
-		/// Release unmanaged and optionally managed resources.
-		/// </summary>
-		/// <param name="disposing">Called from Dispose method.</param>
-		protected override void Dispose(bool disposing)
-		{
+        /// <summary>
+        /// Release unmanaged and optionally managed resources.
+        /// </summary>
+        /// <param name="disposing">Called from Dispose method.</param>
+        protected override void Dispose(bool disposing)
+        {
             RemoveFilter();
 
             // Remove any temporary pages created during the dragging process that are used to prevent cells being removed 
@@ -69,7 +70,7 @@ namespace ComponentFactory.Krypton.Docking
             _moveTimer.Dispose();
 
             base.Dispose(disposing);
-		} 
+        } 
         #endregion
 
         #region Public
@@ -174,7 +175,7 @@ namespace ComponentFactory.Krypton.Docking
         public bool OnKEYDOWN(ref Message m)
         {
             // Pressing escape ends dragging
-            if ((int)m.WParam.ToInt64() == PI.VK_ESCAPE)
+            if ((int)m.WParam.ToInt64() == (int) Keys.Escape)
             {
                 DragQuit();
                 Dispose();
@@ -212,7 +213,7 @@ namespace ComponentFactory.Krypton.Docking
         {
             switch (m.Msg)
             {
-                case PI.WM_MOUSELEAVE:
+                case PI.WM_.MOUSELEAVE:
                     // Only interested in the mouse leave if it relates to the floating window and so ignore any
                     // message that comes from the mouse leaving the source of a drag such as a docked window or
                     // a workspace/navigator tab.
@@ -224,7 +225,7 @@ namespace ComponentFactory.Krypton.Docking
                         Dispose();
                     }
                     break;
-                case PI.WM_KEYDOWN:
+                case PI.WM_.KEYDOWN:
                     {
                         // Extract the keys being pressed
                         Keys keys = ((Keys)((int)m.WParam.ToInt64()));
@@ -238,7 +239,7 @@ namespace ComponentFactory.Krypton.Docking
 
                         return true;
                     }
-                case PI.WM_SYSKEYDOWN:
+                case PI.WM_.SYSKEYDOWN:
                     {
                         // Extract the keys being pressed
                         Keys keys = ((Keys)((int)m.WParam.ToInt64()));
@@ -252,14 +253,14 @@ namespace ComponentFactory.Krypton.Docking
 
                         break;
                     }
-                case PI.WM_MOUSEMOVE:
+                case PI.WM_.MOUSEMOVE:
                     if (_monitorMouse)
                     {
                         // Update feedback to reflect the current mouse position
                         DragMove(Control.MousePosition);
                     }
                     break;
-                case PI.WM_LBUTTONUP:
+                case PI.WM_.LBUTTONUP:
                     if (_monitorMouse)
                     {
                         DragEnd(Control.MousePosition);

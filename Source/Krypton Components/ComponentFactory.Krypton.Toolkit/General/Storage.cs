@@ -1,23 +1,23 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Base class for storage implementations.
-	/// </summary>
-	[TypeConverter(typeof(ExpandableObjectConverter))]
-	public abstract class Storage : GlobalId
+    /// <summary>
+    /// Base class for storage implementations.
+    /// </summary>
+    [TypeConverter(typeof(ExpandableObjectConverter))]
+    public abstract class Storage : GlobalId
     {
         #region Instance Fields
         private NeedPaintHandler _needPaint;
@@ -34,12 +34,12 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public abstract bool IsDefault { get; }
-		#endregion
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public abstract bool IsDefault { get; }
+        #endregion
 
         #region NeedPaint
         /// <summary>
@@ -64,33 +64,33 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region PerformNeedPaint
         /// <summary>
-		/// Fires the NeedPaint event.
-		/// </summary>
-		public void PerformNeedPaint()
-		{
-			OnNeedPaint(this, new NeedLayoutEventArgs(false));
-		}
+        /// Fires the NeedPaint event.
+        /// </summary>
+        public void PerformNeedPaint()
+        {
+            OnNeedPaint(this, new NeedLayoutEventArgs(false));
+        }
 
-		/// <summary>
-		/// Fires the NeedPaint event.
-		/// </summary>
-		/// <param name="needLayout">Does the palette change require a layout.</param>
-		public void PerformNeedPaint(bool needLayout)
-		{
-			OnNeedPaint(this, new NeedLayoutEventArgs(needLayout));
-		}
-		#endregion
+        /// <summary>
+        /// Fires the NeedPaint event.
+        /// </summary>
+        /// <param name="needLayout">Does the palette change require a layout.</param>
+        public void PerformNeedPaint(bool needLayout)
+        {
+            OnNeedPaint(this, new NeedLayoutEventArgs(needLayout));
+        }
+        #endregion
 
-		#region OnNeedPaint
-		/// <summary>
-		/// Raises the NeedPaint event.
-		/// </summary>
+        #region OnNeedPaint
+        /// <summary>
+        /// Raises the NeedPaint event.
+        /// </summary>
         /// <param name="sender">Source of the event.</param>
         /// <param name="e">An NeedLayoutEventArgs containing event data.</param>
         protected virtual void OnNeedPaint(object sender, NeedLayoutEventArgs e)
-		{
+        {
             _needPaint?.Invoke(this, e);
         }
-		#endregion
-	}
+        #endregion
+    }
 }

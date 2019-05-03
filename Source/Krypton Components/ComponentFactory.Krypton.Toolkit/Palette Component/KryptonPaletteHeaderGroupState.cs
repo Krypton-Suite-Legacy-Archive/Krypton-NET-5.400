@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Windows.Forms;
@@ -15,9 +15,9 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Storage for header group values for a specific state.
-	/// </summary>
+    /// <summary>
+    /// Storage for header group values for a specific state.
+    /// </summary>
     public class KryptonPaletteHeaderGroupState : Storage,
                                                   IPaletteMetric
     {
@@ -33,12 +33,12 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonPaletteHeaderGroupState class.
-		/// </summary>
+        /// </summary>
         /// <param name="redirect">Redirection for inheriting values.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public KryptonPaletteHeaderGroupState(PaletteRedirect redirect,
                                               NeedPaintHandler needPaint) 
-		{
+        {
             Debug.Assert(redirect != null);
 
             // Remember redirection for inheritence
@@ -56,16 +56,16 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => PrimaryHeaderPadding.Equals(CommonHelper.InheritPadding) &&
-		                                  SecondaryHeaderPadding.Equals(CommonHelper.InheritPadding) &&
-		                                  DockInactiveHeaderPadding.Equals(CommonHelper.InheritPadding) &&
-		                                  DockActiveHeaderPadding.Equals(CommonHelper.InheritPadding) &&
-		                                  (OverlayHeaders == InheritBool.Inherit);
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => PrimaryHeaderPadding.Equals(CommonHelper.InheritPadding) &&
+                                          SecondaryHeaderPadding.Equals(CommonHelper.InheritPadding) &&
+                                          DockInactiveHeaderPadding.Equals(CommonHelper.InheritPadding) &&
+                                          DockActiveHeaderPadding.Equals(CommonHelper.InheritPadding) &&
+                                          (OverlayHeaders == InheritBool.Inherit);
 
         #endregion
 
@@ -213,25 +213,25 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region OverlayHeaders
         /// <summary>
-		/// Gets and sets a value indicating if headers should overlay the border.
-		/// </summary>
+        /// Gets and sets a value indicating if headers should overlay the border.
+        /// </summary>
         [KryptonPersist(false)]
         [Category("Visuals")]
-		[Description("Should headers overlay the border.")]
-		[DefaultValue(typeof(InheritBool), "Inherit")]
-		[RefreshPropertiesAttribute(RefreshProperties.All)]
-		public InheritBool OverlayHeaders
-		{
-			get => _overlayHeaders;
+        [Description("Should headers overlay the border.")]
+        [DefaultValue(typeof(InheritBool), "Inherit")]
+        [RefreshPropertiesAttribute(RefreshProperties.All)]
+        public InheritBool OverlayHeaders
+        {
+            get => _overlayHeaders;
 
             set
-			{
-				if (_overlayHeaders != value)
-				{
-					_overlayHeaders = value;
-					PerformNeedPaint();
-				}
-			}
+            {
+                if (_overlayHeaders != value)
+                {
+                    _overlayHeaders = value;
+                    PerformNeedPaint();
+                }
+            }
         }
 
         /// <summary>

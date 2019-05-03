@@ -1,49 +1,49 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Implement storage for border,background and contained triple.
-	/// </summary>
+    /// </summary>
     public class PaletteListState : PaletteDouble
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteListState class.
-		/// </summary>
+        /// </summary>
         /// <param name="inherit">Source for inheriting values.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteListState(PaletteListStateRedirect inherit,
                                 NeedPaintHandler needPaint)
             : base(inherit, needPaint)
-		{
+        {
             Item = new PaletteTriple(inherit.Item, needPaint);
-		}
-		#endregion
+        }
+        #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (base.IsDefault && Item.IsDefault);
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (base.IsDefault && Item.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region PopulateFromBase
         /// <summary>
@@ -59,15 +59,15 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Item
         /// <summary>
-		/// Gets the item appearance overrides.
-		/// </summary>
+        /// Gets the item appearance overrides.
+        /// </summary>
         [KryptonPersist]
         [Category("Visuals")]
         [Description("Overrides for defining item appearance.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-		public PaletteTriple Item { get; }
+        public PaletteTriple Item { get; }
 
-	    private bool ShouldSerializeItem()
+        private bool ShouldSerializeItem()
         {
             return !Item.IsDefault;
         }

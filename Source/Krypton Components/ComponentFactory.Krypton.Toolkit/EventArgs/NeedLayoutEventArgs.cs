@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -14,24 +14,24 @@ using System.Drawing;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Details for need layout events.
-	/// </summary>
-	public class NeedLayoutEventArgs : EventArgs
-	{
-		#region Instance Fields
+    /// <summary>
+    /// Details for need layout events.
+    /// </summary>
+    public class NeedLayoutEventArgs : EventArgs
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the NeedLayoutEventArgs class.
-		/// </summary>
+        /// </summary>
         /// <param name="needLayout">Does the layout need regenerating.</param>
         public NeedLayoutEventArgs(bool needLayout)
             : this(needLayout, Rectangle.Empty)
-		{
-		}
+        {
+        }
 
         /// <summary>
         /// Initialize a new instance of the NeedLayoutEventArgs class.
@@ -46,17 +46,17 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Public
-		/// <summary>
-		/// Gets a value indicating if the layout needs regenerating.
-		/// </summary>
-		public bool NeedLayout { get; }
+        #region Public
+        /// <summary>
+        /// Gets a value indicating if the layout needs regenerating.
+        /// </summary>
+        public bool NeedLayout { get; }
 
-	    /// <summary>
+        /// <summary>
         /// Gets the rectangle to be invalidated.
         /// </summary>
         public Rectangle InvalidRect { get; }
 
-	    #endregion
-	}
+        #endregion
+    }
 }

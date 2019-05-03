@@ -1,11 +1,11 @@
 ﻿// *****************************************************************************
 // 
-//  © Component Factory Pty Ltd 2012. All rights reserved.
+//  © Component Factory Pty Ltd 2012 - 2019. All rights reserved.
 //	The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, PO Box 1504, 
 //  Glen Waverley, Vic 3150, Australia and are supplied subject to licence terms.
 // 
-//  Version 4.000.0.0 	www.ComponentFactory.com
+//  Version 5.400.0.0 	www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -84,9 +84,9 @@ namespace MemoEditor
                 try
                 {
                     // Restore the global palette selected previously
-                    string globalPalette = memoEditorSettings.GetValue("GlobalPalette") as string;
-                    if (!string.IsNullOrEmpty(globalPalette))
-                        kryptonManager.GlobalPaletteMode = (PaletteModeManager)Enum.Parse(typeof(PaletteModeManager), globalPalette);
+                    //string globalPalette = memoEditorSettings.GetValue("GlobalPalette") as string;
+                    //if (!string.IsNullOrEmpty(globalPalette))
+                    //    kryptonManager.GlobalPaletteMode = (PaletteModeManager)Enum.Parse(typeof(PaletteModeManager), globalPalette);
 
                     // Restore the cell mode selected previously
                     string cellMode = memoEditorSettings.GetValue("CellMode") as string;
@@ -405,8 +405,9 @@ namespace MemoEditor
         private void kryptonWorkspace_WorkspaceCellAdding(object sender, WorkspaceCellEventArgs e)
         {
             // Do not show any navigator level buttons
-            e.Cell.Button.CloseButtonDisplay = ButtonDisplay.Hide;
-            e.Cell.Button.ButtonDisplayLogic = ButtonDisplayLogic.None;
+            //e.Cell.Button.CloseButtonDisplay = ButtonDisplay.Hide;
+            //e.Cell.Button.ButtonDisplayLogic = ButtonDisplayLogic.None;
+            e.Cell.Button.CloseButtonAction = CloseButtonAction.RemovePageAndDispose;
 
             // Do not need the secondary header for header modes
             e.Cell.Header.HeaderVisibleSecondary = false;
@@ -439,6 +440,7 @@ namespace MemoEditor
         {
             // Tell the cell instance to not perform any actions with the page, we will remove it if we need to
             e.Action = CloseButtonAction.None;
+            e.Action = CloseButtonAction.RemovePageAndDispose;
 
             // Use our own routine to close the page, so user is asked to save changes if required
             CloseMemoPage(e.Item);

@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -15,46 +15,46 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Implement storage for a ribbon style values.
-	/// </summary>
-	public class PaletteRibbonStyles : Storage
-	{
-		#region Instance Fields
+    /// <summary>
+    /// Implement storage for a ribbon style values.
+    /// </summary>
+    public class PaletteRibbonStyles : Storage
+    {
+        #region Instance Fields
         private readonly KryptonRibbon _ribbon;
-		#endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteRibbonStyles class.
-		/// </summary>
+        /// </summary>
         /// <param name="ribbon">Source ribbon control instance.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteRibbonStyles(KryptonRibbon ribbon,
                                    NeedPaintHandler needPaint)
-		{
+        {
             Debug.Assert(ribbon != null);
             _ribbon = ribbon;
 
             // Store the provided paint notification delegate
             NeedPaint = needPaint;
         }
-		#endregion
+        #endregion
 
         #region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => ((BackStyle == PaletteBackStyle.PanelClient) &&
-		                                   (GroupButtonStyle == ButtonStyle.ButtonSpec) &&
-		                                   (GroupClusterButtonStyle == ButtonStyle.Cluster) &&
-		                                   (GroupDialogButtonStyle == ButtonStyle.ButtonSpec) &&
-		                                   (GroupCollapsedButtonStyle == ButtonStyle.Alternate) &&
-		                                   (QATButtonStyle == ButtonStyle.ButtonSpec) &&
-		                                   (ScrollerStyle == ButtonStyle.Standalone));
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => ((BackStyle == PaletteBackStyle.PanelClient) &&
+                                           (GroupButtonStyle == ButtonStyle.ButtonSpec) &&
+                                           (GroupClusterButtonStyle == ButtonStyle.Cluster) &&
+                                           (GroupDialogButtonStyle == ButtonStyle.ButtonSpec) &&
+                                           (GroupCollapsedButtonStyle == ButtonStyle.Alternate) &&
+                                           (QATButtonStyle == ButtonStyle.ButtonSpec) &&
+                                           (ScrollerStyle == ButtonStyle.Standalone));
 
-	    #endregion
+        #endregion
 
         #region BackStyle
         /// <summary>

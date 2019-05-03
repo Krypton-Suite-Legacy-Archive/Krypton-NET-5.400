@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -15,27 +15,27 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// View element that draws empty content.
-	/// </summary>
+    /// <summary>
+    /// View element that draws empty content.
+    /// </summary>
     public class ViewDrawEmptyContent : ViewDrawContent,
                                         IContentValues
     {
         #region Instance Fields
         private readonly IPaletteContent _paletteContentNormal;
         private readonly IPaletteContent _paletteContentDisabled;
-		#endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the ViewDrawEmptyContent class.
-		/// </summary>
+        /// </summary>
         /// <param name="paletteContentDisabled">Palette source for the disabled content.</param>
         /// <param name="paletteContentNormal">Palette source for the normal content.</param>
         public ViewDrawEmptyContent(IPaletteContent paletteContentDisabled,
                                     IPaletteContent paletteContentNormal)
             : base(paletteContentNormal, null, VisualOrientation.Top)
-		{
+        {
             Values = this;
             _paletteContentDisabled = paletteContentDisabled;
             _paletteContentNormal = paletteContentNormal;
@@ -57,8 +57,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="context">Layout context.</param>
         /// <exception cref="ArgumentNullException"></exception>
         public override Size GetPreferredSize(ViewLayoutContext context)
-		{
-			Debug.Assert(context != null);
+        {
+            Debug.Assert(context != null);
 
             // Validate incoming reference
             if (context == null)
@@ -66,11 +66,11 @@ namespace ComponentFactory.Krypton.Toolkit
                 throw new ArgumentNullException(nameof(context));
             }
 
-		    // ReSharper disable RedundantBaseQualifier
-		    base.SetPalette(Enabled ? _paletteContentNormal : _paletteContentDisabled);
+            // ReSharper disable RedundantBaseQualifier
+            base.SetPalette(Enabled ? _paletteContentNormal : _paletteContentDisabled);
 
-		    return base.GetPreferredSize(context);
-		    // ReSharper restore RedundantBaseQualifier
+            return base.GetPreferredSize(context);
+            // ReSharper restore RedundantBaseQualifier
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="context">Layout context.</param>
         /// <exception cref="ArgumentNullException"></exception>
         public override void Layout(ViewLayoutContext context)
-		{
-			Debug.Assert(context != null);
+        {
+            Debug.Assert(context != null);
 
             // Validate incoming reference
             if (context == null)
@@ -88,11 +88,11 @@ namespace ComponentFactory.Krypton.Toolkit
                 throw new ArgumentNullException(nameof(context));
             }
 
-		    // ReSharper disable RedundantBaseQualifier
-		    base.SetPalette(Enabled ? _paletteContentNormal : _paletteContentDisabled);
+            // ReSharper disable RedundantBaseQualifier
+            base.SetPalette(Enabled ? _paletteContentNormal : _paletteContentDisabled);
 
             base.Layout(context);
-		    // ReSharper restore RedundantBaseQualifier
+            // ReSharper restore RedundantBaseQualifier
         }
         #endregion
 
@@ -104,8 +104,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="context">Rendering context.</param>
         /// <exception cref="ArgumentNullException"></exception>
         public override void RenderBefore(RenderContext context) 
-		{
-			Debug.Assert(context != null);
+        {
+            Debug.Assert(context != null);
 
             // Validate incoming reference
             if (context == null)
@@ -113,12 +113,12 @@ namespace ComponentFactory.Krypton.Toolkit
                 throw new ArgumentNullException(nameof(context));
             }
 
-		    // ReSharper disable RedundantBaseQualifier
-		    base.SetPalette(Enabled ? _paletteContentNormal : _paletteContentDisabled);
+            // ReSharper disable RedundantBaseQualifier
+            base.SetPalette(Enabled ? _paletteContentNormal : _paletteContentDisabled);
 
-		    base.RenderBefore(context);
-		    // ReSharper restore RedundantBaseQualifier
-		}
+            base.RenderBefore(context);
+            // ReSharper restore RedundantBaseQualifier
+        }
         #endregion
 
         #region IContentValues

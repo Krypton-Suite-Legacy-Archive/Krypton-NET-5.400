@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -95,25 +95,25 @@ namespace ComponentFactory.Krypton.Docking
         #endregion
 
         #region Protected
-		/// <summary>
-		/// Processes Windows messages.
-		/// </summary>
-		/// <param name="m">The Windows Message to process. </param>
+        /// <summary>
+        /// Processes Windows messages.
+        /// </summary>
+        /// <param name="m">The Windows Message to process. </param>
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)
             {
-                case PI.WM_NCLBUTTONDOWN:
+                case PI.WM_.NCLBUTTONDOWN:
                     {
                         // Perform a hit test to determine which area the mouse press is over at the moment
-                        uint result = PI.SendMessage(Handle, PI.WM_NCHITTEST, 0, (uint)m.LParam);
+                        uint result = PI.SendMessage(Handle, PI.WM_.NCHITTEST, IntPtr.Zero, m.LParam);
 
                         // Only want to override the behaviour of moving the window via the caption bar
-                        if (result == PI.HITTEST_CAPTION)
+                        if (result == PI.HT.CAPTION)
                         {
                             // Extract screen position of the mouse from the message LPARAM
-                            Point screenPos = new Point((short)((uint)m.LParam & 0x0000FFFFU),
-                                                        (short)(((uint)m.LParam & 0xFFFF0000U) >> 16));
+                            Point screenPos = new Point(PI.LOWORD(m.LParam),
+                                                        PI.HIWORD(m.LParam));
 
                             // Find the mouse offset relative to the top left of the window
                             Point offset = new Point(screenPos.X - Location.X, screenPos.Y - Location.Y);
@@ -134,17 +134,17 @@ namespace ComponentFactory.Krypton.Docking
                         }
                     }
                     break;
-                case PI.WM_KEYDOWN:
+                case PI.WM_.KEYDOWN:
                     base.WndProc(ref m);
                     FloatingMessages?.OnKEYDOWN(ref m);
 
                     return;
-                case PI.WM_MOUSEMOVE:
+                case PI.WM_.MOUSEMOVE:
                     base.WndProc(ref m);
                     FloatingMessages?.OnMOUSEMOVE();
 
                     return;
-                case PI.WM_LBUTTONUP:
+                case PI.WM_.LBUTTONUP:
                     base.WndProc(ref m);
                     FloatingMessages?.OnLBUTTONUP();
 

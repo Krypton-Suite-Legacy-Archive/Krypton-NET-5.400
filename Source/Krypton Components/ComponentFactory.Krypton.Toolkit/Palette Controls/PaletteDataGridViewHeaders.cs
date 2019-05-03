@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -14,45 +14,45 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Implement storage for a KryptonDataGridView states with header cells.
-	/// </summary>
-	public class PaletteDataGridViewHeaders : Storage
-	{
-		#region Instance Fields
+    /// <summary>
+    /// Implement storage for a KryptonDataGridView states with header cells.
+    /// </summary>
+    public class PaletteDataGridViewHeaders : Storage
+    {
+        #region Instance Fields
         private readonly PaletteDataGridViewTripleStates _headerColumn;
         private readonly PaletteDataGridViewTripleStates _headerRow;
-		#endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteDataGridViewHeaders class.
-		/// </summary>
+        /// </summary>
         /// <param name="inherit">Source for inheriting values.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteDataGridViewHeaders(PaletteDataGridViewRedirect inherit,
                                           NeedPaintHandler needPaint)
-		{
+        {
             Debug.Assert(inherit != null);
 
             // Store the provided paint notification delegate
             NeedPaint = needPaint;
 
-			// Create storage that maps onto the inherit instances
+            // Create storage that maps onto the inherit instances
             _headerColumn = new PaletteDataGridViewTripleStates(inherit.HeaderColumn, needPaint);
             _headerRow = new PaletteDataGridViewTripleStates(inherit.HeaderRow, needPaint);
         }
-		#endregion
+        #endregion
 
         #region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (HeaderColumn.IsDefault &&
-		                                   HeaderRow.IsDefault);
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (HeaderColumn.IsDefault &&
+                                           HeaderRow.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region PopulateFromBase
         /// <summary>
@@ -110,7 +110,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual PaletteDataGridViewTripleStates HeaderColumn => _headerColumn;
 
-	    private bool ShouldSerializeHeaderColumn()
+        private bool ShouldSerializeHeaderColumn()
         {
             return !_headerColumn.IsDefault;
         }
@@ -126,23 +126,23 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual PaletteDataGridViewTripleStates HeaderRow => _headerRow;
 
-	    private bool ShouldSerializeHeaderRow()
+        private bool ShouldSerializeHeaderRow()
         {
             return !_headerRow.IsDefault;
         }
         #endregion
 
         #region Implementation
-		/// <summary>
-		/// Handle a change event from palette source.
-		/// </summary>
-		/// <param name="sender">Source of the event.</param>
-		/// <param name="needLayout">True if a layout is also needed.</param>
+        /// <summary>
+        /// Handle a change event from palette source.
+        /// </summary>
+        /// <param name="sender">Source of the event.</param>
+        /// <param name="needLayout">True if a layout is also needed.</param>
         protected void OnNeedPaint(object sender, bool needLayout)
-		{
-			// Pass request from child to our own handler
-			PerformNeedPaint(needLayout);
-		}
-		#endregion
-	}
+        {
+            // Pass request from child to our own handler
+            PerformNeedPaint(needLayout);
+        }
+        #endregion
+    }
 }

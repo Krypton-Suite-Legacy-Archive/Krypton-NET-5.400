@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -15,64 +15,64 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Navigator
 {
-	/// <summary>
-	/// View element that positions the provided page in the requested position.
-	/// </summary>
+    /// <summary>
+    /// View element that positions the provided page in the requested position.
+    /// </summary>
     internal class ViewLayoutPopupPage : ViewLayoutNull
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private readonly KryptonNavigator _navigator;
         private readonly KryptonPage _page;
-		#endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the ViewLayoutPopupPage class.
-		/// </summary>
+        /// </summary>
         /// <param name="navigator">Reference to owning navigator control.</param>
         /// <param name="page">Page to the positioned.</param>
         public ViewLayoutPopupPage(KryptonNavigator navigator,
                                    KryptonPage page)
-		{
+        {
             Debug.Assert(navigator != null);
             Debug.Assert(page != null);
 
             _navigator = navigator;
             _page = page;
-		}
+        }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewLayoutPopupPage:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
-		#region Layout
-		/// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override Size GetPreferredSize(ViewLayoutContext context)
-		{
+        #region Layout
+        /// <summary>
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override Size GetPreferredSize(ViewLayoutContext context)
+        {
             Debug.Assert(context != null);
             return _page.GetPreferredSize(context.DisplayRectangle.Size);
-		}
+        }
 
-		/// <summary>
-		/// Perform a layout of the elements.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override void Layout(ViewLayoutContext context)
-		{
-			Debug.Assert(context != null);
+        /// <summary>
+        /// Perform a layout of the elements.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override void Layout(ViewLayoutContext context)
+        {
+            Debug.Assert(context != null);
 
-			// We take on all the available display area
-			ClientRectangle = context.DisplayRectangle;
+            // We take on all the available display area
+            ClientRectangle = context.DisplayRectangle;
 
             // Are we allowed to layout child controls?
             if (!context.ViewManager.DoNotLayoutControls)
@@ -101,7 +101,7 @@ namespace ComponentFactory.Krypton.Navigator
                     }
                 }
             }
-		}
-		#endregion
-	}
+        }
+        #endregion
+    }
 }

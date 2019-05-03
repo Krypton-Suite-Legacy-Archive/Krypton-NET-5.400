@@ -1,19 +1,20 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.ComponentModel;
+
 using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
@@ -64,7 +65,7 @@ namespace ComponentFactory.Krypton.Ribbon
             _ribbon = ribbon;
             _rectAppButtonTopHalf = rectAppButtonTopHalf;
             _rectAppButtonBottomHalf = rectAppButtonBottomHalf;
-            
+
             // Create the view manager instance with root element
             ViewManager = new ViewContextMenuManager(this, new ViewLayoutNull());
 
@@ -77,7 +78,7 @@ namespace ComponentFactory.Krypton.Ribbon
             // Create provider instance
             _provider = new AppButtonMenuProvider((ViewContextMenuManager)ViewManager,
                                                   _ribbon.RibbonAppButton.AppButtonMenuItems,
-                                                  _viewColumns, palette, paletteMode, 
+                                                  _viewColumns, palette, paletteMode,
                                                   redirector, NeedPaintDelegate);
 
             _provider.Closing += OnProviderClosing;
@@ -441,7 +442,7 @@ namespace ComponentFactory.Krypton.Ribbon
                 if (e.KeyData == Keys.Escape)
                 {
                     // Using the escape key should give a close reason of keyboard
-                    _provider.ProviderCloseReason = ToolStripDropDownCloseReason.Keyboard;                    
+                    _provider.ProviderCloseReason = ToolStripDropDownCloseReason.Keyboard;
                 }
             }
 

@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -14,40 +14,40 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Implement storage for a gallery palette state. 
-	/// </summary>
+    /// <summary>
+    /// Implement storage for a gallery palette state. 
+    /// </summary>
     public class PaletteGalleryState : Storage
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
         private readonly PaletteRibbonBack _ribbonBack;
         private readonly PaletteRibbonBack _ribbonBorder;
         #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteGalleryState class.
-		/// </summary>
+        /// </summary>
         /// <param name="inherit">Source for inheriting values.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
         public PaletteGalleryState(PaletteGalleryRedirect inherit,
                                    NeedPaintHandler needPaint)
-		{
-			// Create storage that maps onto the inherit instances
+        {
+            // Create storage that maps onto the inherit instances
             _ribbonBack= new PaletteRibbonBack(inherit.RibbonGalleryBack, needPaint);
             _ribbonBorder = new PaletteRibbonBack(inherit.RibbonGalleryBorder, needPaint);
         }
-		#endregion
+        #endregion
 
         #region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (RibbonGalleryBack.IsDefault &
-		                                   RibbonGalleryBorder.IsDefault);
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (RibbonGalleryBack.IsDefault &
+                                           RibbonGalleryBorder.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region PopulateFromBase
         /// <summary>
@@ -81,7 +81,7 @@ namespace ComponentFactory.Krypton.Ribbon
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual PaletteRibbonBack RibbonGalleryBack => _ribbonBack;
 
-	    private bool ShouldSerializeRibbonGalleryBack()
+        private bool ShouldSerializeRibbonGalleryBack()
         {
             return !_ribbonBack.IsDefault;
         }
@@ -96,7 +96,7 @@ namespace ComponentFactory.Krypton.Ribbon
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual PaletteRibbonBack RibbonGalleryBorder => _ribbonBorder;
 
-	    private bool ShouldSerializeRibbonGalleryBorder()
+        private bool ShouldSerializeRibbonGalleryBorder()
         {
             return !_ribbonBorder.IsDefault;
         }

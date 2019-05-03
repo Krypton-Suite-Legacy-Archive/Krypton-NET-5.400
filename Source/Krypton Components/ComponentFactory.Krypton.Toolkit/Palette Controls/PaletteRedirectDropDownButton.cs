@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.Drawing;
@@ -14,40 +14,40 @@ using System.Diagnostics;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Redirects requests for drop down button images from the DropDownButtonImages instance.
-	/// </summary>
+    /// <summary>
+    /// Redirects requests for drop down button images from the DropDownButtonImages instance.
+    /// </summary>
     public class PaletteRedirectDropDownButton : PaletteRedirect
     {
         #region Instance Fields
         private readonly DropDownButtonImages _images;
-		#endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteRedirectDropDownButton class.
-		/// </summary>
+        /// </summary>
         /// <param name="images">Reference to source of drop down button images.</param>
         public PaletteRedirectDropDownButton(DropDownButtonImages images)
             : this(null, images)
         {
         }
 
-		/// <summary>
+        /// <summary>
         /// Initialize a new instance of the PaletteRedirectDropDownButton class.
-		/// </summary>
+        /// </summary>
         /// <param name="target">Initial palette target for redirection.</param>
         /// <param name="images">Reference to source of drop down button images.</param>
         public PaletteRedirectDropDownButton(IPalette target,
                                              DropDownButtonImages images)
             : base(target)
-		{
+        {
             Debug.Assert(images != null);
 
             // Remember incoming target
             _images = images;
-		}
-		#endregion
+        }
+        #endregion
 
         #region Images
         /// <summary>

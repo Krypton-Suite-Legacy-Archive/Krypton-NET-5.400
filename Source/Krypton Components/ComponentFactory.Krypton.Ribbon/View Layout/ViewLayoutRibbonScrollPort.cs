@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -142,7 +142,7 @@ namespace ComponentFactory.Krypton.Ribbon
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewLayoutRibbonScrollPort class.
-		/// </summary>
+        /// </summary>
         /// <param name="ribbon">Reference to owning ribbon control.</param>
         /// <param name="orientation">Viewport orientation.</param>
         /// <param name="viewFiller">View to size and position.</param>
@@ -439,9 +439,9 @@ namespace ComponentFactory.Krypton.Ribbon
 
         #region Layout
         /// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
         public override Size GetPreferredSize(ViewLayoutContext context)
         {
             // We always want to be the size needed to show the filler completely
@@ -681,7 +681,7 @@ namespace ComponentFactory.Krypton.Ribbon
                 if (_ribbonTabs.GetViewForSpare.ClientRectangle.Contains(e.Point))
                 {
                     e.Cancel = false;
-                    e.Result = (IntPtr)PI.HTTRANSPARENT;
+                    e.Result = (IntPtr)PI.HT.TRANSPARENT;
                 }
             }
         }

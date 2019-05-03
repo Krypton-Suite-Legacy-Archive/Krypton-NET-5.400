@@ -1,31 +1,31 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
-	/// Extend storage for the split container with background and border information combined with separator information.
-	/// </summary>
-	public class PaletteSplitContainer : PaletteDouble
-	{
-		#region Instance Fields
+    /// <summary>
+    /// Extend storage for the split container with background and border information combined with separator information.
+    /// </summary>
+    public class PaletteSplitContainer : PaletteDouble
+    {
+        #region Instance Fields
 
-	    #endregion
+        #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the PaletteSplitContainer class.
-		/// </summary>
+        /// </summary>
         /// <param name="inheritSplitContainer">Source for inheriting back/border defaulted values.</param>
         /// <param name="inheritSeparator">Source for inheriting separator defaulted values.</param>
         /// <param name="inheritMetric">Source for inheriting separator metric values.</param>
@@ -35,21 +35,21 @@ namespace ComponentFactory.Krypton.Toolkit
                                      IPaletteMetric inheritMetric,
                                      NeedPaintHandler needPaint)
             : base(inheritSplitContainer, needPaint)
-		{
-			// Create the embedded separator palette information
+        {
+            // Create the embedded separator palette information
             Separator = new PaletteSeparatorPadding(inheritSeparator, inheritMetric, needPaint);
-		}
-		#endregion
+        }
+        #endregion
 
-		#region IsDefault
-		/// <summary>
-		/// Gets a value indicating if all values are default.
-		/// </summary>
-		[Browsable(false)]
-		public override bool IsDefault => (base.IsDefault &&
-		                                   Separator.IsDefault);
+        #region IsDefault
+        /// <summary>
+        /// Gets a value indicating if all values are default.
+        /// </summary>
+        [Browsable(false)]
+        public override bool IsDefault => (base.IsDefault &&
+                                           Separator.IsDefault);
 
-	    #endregion
+        #endregion
 
         #region Border
         /// <summary>
@@ -60,21 +60,21 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new PaletteBorder Border => base.Border;
 
-	    #endregion
+        #endregion
 
         #region Separator
         /// <summary>
-		/// Get access to the overrides for defining separator appearance.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Overrides for defining separator appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// Get access to the overrides for defining separator appearance.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Overrides for defining separator appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteSeparatorPadding Separator { get; }
 
-	    private bool ShouldSerializeSeparator()
-		{
-			return !Separator.IsDefault;
-		}
-		#endregion
-	}
+        private bool ShouldSerializeSeparator()
+        {
+            return !Separator.IsDefault;
+        }
+        #endregion
+    }
 }

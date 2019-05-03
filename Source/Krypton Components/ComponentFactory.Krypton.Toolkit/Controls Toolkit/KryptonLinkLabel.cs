@@ -1,40 +1,40 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
-using System.Drawing;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Display text and images with the styling features of the Krypton Toolkit
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonLinkLabel), "ToolboxBitmaps.KryptonLinkLabel.bmp")]
     [DefaultEvent("LinkClicked")]
-	[DefaultProperty("Text")]
+    [DefaultProperty("Text")]
     [DefaultBindingProperty("Text")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonLinkLabelDesigner))]
+    [Designer(typeof(KryptonLinkLabelDesigner))]
     [DesignerCategory("code")]
     [Description("Displays descriptive information as a hyperlink.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
     [ComVisible(true)]
     public class KryptonLinkLabel : KryptonLabel
-	{
-		#region Instance Fields
+    {
+        #region Instance Fields
 
-	    private readonly PaletteContentInheritRedirect _stateVisitedRedirect;
+        private readonly PaletteContentInheritRedirect _stateVisitedRedirect;
         private readonly PaletteContentInheritRedirect _stateNotVisitedRedirect;
         private readonly PaletteContentInheritRedirect _statePressedRedirect;
         private readonly PaletteContentInheritRedirect _stateFocusRedirect;
@@ -56,12 +56,12 @@ namespace ComponentFactory.Krypton.Toolkit
         public event EventHandler LinkClicked;
         #endregion
 
-		#region Identity
-		/// <summary>
+        #region Identity
+        /// <summary>
         /// Initialize a new instance of the KryptonLinkLabel class.
-		/// </summary>
+        /// </summary>
         public KryptonLinkLabel()
-		{
+        {
             // The link label cannot take the focus
             SetStyle(ControlStyles.Selectable, true);
 
@@ -98,7 +98,7 @@ namespace ComponentFactory.Krypton.Toolkit
             // Set initial palette for drawing the content
             ViewDrawContent.SetPalette(_overrideFocusNotVisited);
         }
-		#endregion
+        #endregion
 
         #region Public
         /// <summary>
@@ -159,7 +159,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteContent OverridePressed { get; }
 
-	    private bool ShouldSerializeOverridePressed()
+        private bool ShouldSerializeOverridePressed()
         {
             return !OverridePressed.IsDefault;
         }
@@ -172,7 +172,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteContent OverrideFocus { get; }
 
-	    private bool ShouldSerializeOverrideFocus()
+        private bool ShouldSerializeOverrideFocus()
         {
             return !OverrideFocus.IsDefault;
         }
@@ -185,7 +185,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteContent OverrideVisited { get; }
 
-	    private bool ShouldSerializeOverrideVisited()
+        private bool ShouldSerializeOverrideVisited()
         {
             return !OverrideVisited.IsDefault;
         }
@@ -198,7 +198,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteContent OverrideNotVisited { get; }
 
-	    private bool ShouldSerializeOverrideNotVisited()
+        private bool ShouldSerializeOverrideNotVisited()
         {
             return !OverrideNotVisited.IsDefault;
         }
@@ -246,24 +246,24 @@ namespace ComponentFactory.Krypton.Toolkit
 
         #region Protected Overrides
         /// <summary>
-		/// Raises the EnabledChanged event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnEnabledChanged(EventArgs e)
-		{
+        /// Raises the EnabledChanged event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnEnabledChanged(EventArgs e)
+        {
             // Let base class fire standard event
             base.OnEnabledChanged(e);
 
             // Ask controller to update with correct palette to match state
             _controller.Update(this);
-		}       
- 
-		/// <summary>
-		/// Raises the GotFocus event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnGotFocus(EventArgs e)
-		{
+        }
+
+        /// <summary>
+        /// Raises the GotFocus event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnGotFocus(EventArgs e)
+        {
             // Apply the focus overrides
             _overrideFocusNotVisited.Apply = true;
             _overridePressedFocus.Apply = true;
@@ -272,15 +272,15 @@ namespace ComponentFactory.Krypton.Toolkit
             PerformNeedPaint(true);
 
             // Let base class fire standard event
-			base.OnGotFocus(e);
-		}
+            base.OnGotFocus(e);
+        }
 
-		/// <summary>
-		/// Raises the LostFocus event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnLostFocus(EventArgs e)
-		{
+        /// <summary>
+        /// Raises the LostFocus event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnLostFocus(EventArgs e)
+        {
             // Apply the focus overrides
             _overrideFocusNotVisited.Apply = false;
             _overridePressedFocus.Apply = false;
@@ -289,7 +289,7 @@ namespace ComponentFactory.Krypton.Toolkit
             PerformNeedPaint(true);
 
             // Let base class fire standard event
-			base.OnLostFocus(e);
+            base.OnLostFocus(e);
         }
 
         /// <summary>

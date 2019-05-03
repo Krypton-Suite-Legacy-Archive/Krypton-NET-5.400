@@ -1,33 +1,33 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	/// <summary>
+    /// <summary>
     /// Provide a MaskedTextBox with Krypton styling applied.
-	/// </summary>
-	[ToolboxItem(true)]
+    /// </summary>
+    [ToolboxItem(true)]
     [ToolboxBitmap(typeof(KryptonMaskedTextBox), "ToolboxBitmaps.KryptonMaskedTextBox.bmp")]
     [DefaultEvent("MaskInputRejected")]
-	[DefaultProperty("Mask")]
+    [DefaultProperty("Mask")]
     [DefaultBindingProperty("Text")]
-    [Designer(typeof(ComponentFactory.Krypton.Toolkit.KryptonMaskedTextBoxDesigner))]
+    [Designer(typeof(KryptonMaskedTextBoxDesigner))]
     [DesignerCategory("code")]
     [Description("Uses a mask to distinguish between proper and improper user input.")]
     [ClassInterface(ClassInterfaceType.AutoDispatch)]
@@ -80,7 +80,7 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 get => _mouseOver;
 
-                set 
+                set
                 {
                     // Only interested in changes
                     if (_mouseOver != value)
@@ -110,10 +110,10 @@ namespace ComponentFactory.Krypton.Toolkit
             {
                 switch (m.Msg)
                 {
-                    case PI.WM_NCHITTEST:
+                    case PI.WM_.NCHITTEST:
                         if (_kryptonMaskedTextBox.InTransparentDesignMode)
                         {
-                            m.Result = (IntPtr)PI.HTTRANSPARENT;
+                            m.Result = (IntPtr)PI.HT.TRANSPARENT;
                         }
                         else
                         {
@@ -121,14 +121,14 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
 
                         break;
-                    case PI.WM_MOUSELEAVE:
+                    case PI.WM_.MOUSELEAVE:
                         // Mouse is not over the control
                         MouseOver = false;
                         _kryptonMaskedTextBox.PerformNeedPaint(true);
                         Invalidate();
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_MOUSEMOVE:
+                    case PI.WM_.MOUSEMOVE:
                         // Mouse is over the control
                         if (!MouseOver)
                         {
@@ -138,8 +138,8 @@ namespace ComponentFactory.Krypton.Toolkit
                         }
                         base.WndProc(ref m);
                         break;
-                    case PI.WM_PRINTCLIENT:
-                    case PI.WM_PAINT:
+                    case PI.WM_.PRINTCLIENT:
+                    case PI.WM_.PAINT:
                         {
                             PI.PAINTSTRUCT ps = new PI.PAINTSTRUCT();
 
@@ -247,7 +247,7 @@ namespace ComponentFactory.Krypton.Toolkit
                             }
                         }
                         break;
-                    case PI.WM_CONTEXTMENU:
+                    case PI.WM_.CONTEXTMENU:
                         // Only interested in overriding the behavior when we have a krypton context menu...
                         if (_kryptonMaskedTextBox.KryptonContextMenu != null)
                         {
@@ -299,8 +299,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <summary>
         /// Collection for managing ButtonSpecAny instances.
         /// </summary>
-        public class MaskedTextBoxButtonSpecCollection : ButtonSpecCollection<ButtonSpecAny> 
-        { 
+        public class MaskedTextBoxButtonSpecCollection : ButtonSpecCollection<ButtonSpecAny>
+        {
             #region Identity
             /// <summary>
             /// Initialize a new instance of the MaskedTextBoxButtonSpecCollection class.
@@ -437,7 +437,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #region Identity
         /// <summary>
         /// Initialize a new instance of the KryptonMaskedTextBox class.
-		/// </summary>
+        /// </summary>
         public KryptonMaskedTextBox()
         {
             // Contains another control and needs marking as such for validation to work
@@ -543,7 +543,7 @@ namespace ComponentFactory.Krypton.Toolkit
         }
         #endregion
 
-		#region Public
+        #region Public
         /// <summary>
         /// Overridden. Returns a string that represents the current masked text box. This method overrides ToString.
         /// </summary>
@@ -1081,24 +1081,24 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets and sets the input control style.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Input control style.")]
+        /// Gets and sets the input control style.
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Input control style.")]
         public InputControlStyle InputControlStyle
-		{
+        {
             get => _inputControlStyle;
 
             set
-			{
+            {
                 if (_inputControlStyle != value)
-				{
+                {
                     _inputControlStyle = value;
                     StateCommon.SetStyles(value);
-					PerformNeedPaint(true);
-				}
-			}
-		}
+                    PerformNeedPaint(true);
+                }
+            }
+        }
 
         private bool ShouldSerializeInputControlStyle()
         {
@@ -1138,32 +1138,32 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             return !StateCommon.IsDefault;
         }
-        
+
         /// <summary>
         /// Gets access to the disabled textbox appearance entries.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Overrides for defining disabled textbox appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Overrides for defining disabled textbox appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteInputControlTripleStates StateDisabled { get; }
 
         private bool ShouldSerializeStateDisabled()
-		{
-			return !StateDisabled.IsDefault;
-		}
+        {
+            return !StateDisabled.IsDefault;
+        }
 
-		/// <summary>
+        /// <summary>
         /// Gets access to the normal textbox appearance entries.
-		/// </summary>
-		[Category("Visuals")]
-		[Description("Overrides for defining normal textbox appearance.")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        /// </summary>
+        [Category("Visuals")]
+        [Description("Overrides for defining normal textbox appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public PaletteInputControlTripleStates StateNormal { get; }
 
         private bool ShouldSerializeStateNormal()
-		{
-			return !StateNormal.IsDefault;
-		}
+        {
+            return !StateNormal.IsDefault;
+        }
 
         /// <summary>
         /// Gets access to the active textbox appearance entries.
@@ -1307,7 +1307,7 @@ namespace ComponentFactory.Krypton.Toolkit
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsActive
         {
-            get 
+            get
             {
                 if (_fixedActive != null)
                 {
@@ -1376,19 +1376,19 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Gets the rectangle that represents the display area of the control.
-		/// </summary>
-		public override Rectangle DisplayRectangle
-		{
-			get
-			{
+        /// Gets the rectangle that represents the display area of the control.
+        /// </summary>
+        public override Rectangle DisplayRectangle
+        {
+            get
+            {
                 // Ensure that the layout is calculated in order to know the remaining display space
                 ForceViewLayout();
 
                 // The inside text box is the client rectangle size
                 return new Rectangle(_maskedTextBox.Location, _maskedTextBox.Size);
-			}
-		}
+            }
+        }
 
         /// <summary>
         /// Override the display padding for the layout fill.
@@ -1457,6 +1457,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         #region Protected Virtual
+        // ReSharper disable VirtualMemberNeverOverridden.Global
         /// <summary>
         /// Raises the TextAlignChanged event.
         /// </summary>
@@ -1546,6 +1547,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             TrackMouseLeave?.Invoke(this, e);
         }
+        // ReSharper restore VirtualMemberNeverOverridden.Global
         #endregion
 
         #region Protected Overrides
@@ -1579,12 +1581,12 @@ namespace ComponentFactory.Krypton.Toolkit
         }
 
         /// <summary>
-		/// Raises the EnabledChanged event.
-		/// </summary>
-		/// <param name="e">An EventArgs that contains the event data.</param>
-		protected override void OnEnabledChanged(EventArgs e)
-		{
-			// Change in enabled state requires a layout and repaint
+        /// Raises the EnabledChanged event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            // Change in enabled state requires a layout and repaint
             UpdateStateAndPalettes();
 
             // Update view elements
@@ -1719,8 +1721,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <param name="width">The new Width property value of the control.</param>
         /// <param name="height">The new Height property value of the control.</param>
         /// <param name="specified">A bitwise combination of the BoundsSpecified values.</param>
-        protected override void SetBoundsCore(int x, int y, 
-                                              int width, int height, 
+        protected override void SetBoundsCore(int x, int y,
+                                              int width, int height,
                                               BoundsSpecified specified)
         {
             // Do we need to prevent the height from being altered?
@@ -1831,10 +1833,10 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             switch (m.Msg)
             {
-                case PI.WM_NCHITTEST:
+                case PI.WM_.NCHITTEST:
                     if (InTransparentDesignMode)
                     {
-                        m.Result = (IntPtr)PI.HTTRANSPARENT;
+                        m.Result = (IntPtr)PI.HT.TRANSPARENT;
                     }
                     else
                     {
@@ -1860,7 +1862,7 @@ namespace ComponentFactory.Krypton.Toolkit
             // Get the correct palette settings to use
             IPaletteTriple tripleState = GetTripleState();
             _drawDockerOuter.SetPalettes(tripleState.PaletteBack, tripleState.PaletteBorder);
-            
+
             // Update enabled state
             _drawDockerOuter.Enabled = Enabled;
 
@@ -2034,9 +2036,7 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                      CommonHelper.ContentStyleFromLabelStyle(toolTipStyle));
 
                         _visualPopupToolTip.Disposed += OnVisualPopupToolTipDisposed;
-
-                        // Show relative to the provided screen rectangle
-                        _visualPopupToolTip.ShowCalculatingSize(RectangleToScreen(e.Target.ClientRectangle));
+                        _visualPopupToolTip.ShowRelativeTo(e.Target, e.ControlMousePosition);
                     }
                 }
             }
@@ -2069,10 +2069,12 @@ namespace ComponentFactory.Krypton.Toolkit
                 if (_trackingMouseEnter)
                 {
                     OnTrackMouseEnter(EventArgs.Empty);
+                    OnMouseEnter(e);
                 }
                 else
                 {
                     OnTrackMouseLeave(EventArgs.Empty);
+                    OnMouseLeave(e);
                 }
             }
         }

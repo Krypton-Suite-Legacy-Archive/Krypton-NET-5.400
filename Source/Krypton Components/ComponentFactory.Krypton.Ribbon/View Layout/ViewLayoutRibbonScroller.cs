@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -17,9 +17,9 @@ using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Layout a scroller button with appropriate separator space around it.
-	/// </summary>
+    /// <summary>
+    /// Layout a scroller button with appropriate separator space around it.
+    /// </summary>
     internal class ViewLayoutRibbonScroller : ViewComposite
     {
         #region Static Fields
@@ -37,16 +37,16 @@ namespace ComponentFactory.Krypton.Ribbon
         #endregion
 
         #region Events
-		/// <summary>
+        /// <summary>
         /// Occurs when the button has been clicked.
-		/// </summary>
-		public event EventHandler Click;
+        /// </summary>
+        public event EventHandler Click;
         #endregion
 
         #region Identity
         /// <summary>
         /// Initialize a new instance of the ViewLayoutRibbonScroller class.
-		/// </summary>
+        /// </summary>
         /// <param name="ribbon">Reference to owning ribbon control.</param>
         /// <param name="orientation">Scroller orientation.</param>
         /// <param name="insetForTabs">Should scoller be inset for use in tabs area.</param>
@@ -74,16 +74,16 @@ namespace ComponentFactory.Krypton.Ribbon
             Add(_separator);
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewLayoutRibbonScroller:" + Id;
-		}
-		#endregion
+        }
+        #endregion
 
         #region Orientation
         /// <summary>
@@ -103,25 +103,25 @@ namespace ComponentFactory.Krypton.Ribbon
 
         #region Layout
         /// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override Size GetPreferredSize(ViewLayoutContext context)
-		{
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override Size GetPreferredSize(ViewLayoutContext context)
+        {
             // Always return the same minimum size
             return new Size(SCROLLER_LENGTH + GAP_LENGTH, SCROLLER_LENGTH + GAP_LENGTH);
-		}
+        }
 
-		/// <summary>
-		/// Perform a layout of the elements.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override void Layout(ViewLayoutContext context)
-		{
-			Debug.Assert(context != null);
+        /// <summary>
+        /// Perform a layout of the elements.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override void Layout(ViewLayoutContext context)
+        {
+            Debug.Assert(context != null);
 
             // We take on all the available display area
-			ClientRectangle = context.DisplayRectangle;
+            ClientRectangle = context.DisplayRectangle;
 
             // Layout depends on orientation
             switch (Orientation)
@@ -164,8 +164,8 @@ namespace ComponentFactory.Krypton.Ribbon
 
             // Put back the original display rectangle
             context.DisplayRectangle = ClientRectangle;
-		}
-		#endregion
+        }
+        #endregion
         
         #region Implementation
         private Rectangle AdjustRectForTabs(Rectangle rect)

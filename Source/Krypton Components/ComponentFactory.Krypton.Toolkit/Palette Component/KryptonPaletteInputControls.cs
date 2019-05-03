@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -39,6 +39,8 @@ namespace ComponentFactory.Krypton.Toolkit
             InputControlStandalone = new KryptonPaletteInputControl(redirector, PaletteBackStyle.InputControlStandalone, PaletteBorderStyle.InputControlStandalone, PaletteContentStyle.InputControlStandalone, needPaint);
             InputControlRibbon = new KryptonPaletteInputControl(redirector, PaletteBackStyle.InputControlRibbon, PaletteBorderStyle.InputControlRibbon, PaletteContentStyle.InputControlRibbon, needPaint);
             InputControlCustom1 = new KryptonPaletteInputControl(redirector, PaletteBackStyle.InputControlCustom1, PaletteBorderStyle.InputControlCustom1, PaletteContentStyle.InputControlCustom1, needPaint);
+            InputControlCustom2 = new KryptonPaletteInputControl(redirector, PaletteBackStyle.InputControlCustom2, PaletteBorderStyle.InputControlCustom2, PaletteContentStyle.InputControlCustom2, needPaint);
+            InputControlCustom3 = new KryptonPaletteInputControl(redirector, PaletteBackStyle.InputControlCustom3, PaletteBorderStyle.InputControlCustom3, PaletteContentStyle.InputControlCustom3, needPaint);
 
             // Create redirectors for inheriting from style specific to style common
             PaletteRedirectTriple redirectCommon = new PaletteRedirectTriple(redirector, InputControlCommon.StateDisabled, InputControlCommon.StateNormal, InputControlCommon.StateActive);
@@ -47,6 +49,8 @@ namespace ComponentFactory.Krypton.Toolkit
             InputControlStandalone.SetRedirector(redirectCommon);
             InputControlRibbon.SetRedirector(redirectCommon);
             InputControlCustom1.SetRedirector(redirectCommon);
+            InputControlCustom2.SetRedirector(redirectCommon);
+            InputControlCustom3.SetRedirector(redirectCommon);
         }
         #endregion
 
@@ -56,8 +60,11 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         public override bool IsDefault => InputControlCommon.IsDefault &&
                                           InputControlStandalone.IsDefault &&
-                                          InputControlRibbon.IsDefault &&
-                                          InputControlCustom1.IsDefault;
+                                          InputControlRibbon.IsDefault
+                                          && InputControlCustom1.IsDefault
+                                          && InputControlCustom2.IsDefault
+                                          && InputControlCustom3.IsDefault
+        ;
 
         #endregion
 
@@ -141,6 +148,38 @@ namespace ComponentFactory.Krypton.Toolkit
         private bool ShouldSerializeInputControlCustom1()
         {
             return !InputControlCustom1.IsDefault;
+        }
+        #endregion
+
+        #region InputControlCustom2
+        /// <summary>
+        /// Gets access to the custom input control appearance.
+        /// </summary>
+        [KryptonPersist]
+        [Category("Visuals")]
+        [Description("Overrides for defining the custom input control appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public KryptonPaletteInputControl InputControlCustom2 { get; }
+
+        private bool ShouldSerializeInputControlCustom2()
+        {
+            return !InputControlCustom2.IsDefault;
+        }
+        #endregion
+
+        #region InputControlCustom3
+        /// <summary>
+        /// Gets access to the custom input control appearance.
+        /// </summary>
+        [KryptonPersist]
+        [Category("Visuals")]
+        [Description("Overrides for defining the custom input control appearance.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public KryptonPaletteInputControl InputControlCustom3 { get; }
+
+        private bool ShouldSerializeInputControlCustom3()
+        {
+            return !InputControlCustom3.IsDefault;
         }
         #endregion
     }

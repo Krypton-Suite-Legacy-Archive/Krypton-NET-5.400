@@ -1,27 +1,27 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
+using ComponentFactory.Krypton.Toolkit;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.ComponentModel;
-using ComponentFactory.Krypton.Toolkit;
 
 namespace ComponentFactory.Krypton.Ribbon
 {
-	/// <summary>
-	/// Draws an individual RibbonTab.
-	/// </summary>
+    /// <summary>
+    /// Draws an individual RibbonTab.
+    /// </summary>
     internal class ViewDrawRibbonTab : ViewComposite,
                                        IContentValues
     {
@@ -58,7 +58,7 @@ namespace ComponentFactory.Krypton.Ribbon
         private PaletteState _cacheState;
         #endregion
 
-		#region Identity
+        #region Identity
         static ViewDrawRibbonTab()
         {
             _contextBlend2007 = new Blend
@@ -74,9 +74,9 @@ namespace ComponentFactory.Krypton.Ribbon
             };
         }
 
-		/// <summary>
+        /// <summary>
         /// Initialize a new instance of the ViewDrawRibbonTab class.
-		/// </summary>
+        /// </summary>
         /// <param name="ribbon">Reference to owning ribbon control.</param>
         /// <param name="layoutTabs">Reference to view used for layout out tabs.</param>
         /// <param name="needPaint">Delegate for notifying paint requests.</param>
@@ -103,7 +103,7 @@ namespace ComponentFactory.Krypton.Ribbon
             _overrideStateContextCheckedNormal = new PaletteRibbonDoubleInheritOverride(Ribbon.OverrideFocus.RibbonTab, Ribbon.OverrideFocus.RibbonTab, Ribbon.StateContextCheckedNormal.RibbonTab, Ribbon.StateContextCheckedNormal.RibbonTab, PaletteState.FocusOverride);
             _overrideStateContextCheckedTracking = new PaletteRibbonDoubleInheritOverride(Ribbon.OverrideFocus.RibbonTab, Ribbon.OverrideFocus.RibbonTab, Ribbon.StateContextCheckedTracking.RibbonTab, Ribbon.StateContextCheckedTracking.RibbonTab, PaletteState.FocusOverride);
             _overrideCurrent = _overrideStateNormal;
-            
+
             // Create and default the setup of the context colors provider
             _paletteContextCurrent = new PaletteRibbonContextDouble(Ribbon);
             _paletteContextCurrent.SetInherit(_overrideCurrent);
@@ -129,15 +129,15 @@ namespace ComponentFactory.Krypton.Ribbon
             _mementos = new IDisposable[Enum.GetValues(typeof(PaletteState)).Length];
         }
 
-		/// <summary>
-		/// Obtains the String representation of this instance.
-		/// </summary>
-		/// <returns>User readable name of the instance.</returns>
-		public override string ToString()
-		{
-			// Return the class name and instance identifier
+        /// <summary>
+        /// Obtains the String representation of this instance.
+        /// </summary>
+        /// <returns>User readable name of the instance.</returns>
+        public override string ToString()
+        {
+            // Return the class name and instance identifier
             return "ViewDrawRibbonTab:" + Id;
-		}
+        }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -233,7 +233,7 @@ namespace ComponentFactory.Krypton.Ribbon
         {
             get => _ribbonTab;
 
-            set 
+            set
             {
                 if (_ribbonTab != value)
                 {
@@ -258,7 +258,7 @@ namespace ComponentFactory.Krypton.Ribbon
 
                     // Pass reference onto the current context
                     _paletteContextCurrent.RibbonTab = value;
-                    
+
                     // Must perform new preferred size/layout calculations
                     MakeDirty();
                 }
@@ -291,6 +291,8 @@ namespace ComponentFactory.Krypton.Ribbon
                         return _preferredBorder2010;
                     case PaletteRibbonShape.Office2013:
                         return _preferredBorder2010;
+                    case PaletteRibbonShape.Office365:
+                        return _preferredBorder2010;
                 }
             }
         }
@@ -313,6 +315,8 @@ namespace ComponentFactory.Krypton.Ribbon
                         return _layoutBorder2010;
                     case PaletteRibbonShape.Office2013:
                         return _layoutBorder2010;
+                    case PaletteRibbonShape.Office365:
+                        return _layoutBorder2010;
                 }
             }
         }
@@ -320,11 +324,11 @@ namespace ComponentFactory.Krypton.Ribbon
 
         #region Layout
         /// <summary>
-		/// Discover the preferred size of the element.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override Size GetPreferredSize(ViewLayoutContext context)
-		{
+        /// Discover the preferred size of the element.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override Size GetPreferredSize(ViewLayoutContext context)
+        {
             // Ensure that child elements have correct palette state
             CheckPaletteState(context);
 
@@ -351,21 +355,21 @@ namespace ComponentFactory.Krypton.Ribbon
             }
 
             return _preferredSize;
-		}
+        }
 
-		/// <summary>
-		/// Perform a layout of the elements.
-		/// </summary>
-		/// <param name="context">Layout context.</param>
-		public override void Layout(ViewLayoutContext context)
-		{
-			Debug.Assert(context != null);
+        /// <summary>
+        /// Perform a layout of the elements.
+        /// </summary>
+        /// <param name="context">Layout context.</param>
+        public override void Layout(ViewLayoutContext context)
+        {
+            Debug.Assert(context != null);
 
             // Ensure that child elements have correct palette state
             CheckPaletteState(context);
 
             // We take on all the available display area
-			ClientRectangle = context.DisplayRectangle;
+            ClientRectangle = context.DisplayRectangle;
 
             // A change in state always causes a size and layout calculation
             if (_cacheState != State)
@@ -396,7 +400,7 @@ namespace ComponentFactory.Krypton.Ribbon
                 _dirtyPaletteLayout = Ribbon.DirtyPaletteCounter;
             }
         }
-		#endregion
+        #endregion
 
         #region Paint
         /// <summary>
@@ -415,6 +419,7 @@ namespace ComponentFactory.Krypton.Ribbon
             {
                 default:
                 case PaletteRibbonShape.Office2013:
+                case PaletteRibbonShape.Office365:
                 case PaletteRibbonShape.Office2007:
                     if (cts != null)
                     {
@@ -430,7 +435,7 @@ namespace ComponentFactory.Krypton.Ribbon
                     }
 
                     //_paletteContextCurrent.LightBackground = _ribbon.CaptionArea.DrawCaptionOnComposition;
-                    _paletteContextCurrent.LightBackground = Ribbon.CaptionArea.DrawCaptionOnComposition 
+                    _paletteContextCurrent.LightBackground = Ribbon.CaptionArea.DrawCaptionOnComposition
                                                              && (KryptonManager.CurrentGlobalPalette != KryptonManager.PaletteOffice2010Black);
                     break;
             }
@@ -549,7 +554,7 @@ namespace ComponentFactory.Krypton.Ribbon
             // Grab the colors we draw the context separators and background in
             Color c1 = _paletteGeneral.GetRibbonTabSeparatorContextColor(PaletteState.Normal);
             Color c2 = cts.ContextColor;
-            Color lightC2 = ControlPaint.Light(c2); 
+            Color lightC2 = ControlPaint.Light(c2);
             Color c3 = CommonHelper.MergeColors(Color.Black, 0.1f, c2, 0.9f);
 
             Rectangle contextRect = new Rectangle(ClientRectangle.X - 1, ClientRectangle.Y - 1, ClientRectangle.Width + 2, ClientRectangle.Height + 1);

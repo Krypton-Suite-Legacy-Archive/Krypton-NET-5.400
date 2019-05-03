@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 namespace ComponentFactory.Krypton.Toolkit
@@ -65,8 +65,14 @@ namespace ComponentFactory.Krypton.Toolkit
             new Pair(PaletteContentStyle.GridHeaderRowSheet,           "Grid - RowColumn - Sheet"),
             new Pair(PaletteContentStyle.GridDataCellSheet,            "Grid - DataCell - Sheet"),
             new Pair(PaletteContentStyle.GridHeaderColumnCustom1,      "Grid - HeaderColumn - Custom1"),
+            new Pair(PaletteContentStyle.GridHeaderColumnCustom2,      "Grid - HeaderColumn - Custom2"),
+            new Pair(PaletteContentStyle.GridHeaderColumnCustom3,      "Grid - HeaderColumn - Custom3"),
             new Pair(PaletteContentStyle.GridHeaderRowCustom1,         "Grid - RowColumn - Custom1"),
+            new Pair(PaletteContentStyle.GridHeaderRowCustom2,         "Grid - RowColumn - Custom2"),
+            new Pair(PaletteContentStyle.GridHeaderRowCustom3,         "Grid - RowColumn - Custom3"),
             new Pair(PaletteContentStyle.GridDataCellCustom1,          "Grid - DataCell - Custom1"),
+            new Pair(PaletteContentStyle.GridDataCellCustom2,          "Grid - DataCell - Custom2"),
+            new Pair(PaletteContentStyle.GridDataCellCustom3,          "Grid - DataCell - Custom3"),
             new Pair(PaletteContentStyle.HeaderPrimary,                "Header - Primary"),
             new Pair(PaletteContentStyle.HeaderSecondary,              "Header - Secondary"),
             new Pair(PaletteContentStyle.HeaderDockActive,             "Header - Dock - Active"),
@@ -75,6 +81,7 @@ namespace ComponentFactory.Krypton.Toolkit
             new Pair(PaletteContentStyle.HeaderCalendar,               "Header - Calendar"),
             new Pair(PaletteContentStyle.HeaderCustom1,                "Header - Custom1"),
             new Pair(PaletteContentStyle.HeaderCustom2,                "Header - Custom2"),
+            new Pair(PaletteContentStyle.HeaderCustom3,                "Header - Custom3"),
             new Pair(PaletteContentStyle.LabelNormalControl,           "Label - Normal (Control)"),
             new Pair(PaletteContentStyle.LabelBoldControl,             "Label - Bold (Control)"),
             new Pair(PaletteContentStyle.LabelTitleControl,            "Label - Italic (Control)"),
@@ -100,7 +107,10 @@ namespace ComponentFactory.Krypton.Toolkit
             new Pair(PaletteContentStyle.TabCustom3,                   "Tab - Custom3"),
             new Pair(PaletteContentStyle.InputControlStandalone,       "InputControl - Standalone"),
             new Pair(PaletteContentStyle.InputControlRibbon,           "InputControl - Ribbon"),
-            new Pair(PaletteContentStyle.InputControlCustom1,          "InputControl - Custom1") };
+            new Pair(PaletteContentStyle.InputControlCustom1,          "InputControl - Custom1"),
+            new Pair(PaletteContentStyle.InputControlCustom2,          "InputControl - Custom2"),
+            new Pair(PaletteContentStyle.InputControlCustom3,          "InputControl - Custom3")
+        };
 
         #endregion
     }

@@ -1,34 +1,37 @@
 ﻿// *****************************************************************************
 // BSD 3-Clause License (https://github.com/ComponentFactory/Krypton/blob/master/LICENSE)
-//  © Component Factory Pty Ltd, 2006-2018, All rights reserved.
+//  © Component Factory Pty Ltd, 2006-2019, All rights reserved.
 // The software and associated documentation supplied hereunder are the 
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
-//  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
+//  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2018. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.4000)
-//  Version 5.4000.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
-using System.Collections.Generic;
+// ReSharper disable EventNeverSubscribedTo.Global
+// ReSharper disable UnusedMemberInSuper.Global
+#pragma warning disable 1591
 
 namespace ComponentFactory.Krypton.Toolkit
 {
-	#region IContentValues
-	/// <summary>
-	/// Exposes access to content values.
-	/// </summary>
-	public interface IContentValues
-	{
+    #region IContentValues
+    /// <summary>
+    /// Exposes access to content values.
+    /// </summary>
+    public interface IContentValues
+    {
         /// <summary>
         /// Gets the content image.
         /// </summary>
         /// <param name="state">The state for which the image is needed.</param>
         /// <returns>Image value.</returns>
-		Image GetImage(PaletteState state);
+        Image GetImage(PaletteState state);
 
         /// <summary>
         /// Gets the image color that should be transparent.
@@ -41,20 +44,20 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Gets the content short text.
         /// </summary>
         /// <returns>String value.</returns>
-		string GetShortText();
+        string GetShortText();
 
         /// <summary>
         /// Gets the content long text.
         /// </summary>
         /// <returns>String value.</returns>
-		string GetLongText();
-	}
-	#endregion
+        string GetLongText();
+    }
+    #endregion
 
     #region IButtonSpecValues
-	/// <summary>
-	/// Exposes access to button specification values.
-	/// </summary>
+    /// <summary>
+    /// Exposes access to button specification values.
+    /// </summary>
     public interface IButtonSpecValues
     {
         /// <summary>
@@ -159,7 +162,7 @@ namespace ComponentFactory.Krypton.Toolkit
         HeaderLocation GetLocation(IPalette palette);
 
         /// <summary>
-        /// Gets the button orienation.
+        /// Gets the button orientation.
         /// </summary>
         /// <param name="palette">Palette to use for inheriting values.</param>
         /// <returns>Orientation value.</returns>
@@ -377,7 +380,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Activate the item because of a mnemonic key press.
         /// </summary>
         void MnemonicActivate();
-        
+
         /// <summary>
         /// Gets the view element that should be used when this target is active.
         /// </summary>
@@ -555,7 +558,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Gets the number of months to move for next/prev buttons.
         /// </summary>
         int ScrollChange { get; }
-        
+
         /// <summary>
         /// Start of selected range.
         /// </summary>
@@ -670,7 +673,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Gets access to the override for checked normal day.
         /// </summary>
         PaletteTripleOverride OverrideCheckedNormal { get; }
-        
+
         /// <summary>
         /// Gets access to the override for checked tracking day.
         /// </summary>
@@ -685,8 +688,8 @@ namespace ComponentFactory.Krypton.Toolkit
 
     #region IKryptonDebug
     /// <summary>
-	/// Exposes access to the debugging helpers for krypton controls.
-	/// </summary>
+    /// Exposes access to the debugging helpers for krypton controls.
+    /// </summary>
     public interface IKryptonDebug
     {
         /// <summary>
@@ -708,8 +711,8 @@ namespace ComponentFactory.Krypton.Toolkit
 
     #region IKryptonDesignerSelect
     /// <summary>
-	/// Exposes design time selection of parent control.
-	/// </summary>
+    /// Exposes design time selection of parent control.
+    /// </summary>
     public interface IKryptonDesignerSelect
     {
         /// <summary>
@@ -721,7 +724,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Request the parent control be selected.
         /// </summary>
         void SelectParentControl();
-    }    
+    }
     #endregion
 
     #region IKryptonComposition
@@ -778,31 +781,31 @@ namespace ComponentFactory.Krypton.Toolkit
 
     #region Enum VisualOrientation
     /// <summary>
-	/// Specifies the orientation of a visual element.
-	/// </summary>
-	public enum VisualOrientation
-	{
-		/// <summary>
-		/// Specifies the element is orientated in a vertical top down manner.
-		/// </summary>
-		Top,
+    /// Specifies the orientation of a visual element.
+    /// </summary>
+    public enum VisualOrientation
+    {
+        /// <summary>
+        /// Specifies the element is orientated in a vertical top down manner.
+        /// </summary>
+        Top,
 
-		/// <summary>
-		/// Specifies the element is orientated in a vertical bottom upwards manner.
-		/// </summary>
-		Bottom,
+        /// <summary>
+        /// Specifies the element is orientated in a vertical bottom upwards manner.
+        /// </summary>
+        Bottom,
 
-		/// <summary>
-		/// Specifies the element is orientated in a horizontal left to right manner.
-		/// </summary>
-		Left,
+        /// <summary>
+        /// Specifies the element is orientated in a horizontal left to right manner.
+        /// </summary>
+        Left,
 
-		/// <summary>
-		/// Specifies the element is orientated in a horizontal right to left manner.
-		/// </summary>
-		Right
-	}
-	#endregion
+        /// <summary>
+        /// Specifies the element is orientated in a horizontal right to left manner.
+        /// </summary>
+        Right
+    }
+    #endregion
 
     #region Enum TabBorderStyle
     /// <summary>
@@ -917,7 +920,7 @@ namespace ComponentFactory.Krypton.Toolkit
         SmoothOutsize,
 
         /// <summary>
-        /// Specifies docking tabs of requal size.
+        /// Specifies docking tabs of equal size.
         /// </summary>
         DockEqual,
 
@@ -1069,7 +1072,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies an italic label for use on a control style background.
         /// </summary>
         ItalicControl,
-        
+
         /// <summary>
         /// Specifies a label appropriate for titles for use on a control style background.
         /// </summary>
@@ -1119,16 +1122,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies the first custom label style.
         /// </summary>
         Custom1,
-
-        /// <summary>
-        /// Specifies the second custom label style.
-        /// </summary>
         Custom2,
-
-        /// <summary>
-        /// Specifies the third custom label style.
-        /// </summary>
-        Custom3    
+        Custom3
     }
     #endregion
 
@@ -1153,6 +1148,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies the first custom grid style.
         /// </summary>
         Custom1,
+        Custom2,
+        Custom3
     }
     #endregion
 
@@ -1177,6 +1174,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies the first custom grid style.
         /// </summary>
         Custom1,
+        Custom2,
+        Custom3,
 
         /// <summary>
         /// Specifies a mixed set of styles.
@@ -1226,11 +1225,8 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies the first custom header style.
         /// </summary>
         Custom1,
-
-        /// <summary>
-        /// Specifies the second custom header style.
-        /// </summary>
         Custom2,
+        Custom3
     }
     #endregion
 
@@ -1325,15 +1321,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies the first custom button style.
         /// </summary>
         Custom1,
-
-        /// <summary>
-        /// Specifies the second custom button style.
-        /// </summary>
         Custom2,
-
-        /// <summary>
-        /// Specifies the third custom button style.
-        /// </summary>
         Custom3
     }
     #endregion
@@ -1358,7 +1346,9 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <summary>
         /// Specifies a custom input button style.
         /// </summary>
-        Custom1
+        Custom1,
+        Custom2,
+        Custom3
     }
     #endregion
 
@@ -1387,7 +1377,9 @@ namespace ComponentFactory.Krypton.Toolkit
         /// <summary>
         /// Specifies a custom separator.
         /// </summary>
-        Custom1
+        Custom1,
+        Custom2,
+        Custom3
     }
     #endregion
 
@@ -1432,15 +1424,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Specifies the first custom tab style.
         /// </summary>
         Custom1,
-
-        /// <summary>
-        /// Specifies the second custom tab style.
-        /// </summary>
         Custom2,
-
-        /// <summary>
-        /// Specifies the third custom tab style.
-        /// </summary>
         Custom3
     }
     #endregion
@@ -1626,11 +1610,11 @@ namespace ComponentFactory.Krypton.Toolkit
         /// </summary>
         Left,
 
-            /// <summary>
+        /// <summary>
         /// Specifies right of context menu is adjacent to right of rectangle.
         /// </summary>
         Right,
-}
+    }
     #endregion
 
     #region Enum ColorScheme
@@ -1778,4 +1762,79 @@ namespace ComponentFactory.Krypton.Toolkit
     /// <param name="pt">A Point related to the event.</param>
     public delegate void PointHandler(object sender, Point pt);
     #endregion
+
+    #region Enum PlacementMode
+    /// <summary>
+    /// Specifies the PlacementMode
+    /// https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.primitives.placementmode?view=netframework-4.7.2#System_Windows_Controls_Primitives_PlacementMode_Absolute
+    /// </summary>
+    public enum PlacementMode
+    {
+        /// <summary>
+        /// A position of the Popup control relative to the upper-left corner of the screen and at an offset that is defined by the HorizontalOffset and VerticalOffset property values. If the screen edge obscures the Popup, the control then repositions itself to align with the edge.
+        /// </summary>
+        Absolute = 0,
+
+        /// <summary>
+        /// A position of the Popup control relative to the upper-left corner of the screen and at an offset that is defined by the HorizontalOffset and VerticalOffset property values. If the screen edge obscures the Popup, the control extends in the opposite direction from the axis defined by the HorizontalOffset or VerticalOffset =.
+        /// </summary>
+        AbsolutePoint = 5,
+
+        /// <summary>
+        /// A position of the Popup control where the control aligns its upper edge with the lower edge of the PlacementTarget and aligns its left edge with the left edge of the PlacementTarget. If the lower screen-edge obscures the Popup, the control repositions itself so that its lower edge aligns with the upper edge of the PlacementTarget. If the upper screen-edge obscures the Popup, the control then repositions itself so that its upper edge aligns with the upper screen-edge.
+        /// </summary>
+        Bottom = 2,
+
+        /// <summary>
+        /// A position of the Popup control where it is centered over the PlacementTarget. If a screen edge obscures the Popup, the control repositions itself to align with the screen edge.
+        /// </summary>
+        /// <remarks>
+        /// this does not make sense as the Mouse will then fire and the tooltip will be replaced, and then shown, and then replace, etc.
+        /// </remarks>
+        Center = 3,
+
+        //// <summary>
+        //// A position and repositioning behavior for the Popup control that is defined by the CustomPopupPlacementCallback delegate specified by the CustomPopupPlacementCallback property.
+        //// </summary>
+        //// <remarks>
+        //// No callback implementation !
+        //// </remarks>
+        //Custom = 11,
+
+        /// <summary>
+        /// A Popup control that aligns its right edge with the left edge of the PlacementTarget and aligns its upper edge with the upper edge of the PlacementTarget.If the left screen-edge obscures the Popup, the Popup repositions itself so that its left edge aligns with the right edge of the PlacementTarget.If the right screen-edge obscures the Popup, the right edge of the control aligns with the right screen-edge.If the upper or lower screen-edge obscures the Popup, the control repositions itself to align with the obscuring screen edge.
+        /// </summary>
+        Left = 9,
+
+        /// <summary>
+        /// A position of the Popup control that aligns its upper edge with the lower edge of the bounding box of the mouse and aligns its left edge with the left edge of the bounding box of the mouse. If the lower screen-edge obscures the Popup, it repositions itself to align with the upper edge of the bounding box of the mouse. If the upper screen-edge obscures the Popup, the control repositions itself to align with the upper screen-edge.
+        /// </summary>
+        Mouse = 7,
+
+        /// <summary>
+        /// A position of the Popup control relative to the tip of the mouse cursor and at an offset that is defined by the HorizontalOffset and VerticalOffset property values. If a horizontal or vertical screen edge obscures the Popup, it opens in the opposite direction from the obscuring edge.If the opposite screen edge also obscures the Popup, it then aligns with the obscuring screen edge.
+        /// </summary>
+        MousePoint = 8,
+
+        /// <summary>
+        ///A position of the Popup control relative to the upper-left corner of the PlacementTarget and at an offset that is defined by the HorizontalOffset and VerticalOffset property values. If the screen edge obscures the Popup, the control repositions itself to align with the screen edge.
+        /// </summary>
+        Relative = 1,
+
+        /// <summary>
+        /// A position of the Popup control relative to the upper-left corner of the PlacementTarget and at an offset that is defined by the HorizontalOffset and VerticalOffset property values. If a screen edge obscures the Popup, the Popup extends in the opposite direction from the direction from the axis defined by the HorizontalOffset or VerticalOffset.If the opposite screen edge also obscures the Popup, the control then aligns with this screen edge.
+        /// </summary>
+        RelativePoint = 6,
+
+        /// <summary>
+        /// A position of the Popup control that aligns its left edge with the right edge of the PlacementTarget and aligns its upper edge with the upper edge of the PlacementTarget. If the right screen-edge obscures the Popup, the control repositions itself so that its left edge aligns with the left edge of the PlacementTarget.If the left screen-edge obscures the Popup, the control repositions itself so that its left edge aligns with the left screen-edge.If the upper or lower screen-edge obscures the Popup, the control then repositions itself to align with the obscuring screen edge.
+        /// </summary>
+        Right = 4,
+
+        /// <summary>
+        /// A position of the Popup control that aligns its lower edge with the upper edge of the PlacementTarget and aligns its left edge with the left edge of the PlacementTarget. If the upper screen-edge obscures the Popup, the control repositions itself so that its upper edge aligns with the lower edge of the PlacementTarget.If the lower screen-edge obscures the Popup, the lower edge of the control aligns with the lower screen-edge.If the left or right screen-edge obscures the Popup, it then repositions itself to align with the obscuring screen.
+        /// </summary>
+        Top = 10,
+    }
+    #endregion Enum PlacementMode
 }
