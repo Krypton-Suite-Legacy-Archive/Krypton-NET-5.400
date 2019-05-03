@@ -1,5 +1,9 @@
 # <img src="https://github.com/Wagnerp/Krypton-NET-5.400/blob/master/Krypton.png"> .NET 5.400
 
+<!--| NuGet | Current NuGet Version | Github License |
+|---|---|---|
+| [![NuGet](https://img.shields.io/badge/NuGet-Krypton%20.NET%205.450-brightgreen.svg)](https://www.nuget.org/packages/KryptonToolkitSuite5450/) | ![Nuget](https://img.shields.io/nuget/v/KryptonToolkitSuite5450.svg) | ![GitHub](https://img.shields.io/github/license/Wagnerp/Krypton-NET-5.450.svg) |-->
+
 =======
 
 # <img src="https://github.com/Wagnerp/Krypton-NET-5.470/blob/master/Assets/PNG/Help/Help_1_48_x_48.png" /><a href="https://wagnerp.github.io/Krypton-NET-5.470/Help/Output/index.html">Online Help</a>
