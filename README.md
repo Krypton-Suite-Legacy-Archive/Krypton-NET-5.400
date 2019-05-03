@@ -6,7 +6,7 @@
 
 =======
 
-<!--## 2019-05-03 Build 968 - 2018/2019 Updates
+## 2019-05-03 Build 968 - 2018/2019 Updates
 * Fixed issue [#147](https://github.com/Wagnerp/Krypton-NET-5.470/issues/147), hint does not have a designer reset option
 * Fixed issue [#146](https://github.com/Wagnerp/Krypton-NET-5.470/issues/146), PInvoke types should be structures and not classes
 * Fixed issue [#155](https://github.com/Wagnerp/Krypton-NET-5.470/issues/155), new Shadow feature does not handle "Window bar flashing" as expected 
@@ -71,11 +71,9 @@
 * The `Import()` and `Export()` methods will now use the native `KryptonMessageBox` instead of a system one
 * Removed the phantom `KryptonPalette` component
 * Now you can access the full `FilePath` of the loaded palette XML file
-* Build 633 (build date Wednesday 8th August, 2018) is now available through the **releases** tab
 * New icon (not propagated through all the example applications yet)
 * General bug fixes
 * And sort out some spelling mistakes in the `VisualForm.cs`
--->
 
 =======
 
