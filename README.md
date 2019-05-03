@@ -1,8 +1,10 @@
 # <img src="https://github.com/Wagnerp/Krypton-NET-5.400/blob/master/Krypton.png"> .NET 5.400
 
-<!--| NuGet | Current NuGet Version | Github License |
+=======
+
+| NuGet | Current NuGet Version | Github License |
 |---|---|---|
-| [![NuGet](https://img.shields.io/badge/NuGet-Krypton%20.NET%205.450-brightgreen.svg)](https://www.nuget.org/packages/KryptonToolkitSuite5450/) | ![Nuget](https://img.shields.io/nuget/v/KryptonToolkitSuite5450.svg) | ![GitHub](https://img.shields.io/github/license/Wagnerp/Krypton-NET-5.450.svg) |-->
+| [![NuGet](https://img.shields.io/badge/NuGet-Krypton%20.NET%205.400-brightgreen.svg)](https://www.nuget.org/packages/KryptonToolkitSuite5400/) | ![Nuget](https://img.shields.io/nuget/v/KryptonToolkitSuite5400.svg) | ![GitHub](https://img.shields.io/github/license/Wagnerp/Krypton-NET-5.400.svg) |
 
 =======
 
