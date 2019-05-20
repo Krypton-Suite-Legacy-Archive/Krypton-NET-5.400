@@ -296,7 +296,7 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             get
             {
-                if ((WinStyle & 12840056) == 0)
+                if ((WinStyle & 12845056) == 0)
                 {
                     return (WinExStyle & 513) != 0;
                 }
