@@ -5,8 +5,8 @@
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
-//  Version 5.400.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.470)
+//  Version 5.470.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -1141,8 +1141,8 @@ namespace ComponentFactory.Krypton.Toolkit
                 mmi.ptMaxPosition.Y = Math.Abs(rcWorkArea.top - rcMonitorArea.top);
                 mmi.ptMaxSize.X = Math.Abs(rcWorkArea.right - rcWorkArea.left);
                 mmi.ptMaxSize.Y = Math.Abs(rcWorkArea.bottom - rcWorkArea.top);
-                mmi.ptMinTrackSize.X = Math.Max(mmi.ptMinTrackSize.X*2, this.MinimumSize.Width);
-                mmi.ptMinTrackSize.Y = Math.Max(mmi.ptMinTrackSize.Y*2, this.MinimumSize.Height);
+                mmi.ptMinTrackSize.X = Math.Max(mmi.ptMinTrackSize.X*2, MinimumSize.Width);
+                mmi.ptMinTrackSize.Y = Math.Max(mmi.ptMinTrackSize.Y*2, MinimumSize.Height);
             }
 
             Marshal.StructureToPtr(mmi, m.LParam, true);

@@ -5,7 +5,7 @@
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to licence terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.470)
 //  Version 4.7.0.0  www.ComponentFactory.com
 // *************************************************************************
 
@@ -906,7 +906,7 @@ namespace KryptonExplorer
 
         private void kbtnViewLatestReleaseNotes_Click(object sender, EventArgs e)
         {
-            Process.Start(@"https://www.somsubhra.com/github-release-stats/?username=Wagnerp&repository=Krypton-NET-5.400");
+            Process.Start(@"https://www.somsubhra.com/github-release-stats/?username=Wagnerp&repository=Krypton-NET-5.470");
         }
 
         private void kbtnApplyTheme_Click(object sender, EventArgs e)
@@ -922,17 +922,17 @@ namespace KryptonExplorer
 
         private void KbtnKryptonToolkitPackage_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.nuget.org/packages/KryptonToolkitSuite5400/");
+            Process.Start("https://www.nuget.org/packages/KryptonToolkitSuite5470/");
         }
 
         private void KbtnKryptonExtendedToolkitPackage_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.nuget.org/packages/KryptonExtendedToolkit5400/");
+            Process.Start("https://www.nuget.org/packages/KryptonExtendedToolkit5470/");
         }
 
         private void KbtnKryptonDemoApplicationPackage_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.nuget.org/packages/KryptonToolkitSuite5400Demos/");
+            Process.Start("https://www.nuget.org/packages/KryptonToolkitSuite5470Demos/");
         }
     }
 }

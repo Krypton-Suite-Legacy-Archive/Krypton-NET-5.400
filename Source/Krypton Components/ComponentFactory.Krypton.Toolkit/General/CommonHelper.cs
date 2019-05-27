@@ -5,8 +5,8 @@
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
-//  Version 5.400.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.470)
+//  Version 5.470.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -597,7 +597,7 @@ namespace ComponentFactory.Krypton.Toolkit
         /// Apply an orientation to the draw border edges to get a correct value.
         /// </summary>
         /// <param name="borders">Border edges to be drawn.</param>
-        /// <param name="orientation">How to adjsut the border edges.</param>
+        /// <param name="orientation">How to adjust the border edges.</param>
         /// <returns>Border edges adjusted for orientation.</returns>
         public static PaletteDrawBorders OrientateDrawBorders(PaletteDrawBorders borders,
                                                               VisualOrientation orientation)
@@ -1774,7 +1774,7 @@ namespace ComponentFactory.Krypton.Toolkit
         #endregion
 
         /// <summary>
-        /// Gets the current active cusrsor, and if that is null use the current default cursor
+        /// Gets the current active cursor, and if that is null use the current default cursor
         /// </summary>
         /// <returns>Cursor Hotspot</returns>
         public static Point CaptureCursor()

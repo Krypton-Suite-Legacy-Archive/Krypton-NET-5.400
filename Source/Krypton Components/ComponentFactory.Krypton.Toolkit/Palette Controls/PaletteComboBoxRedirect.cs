@@ -5,8 +5,8 @@
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
-//  Version 5.400.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.470)
+//  Version 5.470.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System.ComponentModel;
@@ -50,6 +50,8 @@ namespace ComponentFactory.Krypton.Toolkit
                                                                       PaletteBorderStyle.InputControlStandalone,
                                                                       PaletteContentStyle.InputControlStandalone, 
                                                                       NeedPaint);
+            // Set directly to prevent a Paint redirect
+            ComboBox.Content._shortTextH = PaletteRelativeAlign.Near;
 
             _dropBackRedirect = new PaletteDoubleRedirect(redirect, 
                                                           PaletteBackStyle.ControlClient, 

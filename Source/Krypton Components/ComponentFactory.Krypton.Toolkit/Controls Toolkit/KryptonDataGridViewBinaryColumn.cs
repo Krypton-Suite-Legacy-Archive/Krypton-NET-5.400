@@ -5,8 +5,8 @@
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Megakraken & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
-//  Version 5.400.0.0  www.ComponentFactory.com
+//  Modifications by Megakraken & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.470)
+//  Version 5.470.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -59,9 +59,9 @@ namespace ComponentFactory.Krypton.Toolkit
         {
             StringBuilder builder = new StringBuilder(0x40);
             builder.Append("KryptonDataGridViewBinaryColumn { Name=");
-            builder.Append(base.Name);
+            builder.Append(Name);
             builder.Append(", Index=");
-            builder.Append(base.Index.ToString(CultureInfo.CurrentCulture));
+            builder.Append(Index.ToString(CultureInfo.CurrentCulture));
             builder.Append(" }");
             return builder.ToString();
         }
