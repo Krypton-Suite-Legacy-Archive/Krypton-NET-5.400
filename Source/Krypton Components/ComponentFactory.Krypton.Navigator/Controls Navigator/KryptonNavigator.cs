@@ -5,8 +5,8 @@
 //  proprietary information of Component Factory Pty Ltd, 13 Swallows Close, 
 //  Mornington, Vic 3931, Australia and are supplied subject to license terms.
 // 
-//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.470)
-//  Version 5.470.0.0  www.ComponentFactory.com
+//  Modifications by Peter Wagner(aka Wagnerp) & Simon Coghlan(aka Smurf-IV) 2017 - 2019. All rights reserved. (https://github.com/Wagnerp/Krypton-NET-5.400)
+//  Version 5.400.0.0  www.ComponentFactory.com
 // *****************************************************************************
 
 using System;
@@ -1586,7 +1586,7 @@ namespace ComponentFactory.Krypton.Navigator
                 }
                 else
                 {
-                    // https://github.com/Wagnerp/Krypton-NET-5.470/issues/93
+                    // https://github.com/Wagnerp/Krypton-NET-5.400/issues/93
                     SelectNextPageControl(false, false);
                 }
 

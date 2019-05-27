@@ -849,7 +849,7 @@
             this.labelKryptonExplorer.StateCommon.ShortText.Hint = ComponentFactory.Krypton.Toolkit.PaletteTextHint.AntiAlias;
             this.labelKryptonExplorer.TabIndex = 0;
             this.labelKryptonExplorer.Values.ExtraText = "Built for .Net 4.7";
-            this.labelKryptonExplorer.Values.Text = "Krypton 5.470";
+            this.labelKryptonExplorer.Values.Text = "Krypton 5.400";
             // 
             // kryptonPanelTopBorder
             // 
@@ -1578,7 +1578,7 @@
             this.kryptonPage2.Size = new System.Drawing.Size(492, 290);
             this.kryptonPage2.Text = "Application Examples";
             this.kryptonPage2.ToolTipTitle = "Page ToolTip";
-            this.kryptonPage2.UniqueName = "4702B7548CB44C0C4702B7548CB44C0C";
+            this.kryptonPage2.UniqueName = "4002B7548CB44C0C4002B7548CB44C0C";
             // 
             // linkInputForm
             // 
