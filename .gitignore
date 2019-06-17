@@ -309,3 +309,5 @@ __pycache__/
 # OpenCover UI analysis results
 OpenCover/
 /Binaries
+*.config
+*.xml
