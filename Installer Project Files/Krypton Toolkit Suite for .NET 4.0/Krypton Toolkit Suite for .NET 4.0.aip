@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="16.3" version="16.3" Modules="professional" RootPath="." Language="en_GB" Id="{A9E33334-81BF-4C56-BEBA-6F6B3106A434}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiJavaComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;ActSyncAppComponent;FixupComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
+    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION"/>
+    <ROW Property="AI_REQUIRED_DOTNET_DISPLAY" MultiBuildValue="DefaultBuild:4.0" ValueLocId="-"/>
+    <ROW Property="AI_REQUIRED_DOTNET_VERSION" MultiBuildValue="DefaultBuild:4.0.1" ValueLocId="-"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPHELPLINK" Value="https://wagnerp.github.io/Krypton-NET-5.470/Help/Output/index.html"/>
+    <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="ARPPRODUCTICON" Value="KryptonExplorer.exe" Type="8"/>
+    <ROW Property="ARPURLINFOABOUT" Value="https://github.com/Wagnerp/Krypton-NET-5.470/issues"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/Wagnerp/Krypton-NET-5.470/"/>
+    <ROW Property="CTRLS" Value="2"/>
+    <ROW Property="Manufacturer" Value="Krypton Toolkt Suite Contributors"/>
+    <ROW Property="ProductCode" Value="2057:{091DB1A3-D25D-4571-80EE-08788628EA3C} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="Krypton Toolkit Suite for .NET 4.0"/>
+    <ROW Property="ProductVersion" Value="5.400.1254.0" Type="32" TargetFile="KryptonToolkit.dll"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="UpgradeCode" Value="{D3196536-6B08-4043-A156-202F385E2154}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="Binaries_Dir" Directory_Parent="APPDIR" DefaultDir="Binaries"/>
+    <ROW Directory="DLLs_Dir" Directory_Parent="Binaries_Dir" DefaultDir="DLLs"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="Examples_Dir" Directory_Parent="Binaries_Dir" DefaultDir="Examples"/>
+    <ROW Directory="Help_Dir" Directory_Parent="APPDIR" DefaultDir="Help"/>
+    <ROW Directory="License_Dir" Directory_Parent="APPDIR" DefaultDir="License"/>
+    <ROW Directory="NuGet_1_Dir" Directory_Parent="SHORTCUTDIR" DefaultDir="NuGet"/>
+    <ROW Directory="NuGet_Dir" Directory_Parent="WebLinks_Dir" DefaultDir="NuGet"/>
+    <ROW Directory="PDBs_Dir" Directory_Parent="Binaries_Dir" DefaultDir="PDBs"/>
+    <ROW Directory="ProductCode_Dir" Directory_Parent="TempFolder" DefaultDir="{E7C2D~1|[|ProductCode]"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="Spring.742DA8B7_Dir" Directory_Parent="ProductCode_Dir" DefaultDir="SPRING~1.742|Spring.742DA8B7" DefaultDirLocId="-"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="TempFolder" Directory_Parent="TARGETDIR" DefaultDir="TEMPFO~1|TempFolder" IsPseudoRoot="1"/>
+    <ROW Directory="WebLinks_Dir" Directory_Parent="APPDIR" DefaultDir="WebLinks"/>
+    <ROW Directory="XML_Dir" Directory_Parent="Binaries_Dir" DefaultDir="XML"/>
+    <ROW Directory="pngfix_Dir" Directory_Parent="Spring.742DA8B7_Dir" DefaultDir="pngfix" DefaultDirLocId="-"/>
+    <ROW Directory="progress_Dir" Directory_Parent="Spring.742DA8B7_Dir" DefaultDir="progress" DefaultDirLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_ExePath" ComponentId="{2FB09337-4A5F-4A94-BE7F-2E771CDE4C92}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
+    <ROW Component="APPDIR" ComponentId="{0205BD61-A873-4930-983F-88838833273D}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="AdvancedPageDragandDrop.exe" ComponentId="{48B0F10C-71A3-430A-AD01-5FDE795A2AAB}" Directory_="Examples_Dir" Attributes="0" KeyPath="AdvancedPageDragandDrop.exe"/>
+    <ROW Component="AdvancedPageDragandDrop.pdb" ComponentId="{7D963931-CB23-4B04-B624-A83DE2BA28A9}" Directory_="PDBs_Dir" Attributes="0" KeyPath="AdvancedPageDragandDrop.pdb" Type="4"/>
+    <ROW Component="ApplicationMenu.exe" ComponentId="{425F6960-BF8A-4B37-9CC8-58627FF72AFE}" Directory_="Examples_Dir" Attributes="0" KeyPath="ApplicationMenu.exe"/>
+    <ROW Component="AutoShrinkingGroups.exe" ComponentId="{9A9A4588-487E-4A6F-AAE3-7919AC757AC5}" Directory_="Examples_Dir" Attributes="0" KeyPath="AutoShrinkingGroups.exe"/>
+    <ROW Component="BasicEvents.exe" ComponentId="{887D59C0-0492-49DF-91AB-32747B400EC6}" Directory_="Examples_Dir" Attributes="0" KeyPath="BasicEvents.exe"/>
+    <ROW Component="BasicPageDragandDrop.exe" ComponentId="{4FA8321F-F28E-4C1F-B5C8-7BF88F575C72}" Directory_="Examples_Dir" Attributes="0" KeyPath="BasicPageDragandDrop.exe"/>
+    <ROW Component="ButtonSpecPlayground.exe" ComponentId="{608BAAC6-E068-49B1-BDE8-9BA18E6A3189}" Directory_="Examples_Dir" Attributes="0" KeyPath="ButtonSpecPlayground.exe"/>
+    <ROW Component="CellMaximizeandRestore.exe" ComponentId="{9F55D713-3323-4A43-A1A9-BC3C2B5E8F9E}" Directory_="Examples_Dir" Attributes="0" KeyPath="CellMaximizeandRestore.exe"/>
+    <ROW Component="CheckVersion.url" ComponentId="{5C91B5C4-ED89-4FA6-B61A-DD63D41AF0AF}" Directory_="WebLinks_Dir" Attributes="0" KeyPath="CheckVersion.url" Type="0"/>
+    <ROW Component="ChildControlStack.exe" ComponentId="{4017B330-7896-4AA0-B605-0DF470A668A3}" Directory_="Examples_Dir" Attributes="0" KeyPath="ChildControlStack.exe"/>
+    <ROW Component="ContextualTabs.exe" ComponentId="{E366D924-2B49-4B50-B1D7-A2FE83B58EDF}" Directory_="Examples_Dir" Attributes="0" KeyPath="ContextualTabs.exe"/>
+    <ROW Component="CustomControlUsingPalettes.exe" ComponentId="{0E11F7A8-2B43-4766-B5B7-A241B15DFE48}" Directory_="Examples_Dir" Attributes="0" KeyPath="CustomControlUsingPalettes.exe"/>
+    <ROW Component="CustomControlUsingRenderers.exe" ComponentId="{48C4CC29-F69D-45A7-BA74-4136BD31F09A}" Directory_="Examples_Dir" Attributes="0" KeyPath="CustomControlUsingRenderers.exe"/>
+    <ROW Component="DockingCustomized.exe" ComponentId="{943ED500-5F1B-4350-B7C8-381052BA8C2E}" Directory_="Examples_Dir" Attributes="0" KeyPath="DockingCustomized.exe"/>
+    <ROW Component="DockingFlags.exe" ComponentId="{814C113B-25BE-4CF6-99A4-0802E72A2647}" Directory_="Examples_Dir" Attributes="0" KeyPath="DockingFlags.exe"/>
+    <ROW Component="DockingPersistence.exe" ComponentId="{E6AA64B7-1B6E-41A9-96D5-24156A46E276}" Directory_="Examples_Dir" Attributes="0" KeyPath="DockingPersistence.exe"/>
+    <ROW Component="ExpandingHeaderGroupsDockStyleExamples.exe" ComponentId="{846D8F5C-8BE4-4884-8153-53EC9CB47BD6}" Directory_="Examples_Dir" Attributes="0" KeyPath="ExpandingHeaderGroupsDockStyleExamples.exe"/>
+    <ROW Component="ExpandingHeaderGroupsSplittersExamples.exe" ComponentId="{55738B96-588D-474E-BA5A-721AFCCA100A}" Directory_="Examples_Dir" Attributes="0" KeyPath="ExpandingHeaderGroupsSplittersExamples.exe"/>
+    <ROW Component="ExpandingHeaderGroupsStackExamples.exe" ComponentId="{182ACCAE-096F-460C-8D1C-A078BF4C68FE}" Directory_="Examples_Dir" Attributes="0" KeyPath="ExpandingHeaderGroupsStackExamples.exe"/>
+    <ROW Component="ExpandingPages.exe" ComponentId="{8A8A6625-E991-48EA-8DF2-D0AD30B943B3}" Directory_="Examples_Dir" Attributes="0" KeyPath="ExpandingPages.exe"/>
+    <ROW Component="ExternalDragtoDocking.exe" ComponentId="{B1886D40-A523-415C-8D78-6181422DB7FC}" Directory_="Examples_Dir" Attributes="0" KeyPath="ExternalDragtoDocking.exe"/>
+    <ROW Component="FileaBugorNewRequest.url" ComponentId="{118D537E-F913-40D8-AE8E-1AD50180809D}" Directory_="WebLinks_Dir" Attributes="0" KeyPath="FileaBugorNewRequest.url"/>
+    <ROW Component="InputFormExamples.exe" ComponentId="{2BFF0F21-8013-420F-B578-9EE68F5D9E89}" Directory_="Examples_Dir" Attributes="0" KeyPath="InputFormExamples.exe"/>
+    <ROW Component="JoinourDiscordServer.url" ComponentId="{7CB5BA62-4FFC-4420-AC27-BEDC6DA0B020}" Directory_="WebLinks_Dir" Attributes="0" KeyPath="JoinourDiscordServer.url"/>
+    <ROW Component="KeyTipsandKeyboardAccess.exe" ComponentId="{E7685EA6-6500-44AC-9077-FF792A588108}" Directory_="Examples_Dir" Attributes="0" KeyPath="KeyTipsandKeyboardAccess.exe"/>
+    <ROW Component="KryptonBorderEdgeExamples.exe" ComponentId="{05E3B4CE-EEAD-4B27-882C-A5E2ECD5EC43}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonBorderEdgeExamples.exe"/>
+    <ROW Component="KryptonBreadCrumbExamples.exe" ComponentId="{8DAEB255-6589-42B8-809F-2FD489F49A1F}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonBreadCrumbExamples.exe"/>
+    <ROW Component="KryptonButtonExamples.exe" ComponentId="{96D7B193-BAC6-40A3-A465-CE2F9472E0F6}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonButtonExamples.exe"/>
+    <ROW Component="KryptonCheckButtonExamples.exe" ComponentId="{88FC6B44-AA38-43A9-9493-643127393013}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonCheckButtonExamples.exe"/>
+    <ROW Component="KryptonCheckSetExamples.exe" ComponentId="{29CB4D5A-3288-4867-81B8-4B4B4B8A3126}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonCheckSetExamples.exe"/>
+    <ROW Component="KryptonCheckboxExamples.exe" ComponentId="{A572E76C-743E-4281-9A0D-135D5115FDD3}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonCheckboxExamples.exe"/>
+    <ROW Component="KryptonCheckedListBoxExamples.exe" ComponentId="{D2B0F466-A918-4504-AD8E-58CE5B957F4B}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonCheckedListBoxExamples.exe"/>
+    <ROW Component="KryptonColorButtonExamples.exe" ComponentId="{6811046C-FF2E-4D93-B0A1-50C2124AF4DE}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonColorButtonExamples.exe"/>
+    <ROW Component="KryptonComboBoxExamples.exe" ComponentId="{887E6D60-76B6-4744-B1C7-42BB6F0191E6}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonComboBoxExamples.exe"/>
+    <ROW Component="KryptonCommandExamples.exe" ComponentId="{C0A93736-AC76-4A22-B6C0-B99EAF121449}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonCommandExamples.exe"/>
+    <ROW Component="KryptonContextMenuExamples.exe" ComponentId="{E625144F-9876-425D-94C7-D2338B580C4E}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonContextMenuExamples.exe"/>
+    <ROW Component="KryptonDataGridViewExamples.exe" ComponentId="{E6512CFB-3403-4DF8-BD10-46DC9BA0C240}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonDataGridViewExamples.exe"/>
+    <ROW Component="KryptonDateTimePickerExamples.exe" ComponentId="{EE169FAC-52A8-4348-94F3-5644C07E0174}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonDateTimePickerExamples.exe"/>
+    <ROW Component="KryptonDocking.dll" ComponentId="{0CC03483-F257-4880-8226-D1C650B6AA5B}" Directory_="DLLs_Dir" Attributes="0" KeyPath="KryptonDocking.dll"/>
+    <ROW Component="KryptonDocking.xml" ComponentId="{6D305110-255D-4F0C-A586-2E741FB18508}" Directory_="DLLs_Dir" Attributes="0" KeyPath="KryptonDocking.xml" Type="0"/>
+    <ROW Component="KryptonDocking.xml_1" ComponentId="{A10AD796-686D-4F9D-A847-2D0A44AD239B}" Directory_="XML_Dir" Attributes="0" KeyPath="KryptonDocking.xml_1" Type="0"/>
+    <ROW Component="KryptonDomainUpDownExamples.exe" ComponentId="{1674546F-8E71-4C17-963F-CD95B3CAFF8A}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonDomainUpDownExamples.exe"/>
+    <ROW Component="KryptonDropButtonExamples.exe" ComponentId="{87FAED2F-5B2A-47FB-BD14-A8E1D6EB3595}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonDropButtonExamples.exe"/>
+    <ROW Component="KryptonExplorer.exe" ComponentId="{3BCD51E0-9EC0-48F1-BCB1-3D52C9844BBC}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonExplorer.exe"/>
+    <ROW Component="KryptonFormExamples.exe" ComponentId="{F4DD27B9-95ED-4AE5-8528-34FD50805546}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonFormExamples.exe"/>
+    <ROW Component="KryptonGalleryExamples.exe" ComponentId="{1EAA87A6-442B-45C1-9D62-1852E56466E6}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonGalleryExamples.exe"/>
+    <ROW Component="KryptonGroupBoxExamples.exe" ComponentId="{E3D5FDCB-FC99-411E-AB38-0073A04F2A87}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonGroupBoxExamples.exe"/>
+    <ROW Component="KryptonGroupExamples.exe" ComponentId="{CBFE68DF-AA18-430E-9478-59F0B0220E2C}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonGroupExamples.exe"/>
+    <ROW Component="KryptonHeaderExamples.exe" ComponentId="{5B7C85B4-B868-439A-A46B-1AA3EAD504C8}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonHeaderExamples.exe"/>
+    <ROW Component="KryptonHeaderGroupExamples.exe" ComponentId="{2724E114-F2E4-4B11-BB7B-DBDEBBFBC000}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonHeaderGroupExamples.exe"/>
+    <ROW Component="KryptonInputBoxExamples.exe" ComponentId="{45804658-FF42-464F-A290-3FDA18B89617}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonInputBoxExamples.exe"/>
+    <ROW Component="KryptonLabelExamples.exe" ComponentId="{192D2C7A-A6B5-404B-A104-DE2249E472BF}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonLabelExamples.exe"/>
+    <ROW Component="KryptonLinkLabelExamples.exe" ComponentId="{38E8F6DC-B826-4421-B9CF-B1E6F8CD79BA}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonLinkLabelExamples.exe"/>
+    <ROW Component="KryptonListBoxExamples.exe" ComponentId="{292B7B9E-F608-420A-8B79-ECA405A39B3F}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonListBoxExamples.exe"/>
+    <ROW Component="KryptonMaskedTextBoxExamples.exe" ComponentId="{BDA2AC5A-FF4A-400F-8D28-A94AB2281253}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonMaskedTextBoxExamples.exe"/>
+    <ROW Component="KryptonMessageBoxExamples.exe" ComponentId="{21828157-B95B-48B0-AC4D-1D9EC0285894}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonMessageBoxExamples.exe"/>
+    <ROW Component="KryptonMonthCalendarExamples.exe" ComponentId="{2FF1BE4F-96C9-4C88-993F-EE25DEA27269}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonMonthCalendarExamples.exe"/>
+    <ROW Component="KryptonNavigator.dll" ComponentId="{745FAFC2-3390-47A3-9A07-8DF03FF9620A}" Directory_="DLLs_Dir" Attributes="0" KeyPath="KryptonNavigator.dll"/>
+    <ROW Component="KryptonNumericUpDownExamples.exe" ComponentId="{5EA714D5-5EF3-4804-948F-FB48F5311B93}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonNumericUpDownExamples.exe"/>
+    <ROW Component="KryptonPaletteExamples.exe" ComponentId="{492D772E-607A-4109-8990-70474FA35B69}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonPaletteExamples.exe"/>
+    <ROW Component="KryptonPanelExamples.exe" ComponentId="{97E9F7F3-5609-4C0C-AB25-3DB86480ABD5}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonPanelExamples.exe"/>
+    <ROW Component="KryptonRadioButtonExamples.exe" ComponentId="{E04557AF-2B49-4D31-BAC8-CCA2EFF3CBD4}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonRadioButtonExamples.exe"/>
+    <ROW Component="KryptonRibbon.dll" ComponentId="{0D246D65-D6A1-4701-9292-E770F2CC5DC8}" Directory_="DLLs_Dir" Attributes="0" KeyPath="KryptonRibbon.dll"/>
+    <ROW Component="KryptonRichTextBoxExamples.exe" ComponentId="{5F854953-5D7D-4909-8B05-683CACDCE36B}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonRichTextBoxExamples.exe"/>
+    <ROW Component="KryptonSeparatorExamples.exe" ComponentId="{BF53AB9A-8F84-4FD8-9A1E-E5008595A018}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonSeparatorExamples.exe"/>
+    <ROW Component="KryptonSplitContainerExamples.exe" ComponentId="{F3F0AAD9-8385-4237-A59B-8937449A72A8}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonSplitContainerExamples.exe"/>
+    <ROW Component="KryptonTaskDialogExamples.exe" ComponentId="{9CE8D971-DCB8-4885-AF41-3918A00CAB3E}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonTaskDialogExamples.exe"/>
+    <ROW Component="KryptonTextBoxExamples.exe" ComponentId="{95525B4A-262D-4B64-A061-5FCCCA89AD82}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonTextBoxExamples.exe"/>
+    <ROW Component="KryptonToolkit.dll" ComponentId="{C42BA17A-8542-41B8-BB7B-772C55F95E58}" Directory_="DLLs_Dir" Attributes="0" KeyPath="KryptonToolkit.dll"/>
+    <ROW Component="KryptonToolkitHelp.chm" ComponentId="{5A80E7BD-E8CB-4AF7-872B-0E51B5B2EF8A}" Directory_="Help_Dir" Attributes="0" KeyPath="KryptonToolkitHelp.chm" Type="1"/>
+    <ROW Component="KryptonToolkitSuite5.400CoreModule.url" ComponentId="{1A48E0DD-F34D-4CE4-A552-4B754E3EB1C2}" Directory_="NuGet_Dir" Attributes="0" KeyPath="KryptonToolkitSuite5.400CoreModule.url" Type="0"/>
+    <ROW Component="KryptonToolkitSuite5.400DockingModule.url" ComponentId="{A67174E5-F69B-4BF6-875B-FA14F42AE505}" Directory_="NuGet_Dir" Attributes="0" KeyPath="KryptonToolkitSuite5.400DockingModule.url"/>
+    <ROW Component="KryptonToolkitSuite5.400NavigatorModule.url" ComponentId="{6CE23B20-1A9F-4926-97D2-377C7819AC4D}" Directory_="NuGet_Dir" Attributes="0" KeyPath="KryptonToolkitSuite5.400NavigatorModule.url"/>
+    <ROW Component="KryptonToolkitSuite5.400RibbonModule.url" ComponentId="{2D4057F6-85EC-40F9-8E30-9FA935A1C56E}" Directory_="NuGet_Dir" Attributes="0" KeyPath="KryptonToolkitSuite5.400RibbonModule.url"/>
+    <ROW Component="KryptonToolkitSuite5.400WorkspaceModule.url" ComponentId="{01DA5F06-209C-4B0A-A0AD-EEA498395934}" Directory_="NuGet_Dir" Attributes="0" KeyPath="KryptonToolkitSuite5.400WorkspaceModule.url"/>
+    <ROW Component="KryptonTrackBarExamples.exe" ComponentId="{6A1623F6-7040-4F60-98A0-F6C0C0DEB171}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonTrackBarExamples.exe"/>
+    <ROW Component="KryptonTreeViewExamples.exe" ComponentId="{F0105A4D-9687-4B1F-A3F0-7539653A265B}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonTreeViewExamples.exe"/>
+    <ROW Component="KryptonWorkspace.dll" ComponentId="{C54C4D8A-FA70-4811-8B85-544E8A518673}" Directory_="DLLs_Dir" Attributes="0" KeyPath="KryptonWorkspace.dll"/>
+    <ROW Component="KryptonWrapLabelExamples.exe" ComponentId="{5A99C6F1-0281-4658-B71C-6BD9F966E0B1}" Directory_="Examples_Dir" Attributes="0" KeyPath="KryptonWrapLabelExamples.exe"/>
+    <ROW Component="License.rtf" ComponentId="{77A381C9-FE18-4195-9FAE-A39E5716DC4D}" Directory_="License_Dir" Attributes="0" KeyPath="License.rtf" Type="0"/>
+    <ROW Component="MDIApplication.exe" ComponentId="{28773F16-C863-417E-B743-B63B496FA6FA}" Directory_="Examples_Dir" Attributes="0" KeyPath="MDIApplication.exe"/>
+    <ROW Component="MDIRibbon.exe" ComponentId="{150525C8-B6E1-4B38-88E0-F25F9D51692E}" Directory_="Examples_Dir" Attributes="0" KeyPath="MDIRibbon.exe"/>
+    <ROW Component="MemoEditor.exe" ComponentId="{1A05480E-C224-4A2C-A68A-A65B23331671}" Directory_="Examples_Dir" Attributes="0" KeyPath="MemoEditor.exe"/>
+    <ROW Component="MultiControlDocking.exe" ComponentId="{2B6C42B4-28FA-4DDF-B48E-61935B9CCCE1}" Directory_="Examples_Dir" Attributes="0" KeyPath="MultiControlDocking.exe"/>
+    <ROW Component="NavigatorContextMenus.exe" ComponentId="{01533858-C558-4893-A710-DD98F94CB2A5}" Directory_="Examples_Dir" Attributes="0" KeyPath="NavigatorContextMenus.exe"/>
+    <ROW Component="NavigatorModes.exe" ComponentId="{A29FE3F3-193A-4B4D-9456-6BDC2889DB3D}" Directory_="Examples_Dir" Attributes="0" KeyPath="NavigatorModes.exe"/>
+    <ROW Component="NavigatorPalettes.exe" ComponentId="{C9229520-89C1-4DDE-8109-953175C26F12}" Directory_="Examples_Dir" Attributes="0" KeyPath="NavigatorPalettes.exe"/>
+    <ROW Component="NavigatorPlayground.exe" ComponentId="{E1E6143F-D505-473B-AA62-9F3287202E0D}" Directory_="Examples_Dir" Attributes="0" KeyPath="NavigatorPlayground.exe"/>
+    <ROW Component="NavigatorToolTips.exe" ComponentId="{EA9E974B-14C9-46AA-BB9A-2076EDC0FAB3}" Directory_="Examples_Dir" Attributes="0" KeyPath="NavigatorToolTips.exe"/>
+    <ROW Component="NavigatorandFloatingWindows.exe" ComponentId="{62AB7634-D4CF-4451-BF7D-6C9FA11F51D0}" Directory_="Examples_Dir" Attributes="0" KeyPath="NavigatorandFloatingWindows.exe"/>
+    <ROW Component="NuGet" ComponentId="{F961191A-BB8D-43AC-9831-7C6B90979794}" Directory_="NuGet_1_Dir" Attributes="0"/>
+    <ROW Component="OneNoteTabs.exe" ComponentId="{3BBD95C8-8526-4A87-9329-F61672A50EC7}" Directory_="Examples_Dir" Attributes="0" KeyPath="OneNoteTabs.exe"/>
+    <ROW Component="OnlineHelp.url" ComponentId="{167C624F-0CE3-4D1F-8F07-14F4342621C5}" Directory_="WebLinks_Dir" Attributes="0" KeyPath="OnlineHelp.url"/>
+    <ROW Component="OrientationPlusAlignment.exe" ComponentId="{40C1CAD6-2C58-4DBD-8888-149DA5525E79}" Directory_="Examples_Dir" Attributes="0" KeyPath="OrientationPlusAlignment.exe"/>
+    <ROW Component="OutlookMailClone.exe" ComponentId="{DEAD826D-B133-4763-9A12-79B14DF9C986}" Directory_="Examples_Dir" Attributes="0" KeyPath="OutlookMailClone.exe"/>
+    <ROW Component="OutlookMockup.exe" ComponentId="{6E524791-E2EC-4CE5-80A5-F1FBB784B890}" Directory_="Examples_Dir" Attributes="0" KeyPath="OutlookMockup.exe"/>
+    <ROW Component="PaletteDesigner.exe" ComponentId="{6B1139CB-E5C7-420C-9A54-169F32ABC040}" Directory_="Examples_Dir" Attributes="0" KeyPath="PaletteDesigner.exe"/>
+    <ROW Component="PaletteUpgradeTool.exe" ComponentId="{90F1B311-29F5-42F5-AD49-C149AC3FDCD9}" Directory_="Examples_Dir" Attributes="0" KeyPath="PaletteUpgradeTool.exe"/>
+    <ROW Component="PerTabButtons.exe" ComponentId="{635B4CE7-BE72-457D-8DDE-032F55127F7E}" Directory_="Examples_Dir" Attributes="0" KeyPath="PerTabButtons.exe"/>
+    <ROW Component="PopupPages.exe" ComponentId="{C113880D-EE31-424F-9684-0ABB7883F9D8}" Directory_="Examples_Dir" Attributes="0" KeyPath="PopupPages.exe"/>
+    <ROW Component="ProductInformation" ComponentId="{B9ECE0EA-F997-44CA-B926-3E2BFD53198C}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="ProjectHomepage.url" ComponentId="{77F57AD1-54B3-423C-AE34-CF95C5C0862C}" Directory_="WebLinks_Dir" Attributes="0" KeyPath="ProjectHomepage.url"/>
+    <ROW Component="QuickAccessToolbar.exe" ComponentId="{4F7C4AF5-DC70-40B1-B04C-DFECB5F24245}" Directory_="Examples_Dir" Attributes="0" KeyPath="QuickAccessToolbar.exe"/>
+    <ROW Component="RibbonControls.exe" ComponentId="{2EB6347A-E086-4EE1-BAD4-892096DBE3C6}" Directory_="Examples_Dir" Attributes="0" KeyPath="RibbonControls.exe"/>
+    <ROW Component="RibbonGallery.exe" ComponentId="{DA5DC4DD-FC23-4D89-BE13-3D589B1C142E}" Directory_="Examples_Dir" Attributes="0" KeyPath="RibbonGallery.exe"/>
+    <ROW Component="RibbonToolTips.exe" ComponentId="{25A87619-CDBC-4A48-ADBE-12CFD8CE2C97}" Directory_="Examples_Dir" Attributes="0" KeyPath="RibbonToolTips.exe"/>
+    <ROW Component="RibbonandNavigatorandWorkspace.exe" ComponentId="{07A96D2F-2AAE-4D23-8E60-77E0701DE116}" Directory_="Examples_Dir" Attributes="0" KeyPath="RibbonandNavigatorandWorkspace.exe"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{9971E2E2-3490-44B5-B963-FF6CE3B29BF3}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="SinglelinePlusMultiline.exe" ComponentId="{DBC97B03-DC04-47DB-924A-392E7B0DA2BF}" Directory_="Examples_Dir" Attributes="0" KeyPath="SinglelinePlusMultiline.exe"/>
+    <ROW Component="StandardDocking.exe" ComponentId="{E1156F9F-75D8-49A9-8FDA-A45BF33EB0F0}" Directory_="Examples_Dir" Attributes="0" KeyPath="StandardDocking.exe"/>
+    <ROW Component="SystemThemedForms.exe" ComponentId="{450293A5-EF51-4596-A16A-7E7DB73ECE5A}" Directory_="Examples_Dir" Attributes="0" KeyPath="SystemThemedForms.exe"/>
+    <ROW Component="TabBorderStyles.exe" ComponentId="{46A50DE7-EDBD-483C-88E1-59A162101F61}" Directory_="Examples_Dir" Attributes="0" KeyPath="TabBorderStyles.exe"/>
+    <ROW Component="TestApp.exe" ComponentId="{F85669ED-5B20-4062-9277-82C99D2E6562}" Directory_="Examples_Dir" Attributes="0" KeyPath="TestApp.exe"/>
+    <ROW Component="TestClipBase.exe" ComponentId="{AC485124-0331-4DD3-A8DB-59FB91E58091}" Directory_="Examples_Dir" Attributes="0" KeyPath="TestClipBase.exe"/>
+    <ROW Component="TestMessageBoxClipping.exe" ComponentId="{327B6B5B-9171-4662-88E6-3A1D7C89947C}" Directory_="Examples_Dir" Attributes="0" KeyPath="TestMessageBoxClipping.exe"/>
+    <ROW Component="TestTextClipping.exe" ComponentId="{4B5B6FE7-3B84-4C20-996A-54075599CA94}" Directory_="Examples_Dir" Attributes="0" KeyPath="TestTextClipping.exe"/>
+    <ROW Component="ThreePaneApplicationBasic.exe" ComponentId="{B5599E1C-E62F-44C6-A53E-7C1C5EFD4AD5}" Directory_="Examples_Dir" Attributes="0" KeyPath="ThreePaneApplicationBasic.exe"/>
+    <ROW Component="ThreePaneApplicationExtended.exe" ComponentId="{CA37FBF2-5E70-43B8-B9CD-DF06916FAFD1}" Directory_="Examples_Dir" Attributes="0" KeyPath="ThreePaneApplicationExtended.exe"/>
+    <ROW Component="UserPageCreation.exe" ComponentId="{0F1140D3-F289-402F-9BA1-2DB6211821ED}" Directory_="Examples_Dir" Attributes="0" KeyPath="UserPageCreation.exe"/>
+    <ROW Component="WorkspaceCellLayout.exe" ComponentId="{FDEC240A-4727-48B4-B4CA-181DD1FA43F2}" Directory_="Examples_Dir" Attributes="0" KeyPath="WorkspaceCellLayout.exe"/>
+    <ROW Component="WorkspaceCellModes.exe" ComponentId="{1158AF57-3D00-412F-8B50-E892F86DD8B0}" Directory_="Examples_Dir" Attributes="0" KeyPath="WorkspaceCellModes.exe"/>
+    <ROW Component="WorkspacePersistence.exe" ComponentId="{F0C6323F-6D45-4289-9676-53051665E2B7}" Directory_="Examples_Dir" Attributes="0" KeyPath="WorkspacePersistence.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="KryptonDocking.dll" Component_="KryptonDocking.dll" FileName="KRYPTO~1.DLL|Krypton Docking.dll" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Docking.dll" SelfReg="false"/>
+    <ROW File="KryptonDocking.xml" Component_="KryptonDocking.xml" FileName="KRYPTO~1.XML|Krypton Docking.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Docking.xml" SelfReg="false"/>
+    <ROW File="KryptonNavigator.dll" Component_="KryptonNavigator.dll" FileName="KRYPTO~2.DLL|Krypton Navigator.dll" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Navigator.dll" SelfReg="false"/>
+    <ROW File="KryptonNavigator.xml" Component_="KryptonDocking.xml" FileName="KRYPTO~2.XML|Krypton Navigator.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Navigator.xml" SelfReg="false"/>
+    <ROW File="KryptonRibbon.dll" Component_="KryptonRibbon.dll" FileName="KRYPTO~3.DLL|Krypton Ribbon.dll" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Ribbon.dll" SelfReg="false"/>
+    <ROW File="KryptonRibbon.xml" Component_="KryptonDocking.xml" FileName="KRYPTO~3.XML|Krypton Ribbon.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Ribbon.xml" SelfReg="false"/>
+    <ROW File="KryptonToolkit.dll" Component_="KryptonToolkit.dll" FileName="KRYPTO~4.DLL|Krypton Toolkit.dll" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Toolkit.dll" SelfReg="false"/>
+    <ROW File="KryptonToolkit.xml" Component_="KryptonDocking.xml" FileName="KRYPTO~4.XML|Krypton Toolkit.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Toolkit.xml" SelfReg="false"/>
+    <ROW File="KryptonWorkspace.dll" Component_="KryptonWorkspace.dll" FileName="KRYPTO~5.DLL|Krypton Workspace.dll" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Workspace.dll" SelfReg="false"/>
+    <ROW File="KryptonWorkspace.xml" Component_="KryptonDocking.xml" FileName="KRYPTO~5.XML|Krypton Workspace.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\DLLs\Krypton Workspace.xml" SelfReg="false"/>
+    <ROW File="AdvancedPageDragandDrop.exe" Component_="AdvancedPageDragandDrop.exe" FileName="ADVANC~1.EXE|Advanced Page Drag and Drop.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Advanced Page Drag and Drop.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ApplicationMenu.exe" Component_="ApplicationMenu.exe" FileName="APPLIC~1.EXE|Application Menu.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Application Menu.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="AutoShrinkingGroups.exe" Component_="AutoShrinkingGroups.exe" FileName="AUTOSH~1.EXE|Auto Shrinking Groups.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Auto Shrinking Groups.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="BasicEvents.exe" Component_="BasicEvents.exe" FileName="BASICE~1.EXE|Basic Events.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Basic Events.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="BasicPageDragandDrop.exe" Component_="BasicPageDragandDrop.exe" FileName="BASICP~1.EXE|Basic Page Drag and Drop.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Basic Page Drag and Drop.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ButtonSpecPlayground.exe" Component_="ButtonSpecPlayground.exe" FileName="BUTTON~1.EXE|Button Spec Playground.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Button Spec Playground.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="CellMaximizeandRestore.exe" Component_="CellMaximizeandRestore.exe" FileName="CELLMA~1.EXE|Cell Maximize and Restore.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Cell Maximize and Restore.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ChildControlStack.exe" Component_="ChildControlStack.exe" FileName="CHILDC~1.EXE|Child Control Stack.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Child Control Stack.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ContextualTabs.exe" Component_="ContextualTabs.exe" FileName="CONTEX~1.EXE|Contextual Tabs.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Contextual Tabs.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="CustomControlUsingPalettes.exe" Component_="CustomControlUsingPalettes.exe" FileName="CUSTOM~1.EXE|Custom Control Using Palettes.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Custom Control Using Palettes.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="CustomControlUsingRenderers.exe" Component_="CustomControlUsingRenderers.exe" FileName="CUSTOM~2.EXE|Custom Control Using Renderers.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Custom Control Using Renderers.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="DockingCustomized.exe" Component_="DockingCustomized.exe" FileName="DOCKIN~1.EXE|Docking Customized.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Docking Customized.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="DockingFlags.exe" Component_="DockingFlags.exe" FileName="DOCKIN~2.EXE|Docking Flags.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Docking Flags.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="DockingPersistence.exe" Component_="DockingPersistence.exe" FileName="DOCKIN~3.EXE|Docking Persistence.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Docking Persistence.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ExpandingHeaderGroupsDockStyleExamples.exe" Component_="ExpandingHeaderGroupsDockStyleExamples.exe" FileName="EXPAND~1.EXE|Expanding Header Groups DockStyle Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Expanding Header Groups DockStyle Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ExpandingHeaderGroupsSplittersExamples.exe" Component_="ExpandingHeaderGroupsSplittersExamples.exe" FileName="EXPAND~2.EXE|Expanding Header Groups Splitters Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Expanding Header Groups Splitters Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ExpandingHeaderGroupsStackExamples.exe" Component_="ExpandingHeaderGroupsStackExamples.exe" FileName="EXPAND~3.EXE|Expanding Header Groups Stack Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Expanding Header Groups Stack Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ExpandingPages.exe" Component_="ExpandingPages.exe" FileName="EXPAND~4.EXE|Expanding Pages.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Expanding Pages.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ExternalDragtoDocking.exe" Component_="ExternalDragtoDocking.exe" FileName="EXTERN~1.EXE|External Drag to Docking.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\External Drag to Docking.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="InputFormExamples.exe" Component_="InputFormExamples.exe" FileName="INPUTF~1.EXE|Input Form Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Input Form Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KeyTipsandKeyboardAccess.exe" Component_="KeyTipsandKeyboardAccess.exe" FileName="KEYTIP~1.EXE|Key Tips and Keyboard Access.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Key Tips and Keyboard Access.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonBorderEdgeExamples.exe" Component_="KryptonBorderEdgeExamples.exe" FileName="KRYPTO~1.EXE|Krypton Border Edge Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Border Edge Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonBreadCrumbExamples.exe" Component_="KryptonBreadCrumbExamples.exe" FileName="KRYPTO~2.EXE|Krypton Bread Crumb Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Bread Crumb Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonButtonExamples.exe" Component_="KryptonButtonExamples.exe" FileName="KRYPTO~3.EXE|Krypton Button Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Button Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonCheckboxExamples.exe" Component_="KryptonCheckboxExamples.exe" FileName="KRYPTO~4.EXE|Krypton Checkbox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Checkbox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonCheckButtonExamples.exe" Component_="KryptonCheckButtonExamples.exe" FileName="KRYPTO~5.EXE|Krypton CheckButton Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton CheckButton Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonCheckedListBoxExamples.exe" Component_="KryptonCheckedListBoxExamples.exe" FileName="KRYPTO~6.EXE|Krypton Checked ListBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Checked ListBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonCheckSetExamples.exe" Component_="KryptonCheckSetExamples.exe" FileName="KRYPTO~7.EXE|Krypton CheckSet Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton CheckSet Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonColorButtonExamples.exe" Component_="KryptonColorButtonExamples.exe" FileName="KRYPTO~8.EXE|Krypton ColorButton Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton ColorButton Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonComboBoxExamples.exe" Component_="KryptonComboBoxExamples.exe" FileName="KRYPTO~9.EXE|Krypton ComboBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton ComboBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonCommandExamples.exe" Component_="KryptonCommandExamples.exe" FileName="KRYPT~10.EXE|Krypton Command Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Command Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonContextMenuExamples.exe" Component_="KryptonContextMenuExamples.exe" FileName="KRYPT~11.EXE|Krypton Context Menu Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Context Menu Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonDataGridViewExamples.exe" Component_="KryptonDataGridViewExamples.exe" FileName="KRYPT~12.EXE|Krypton Data GridView Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Data GridView Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonDateTimePickerExamples.exe" Component_="KryptonDateTimePickerExamples.exe" FileName="KRYPT~13.EXE|Krypton DateTimePicker Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton DateTimePicker Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonDomainUpDownExamples.exe" Component_="KryptonDomainUpDownExamples.exe" FileName="KRYPT~14.EXE|Krypton Domain UpDown Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Domain UpDown Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonDropButtonExamples.exe" Component_="KryptonDropButtonExamples.exe" FileName="KRYPT~15.EXE|Krypton DropButton Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton DropButton Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonExplorer.exe" Component_="KryptonExplorer.exe" FileName="KRYPT~16.EXE|Krypton Explorer.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Explorer.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonFormExamples.exe" Component_="KryptonFormExamples.exe" FileName="KRYPT~17.EXE|Krypton Form Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Form Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonGalleryExamples.exe" Component_="KryptonGalleryExamples.exe" FileName="KRYPT~18.EXE|Krypton Gallery Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Gallery Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonGroupExamples.exe" Component_="KryptonGroupExamples.exe" FileName="KRYPT~19.EXE|Krypton Group Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Group Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonGroupBoxExamples.exe" Component_="KryptonGroupBoxExamples.exe" FileName="KRYPT~20.EXE|Krypton GroupBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton GroupBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonHeaderExamples.exe" Component_="KryptonHeaderExamples.exe" FileName="KRYPT~21.EXE|Krypton Header Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Header Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonHeaderGroupExamples.exe" Component_="KryptonHeaderGroupExamples.exe" FileName="KRYPT~22.EXE|Krypton Header Group Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Header Group Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonInputBoxExamples.exe" Component_="KryptonInputBoxExamples.exe" FileName="KRYPT~23.EXE|Krypton InputBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton InputBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonLabelExamples.exe" Component_="KryptonLabelExamples.exe" FileName="KRYPT~24.EXE|Krypton Label Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Label Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonLinkLabelExamples.exe" Component_="KryptonLinkLabelExamples.exe" FileName="KRYPT~25.EXE|Krypton Link Label Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Link Label Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonListBoxExamples.exe" Component_="KryptonListBoxExamples.exe" FileName="KRYPT~26.EXE|Krypton ListBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton ListBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonMaskedTextBoxExamples.exe" Component_="KryptonMaskedTextBoxExamples.exe" FileName="KRYPT~27.EXE|Krypton Masked TextBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Masked TextBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonMessageBoxExamples.exe" Component_="KryptonMessageBoxExamples.exe" FileName="KRYPT~28.EXE|Krypton MessageBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton MessageBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonMonthCalendarExamples.exe" Component_="KryptonMonthCalendarExamples.exe" FileName="KRYPT~29.EXE|Krypton Month Calendar Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Month Calendar Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonNumericUpDownExamples.exe" Component_="KryptonNumericUpDownExamples.exe" FileName="KRYPT~30.EXE|Krypton Numeric UpDown Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Numeric UpDown Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonPaletteExamples.exe" Component_="KryptonPaletteExamples.exe" FileName="KRYPT~31.EXE|Krypton Palette Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Palette Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonPanelExamples.exe" Component_="KryptonPanelExamples.exe" FileName="KRYPT~32.EXE|Krypton Panel Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Panel Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonRadioButtonExamples.exe" Component_="KryptonRadioButtonExamples.exe" FileName="KRYPT~33.EXE|Krypton RadioButton Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton RadioButton Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonRichTextBoxExamples.exe" Component_="KryptonRichTextBoxExamples.exe" FileName="KRYPT~34.EXE|Krypton Rich TextBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Rich TextBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonSeparatorExamples.exe" Component_="KryptonSeparatorExamples.exe" FileName="KRYPT~35.EXE|Krypton Separator Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Separator Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonSplitContainerExamples.exe" Component_="KryptonSplitContainerExamples.exe" FileName="KRYPT~36.EXE|Krypton Split Container Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Split Container Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonTaskDialogExamples.exe" Component_="KryptonTaskDialogExamples.exe" FileName="KRYPT~37.EXE|Krypton TaskDialog Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton TaskDialog Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonTextBoxExamples.exe" Component_="KryptonTextBoxExamples.exe" FileName="KRYPT~38.EXE|Krypton TextBox Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton TextBox Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonTrackBarExamples.exe" Component_="KryptonTrackBarExamples.exe" FileName="KRYPT~39.EXE|Krypton TrackBar Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton TrackBar Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonTreeViewExamples.exe" Component_="KryptonTreeViewExamples.exe" FileName="KRYPT~40.EXE|Krypton TreeView Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton TreeView Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KryptonWrapLabelExamples.exe" Component_="KryptonWrapLabelExamples.exe" FileName="KRYPT~41.EXE|Krypton Wrap Label Examples.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Wrap Label Examples.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="MDIApplication.exe" Component_="MDIApplication.exe" FileName="MDIAPP~1.EXE|MDI Application.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\MDI Application.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="MDIRibbon.exe" Component_="MDIRibbon.exe" FileName="MDIRIB~1.EXE|MDI Ribbon.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\MDI Ribbon.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="MemoEditor.exe" Component_="MemoEditor.exe" FileName="MEMOED~1.EXE|Memo Editor.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Memo Editor.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="MultiControlDocking.exe" Component_="MultiControlDocking.exe" FileName="MULTIC~1.EXE|Multi Control Docking.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Multi Control Docking.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="NavigatorandFloatingWindows.exe" Component_="NavigatorandFloatingWindows.exe" FileName="NAVIGA~1.EXE|Navigator and Floating Windows.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Navigator and Floating Windows.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="NavigatorContextMenus.exe" Component_="NavigatorContextMenus.exe" FileName="NAVIGA~2.EXE|Navigator Context Menus.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Navigator Context Menus.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="NavigatorModes.exe" Component_="NavigatorModes.exe" FileName="NAVIGA~3.EXE|Navigator Modes.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Navigator Modes.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="NavigatorPalettes.exe" Component_="NavigatorPalettes.exe" FileName="NAVIGA~4.EXE|Navigator Palettes.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Navigator Palettes.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="NavigatorPlayground.exe" Component_="NavigatorPlayground.exe" FileName="NAVIGA~5.EXE|Navigator Playground.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Navigator Playground.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="NavigatorToolTips.exe" Component_="NavigatorToolTips.exe" FileName="NAVIGA~6.EXE|Navigator Tool Tips.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Navigator Tool Tips.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="OneNoteTabs.exe" Component_="OneNoteTabs.exe" FileName="ONENOT~1.EXE|OneNote Tabs.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\OneNote Tabs.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="OrientationPlusAlignment.exe" Component_="OrientationPlusAlignment.exe" FileName="ORIENT~1.EXE|Orientation Plus Alignment.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Orientation Plus Alignment.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="OutlookMailClone.exe" Component_="OutlookMailClone.exe" FileName="OUTLOO~1.EXE|Outlook Mail Clone.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Outlook Mail Clone.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="OutlookMockup.exe" Component_="OutlookMockup.exe" FileName="OUTLOO~2.EXE|Outlook Mockup.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Outlook Mockup.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="PaletteDesigner.exe" Component_="PaletteDesigner.exe" FileName="PALETT~1.EXE|Palette Designer.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Palette Designer.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="PaletteUpgradeTool.exe" Component_="PaletteUpgradeTool.exe" FileName="PALETT~2.EXE|Palette Upgrade Tool.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Palette Upgrade Tool.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="PerTabButtons.exe" Component_="PerTabButtons.exe" FileName="PERTAB~1.EXE|Per Tab Buttons.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Per Tab Buttons.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="PopupPages.exe" Component_="PopupPages.exe" FileName="POPUPP~1.EXE|Popup Pages.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Popup Pages.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="QuickAccessToolbar.exe" Component_="QuickAccessToolbar.exe" FileName="QUICKA~1.EXE|Quick Access Toolbar.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Quick Access Toolbar.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="RibbonandNavigatorandWorkspace.exe" Component_="RibbonandNavigatorandWorkspace.exe" FileName="RIBBON~1.EXE|Ribbon and Navigator and Workspace.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Ribbon and Navigator and Workspace.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="RibbonControls.exe" Component_="RibbonControls.exe" FileName="RIBBON~2.EXE|Ribbon Controls.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Ribbon Controls.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="RibbonGallery.exe" Component_="RibbonGallery.exe" FileName="RIBBON~3.EXE|Ribbon Gallery.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Ribbon Gallery.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="RibbonToolTips.exe" Component_="RibbonToolTips.exe" FileName="RIBBON~4.EXE|Ribbon Tool Tips.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Ribbon Tool Tips.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="SinglelinePlusMultiline.exe" Component_="SinglelinePlusMultiline.exe" FileName="SINGLE~1.EXE|Singleline Plus Multiline.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Singleline Plus Multiline.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="StandardDocking.exe" Component_="StandardDocking.exe" FileName="STANDA~1.EXE|Standard Docking.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Standard Docking.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="SystemThemedForms.exe" Component_="SystemThemedForms.exe" FileName="SYSTEM~1.EXE|System Themed Forms.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\System Themed Forms.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="TabBorderStyles.exe" Component_="TabBorderStyles.exe" FileName="TABBOR~1.EXE|Tab Border Styles.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Tab Border Styles.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="TestClipBase.exe" Component_="TestClipBase.exe" FileName="TESTCL~1.EXE|Test Clip Base.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Test Clip Base.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="TestMessageBoxClipping.exe" Component_="TestMessageBoxClipping.exe" FileName="TESTME~1.EXE|Test MessageBox Clipping.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Test MessageBox Clipping.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="TestTextClipping.exe" Component_="TestTextClipping.exe" FileName="TESTTE~1.EXE|Test Text Clipping.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Test Text Clipping.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="TestApp.exe" Component_="TestApp.exe" FileName="TestApp.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\TestApp.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ThreePaneApplicationBasic.exe" Component_="ThreePaneApplicationBasic.exe" FileName="THREEP~1.EXE|Three Pane Application Basic.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Three Pane Application Basic.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ThreePaneApplicationExtended.exe" Component_="ThreePaneApplicationExtended.exe" FileName="THREEP~2.EXE|Three Pane Application Extended.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Three Pane Application Extended.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="UserPageCreation.exe" Component_="UserPageCreation.exe" FileName="USERPA~1.EXE|User Page Creation.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\User Page Creation.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="WorkspaceCellLayout.exe" Component_="WorkspaceCellLayout.exe" FileName="WORKSP~1.EXE|Workspace Cell Layout.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Workspace Cell Layout.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="WorkspaceCellModes.exe" Component_="WorkspaceCellModes.exe" FileName="WORKSP~2.EXE|Workspace Cell Modes.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Workspace Cell Modes.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="WorkspacePersistence.exe" Component_="WorkspacePersistence.exe" FileName="WORKSP~3.EXE|Workspace Persistence.exe" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Workspace Persistence.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="AdvancedPageDragandDrop.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="ADVANC~1.PDB|Advanced Page Drag and Drop.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Advanced Page Drag and Drop.pdb" SelfReg="false"/>
+    <ROW File="ApplicationMenu.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="APPLIC~1.PDB|Application Menu.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Application Menu.pdb" SelfReg="false"/>
+    <ROW File="AutoShrinkingGroups.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="AUTOSH~1.PDB|Auto Shrinking Groups.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Auto Shrinking Groups.pdb" SelfReg="false"/>
+    <ROW File="BasicEvents.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="BASICE~1.PDB|Basic Events.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Basic Events.pdb" SelfReg="false"/>
+    <ROW File="BasicPageDragandDrop.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="BASICP~1.PDB|Basic Page Drag and Drop.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Basic Page Drag and Drop.pdb" SelfReg="false"/>
+    <ROW File="ButtonSpecPlayground.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="BUTTON~1.PDB|Button Spec Playground.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Button Spec Playground.pdb" SelfReg="false"/>
+    <ROW File="CellMaximizeandRestore.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="CELLMA~1.PDB|Cell Maximize and Restore.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Cell Maximize and Restore.pdb" SelfReg="false"/>
+    <ROW File="ChildControlStack.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="CHILDC~1.PDB|Child Control Stack.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Child Control Stack.pdb" SelfReg="false"/>
+    <ROW File="ContextualTabs.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="CONTEX~1.PDB|Contextual Tabs.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Contextual Tabs.pdb" SelfReg="false"/>
+    <ROW File="CustomControlUsingPalettes.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="CUSTOM~1.PDB|Custom Control Using Palettes.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Custom Control Using Palettes.pdb" SelfReg="false"/>
+    <ROW File="CustomControlUsingRenderers.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="CUSTOM~2.PDB|Custom Control Using Renderers.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Custom Control Using Renderers.pdb" SelfReg="false"/>
+    <ROW File="DockingCustomized.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="DOCKIN~1.PDB|Docking Customized.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Docking Customized.pdb" SelfReg="false"/>
+    <ROW File="DockingFlags.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="DOCKIN~2.PDB|Docking Flags.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Docking Flags.pdb" SelfReg="false"/>
+    <ROW File="DockingPersistence.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="DOCKIN~3.PDB|Docking Persistence.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Docking Persistence.pdb" SelfReg="false"/>
+    <ROW File="ExpandingHeaderGroupsDockStyleExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="EXPAND~1.PDB|Expanding Header Groups DockStyle Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Expanding Header Groups DockStyle Examples.pdb" SelfReg="false"/>
+    <ROW File="ExpandingHeaderGroupsSplittersExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="EXPAND~2.PDB|Expanding Header Groups Splitters Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Expanding Header Groups Splitters Examples.pdb" SelfReg="false"/>
+    <ROW File="ExpandingHeaderGroupsStackExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="EXPAND~3.PDB|Expanding Header Groups Stack Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Expanding Header Groups Stack Examples.pdb" SelfReg="false"/>
+    <ROW File="ExpandingPages.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="EXPAND~4.PDB|Expanding Pages.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Expanding Pages.pdb" SelfReg="false"/>
+    <ROW File="ExternalDragtoDocking.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="EXTERN~1.PDB|External Drag to Docking.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\External Drag to Docking.pdb" SelfReg="false"/>
+    <ROW File="InputFormExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="INPUTF~1.PDB|Input Form Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Input Form Examples.pdb" SelfReg="false"/>
+    <ROW File="KeyTipsandKeyboardAccess.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KEYTIP~1.PDB|Key Tips and Keyboard Access.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Key Tips and Keyboard Access.pdb" SelfReg="false"/>
+    <ROW File="KryptonBorderEdgeExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~1.PDB|Krypton Border Edge Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Border Edge Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonBreadCrumbExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~2.PDB|Krypton Bread Crumb Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Bread Crumb Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonButtonExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~3.PDB|Krypton Button Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Button Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonCheckboxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~4.PDB|Krypton Checkbox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Checkbox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonCheckButtonExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~5.PDB|Krypton CheckButton Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton CheckButton Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonCheckedListBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~6.PDB|Krypton Checked ListBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Checked ListBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonCheckSetExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~7.PDB|Krypton CheckSet Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton CheckSet Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonColorButtonExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~8.PDB|Krypton ColorButton Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton ColorButton Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonComboBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPTO~9.PDB|Krypton ComboBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton ComboBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonCommandExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~10.PDB|Krypton Command Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Command Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonContextMenuExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~11.PDB|Krypton Context Menu Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Context Menu Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonDataGridViewExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~12.PDB|Krypton Data GridView Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Data GridView Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonDateTimePickerExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~13.PDB|Krypton DateTimePicker Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton DateTimePicker Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonDocking.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~14.PDB|Krypton Docking.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Docking.pdb" SelfReg="false"/>
+    <ROW File="KryptonDomainUpDownExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~15.PDB|Krypton Domain UpDown Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Domain UpDown Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonDropButtonExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~16.PDB|Krypton DropButton Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton DropButton Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonExplorer.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~17.PDB|Krypton Explorer.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Explorer.pdb" SelfReg="false"/>
+    <ROW File="KryptonFormExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~18.PDB|Krypton Form Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Form Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonGalleryExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~19.PDB|Krypton Gallery Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Gallery Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonGroupExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~20.PDB|Krypton Group Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Group Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonGroupBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~21.PDB|Krypton GroupBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton GroupBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonHeaderExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~22.PDB|Krypton Header Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Header Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonHeaderGroupExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~23.PDB|Krypton Header Group Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Header Group Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonInputBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~24.PDB|Krypton InputBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton InputBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonLabelExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~25.PDB|Krypton Label Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Label Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonLinkLabelExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~26.PDB|Krypton Link Label Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Link Label Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonListBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~27.PDB|Krypton ListBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton ListBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonMaskedTextBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~28.PDB|Krypton Masked TextBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Masked TextBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonMessageBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~29.PDB|Krypton MessageBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton MessageBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonMonthCalendarExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~30.PDB|Krypton Month Calendar Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Month Calendar Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonNavigator.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~31.PDB|Krypton Navigator.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Navigator.pdb" SelfReg="false"/>
+    <ROW File="KryptonNumericUpDownExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~32.PDB|Krypton Numeric UpDown Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Numeric UpDown Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonPaletteExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~33.PDB|Krypton Palette Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Palette Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonPanelExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~34.PDB|Krypton Panel Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Panel Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonRadioButtonExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~35.PDB|Krypton RadioButton Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton RadioButton Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonRibbon.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~36.PDB|Krypton Ribbon.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Ribbon.pdb" SelfReg="false"/>
+    <ROW File="KryptonRichTextBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~37.PDB|Krypton Rich TextBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Rich TextBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonSeparatorExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~38.PDB|Krypton Separator Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Separator Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonSplitContainerExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~39.PDB|Krypton Split Container Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Split Container Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonTaskDialogExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~40.PDB|Krypton TaskDialog Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton TaskDialog Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonTextBoxExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~41.PDB|Krypton TextBox Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton TextBox Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonToolkit.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~42.PDB|Krypton Toolkit.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Toolkit.pdb" SelfReg="false"/>
+    <ROW File="KryptonTrackBarExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~43.PDB|Krypton TrackBar Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton TrackBar Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonTreeViewExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~44.PDB|Krypton TreeView Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton TreeView Examples.pdb" SelfReg="false"/>
+    <ROW File="KryptonWorkspace.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~45.PDB|Krypton Workspace.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Workspace.pdb" SelfReg="false"/>
+    <ROW File="KryptonWrapLabelExamples.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="KRYPT~46.PDB|Krypton Wrap Label Examples.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Krypton Wrap Label Examples.pdb" SelfReg="false"/>
+    <ROW File="MDIApplication.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="MDIAPP~1.PDB|MDI Application.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\MDI Application.pdb" SelfReg="false"/>
+    <ROW File="MDIRibbon.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="MDIRIB~1.PDB|MDI Ribbon.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\MDI Ribbon.pdb" SelfReg="false"/>
+    <ROW File="MemoEditor.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="MEMOED~1.PDB|Memo Editor.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Memo Editor.pdb" SelfReg="false"/>
+    <ROW File="MultiControlDocking.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="MULTIC~1.PDB|Multi Control Docking.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Multi Control Docking.pdb" SelfReg="false"/>
+    <ROW File="NavigatorandFloatingWindows.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="NAVIGA~1.PDB|Navigator and Floating Windows.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Navigator and Floating Windows.pdb" SelfReg="false"/>
+    <ROW File="NavigatorContextMenus.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="NAVIGA~2.PDB|Navigator Context Menus.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Navigator Context Menus.pdb" SelfReg="false"/>
+    <ROW File="NavigatorModes.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="NAVIGA~3.PDB|Navigator Modes.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Navigator Modes.pdb" SelfReg="false"/>
+    <ROW File="NavigatorPalettes.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="NAVIGA~4.PDB|Navigator Palettes.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Navigator Palettes.pdb" SelfReg="false"/>
+    <ROW File="NavigatorPlayground.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="NAVIGA~5.PDB|Navigator Playground.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Navigator Playground.pdb" SelfReg="false"/>
+    <ROW File="NavigatorToolTips.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="NAVIGA~6.PDB|Navigator Tool Tips.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Navigator Tool Tips.pdb" SelfReg="false"/>
+    <ROW File="OneNoteTabs.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="ONENOT~1.PDB|OneNote Tabs.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\OneNote Tabs.pdb" SelfReg="false"/>
+    <ROW File="OrientationPlusAlignment.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="ORIENT~1.PDB|Orientation Plus Alignment.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Orientation Plus Alignment.pdb" SelfReg="false"/>
+    <ROW File="OutlookMailClone.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="OUTLOO~1.PDB|Outlook Mail Clone.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Outlook Mail Clone.pdb" SelfReg="false"/>
+    <ROW File="OutlookMockup.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="OUTLOO~2.PDB|Outlook Mockup.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Outlook Mockup.pdb" SelfReg="false"/>
+    <ROW File="PaletteDesigner.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="PALETT~1.PDB|Palette Designer.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Palette Designer.pdb" SelfReg="false"/>
+    <ROW File="PaletteUpgradeTool.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="PALETT~2.PDB|Palette Upgrade Tool.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Palette Upgrade Tool.pdb" SelfReg="false"/>
+    <ROW File="PerTabButtons.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="PERTAB~1.PDB|Per Tab Buttons.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Per Tab Buttons.pdb" SelfReg="false"/>
+    <ROW File="PopupPages.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="POPUPP~1.PDB|Popup Pages.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Popup Pages.pdb" SelfReg="false"/>
+    <ROW File="QuickAccessToolbar.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="QUICKA~1.PDB|Quick Access Toolbar.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Quick Access Toolbar.pdb" SelfReg="false"/>
+    <ROW File="RibbonandNavigatorandWorkspace.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="RIBBON~1.PDB|Ribbon and Navigator and Workspace.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Ribbon and Navigator and Workspace.pdb" SelfReg="false"/>
+    <ROW File="RibbonControls.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="RIBBON~2.PDB|Ribbon Controls.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Ribbon Controls.pdb" SelfReg="false"/>
+    <ROW File="RibbonGallery.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="RIBBON~3.PDB|Ribbon Gallery.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Ribbon Gallery.pdb" SelfReg="false"/>
+    <ROW File="RibbonToolTips.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="RIBBON~4.PDB|Ribbon Tool Tips.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Ribbon Tool Tips.pdb" SelfReg="false"/>
+    <ROW File="SinglelinePlusMultiline.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="SINGLE~1.PDB|Singleline Plus Multiline.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Singleline Plus Multiline.pdb" SelfReg="false"/>
+    <ROW File="StandardDocking.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="STANDA~1.PDB|Standard Docking.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Standard Docking.pdb" SelfReg="false"/>
+    <ROW File="SystemThemedForms.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="SYSTEM~1.PDB|System Themed Forms.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\System Themed Forms.pdb" SelfReg="false"/>
+    <ROW File="TabBorderStyles.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="TABBOR~1.PDB|Tab Border Styles.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Tab Border Styles.pdb" SelfReg="false"/>
+    <ROW File="TestClipBase.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="TESTCL~1.PDB|Test Clip Base.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Test Clip Base.pdb" SelfReg="false"/>
+    <ROW File="TestMessageBoxClipping.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="TESTME~1.PDB|Test MessageBox Clipping.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Test MessageBox Clipping.pdb" SelfReg="false"/>
+    <ROW File="TestTextClipping.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="TESTTE~1.PDB|Test Text Clipping.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Test Text Clipping.pdb" SelfReg="false"/>
+    <ROW File="TestApp.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="TestApp.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\TestApp.pdb" SelfReg="false"/>
+    <ROW File="ThreePaneApplicationBasic.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="THREEP~1.PDB|Three Pane Application Basic.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Three Pane Application Basic.pdb" SelfReg="false"/>
+    <ROW File="ThreePaneApplicationExtended.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="THREEP~2.PDB|Three Pane Application Extended.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Three Pane Application Extended.pdb" SelfReg="false"/>
+    <ROW File="UserPageCreation.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="USERPA~1.PDB|User Page Creation.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\User Page Creation.pdb" SelfReg="false"/>
+    <ROW File="WorkspaceCellLayout.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="WORKSP~1.PDB|Workspace Cell Layout.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Workspace Cell Layout.pdb" SelfReg="false"/>
+    <ROW File="WorkspaceCellModes.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="WORKSP~2.PDB|Workspace Cell Modes.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Workspace Cell Modes.pdb" SelfReg="false"/>
+    <ROW File="WorkspacePersistence.pdb" Component_="AdvancedPageDragandDrop.pdb" FileName="WORKSP~3.PDB|Workspace Persistence.pdb" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\PDBs\Workspace Persistence.pdb" SelfReg="false"/>
+    <ROW File="KryptonDocking.xml_1" Component_="KryptonDocking.xml_1" FileName="KRYPTO~1.XML|Krypton Docking.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\XML\Krypton Docking.xml" SelfReg="false"/>
+    <ROW File="KryptonNavigator.xml_1" Component_="KryptonDocking.xml_1" FileName="KRYPTO~2.XML|Krypton Navigator.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\XML\Krypton Navigator.xml" SelfReg="false"/>
+    <ROW File="KryptonRibbon.xml_1" Component_="KryptonDocking.xml_1" FileName="KRYPTO~3.XML|Krypton Ribbon.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\XML\Krypton Ribbon.xml" SelfReg="false"/>
+    <ROW File="KryptonToolkit.xml_1" Component_="KryptonDocking.xml_1" FileName="KRYPTO~4.XML|Krypton Toolkit.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\XML\Krypton Toolkit.xml" SelfReg="false"/>
+    <ROW File="KryptonWorkspace.xml_1" Component_="KryptonDocking.xml_1" FileName="KRYPTO~5.XML|Krypton Workspace.xml" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\XML\Krypton Workspace.xml" SelfReg="false"/>
+    <ROW File="KryptonToolkitHelp.chm" Component_="KryptonToolkitHelp.chm" FileName="KRYPTO~1.CHM|Krypton Toolkit Help.chm" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\Help\Krypton Toolkit Help.chm" SelfReg="false"/>
+    <ROW File="License.rtf" Component_="License.rtf" FileName="License.rtf" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\License\License.rtf" SelfReg="false"/>
+    <ROW File="CheckVersion.url" Component_="CheckVersion.url" FileName="CHECKV~1.URL|Check Version.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\Check Version.url" SelfReg="false"/>
+    <ROW File="FileaBugorNewRequest.url" Component_="FileaBugorNewRequest.url" FileName="FILEAB~1.URL|File a Bug or New Request.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\File a Bug or New Request.url" SelfReg="false"/>
+    <ROW File="JoinourDiscordServer.url" Component_="JoinourDiscordServer.url" FileName="JOINOU~1.URL|Join our Discord Server.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\Join our Discord Server.url" SelfReg="false"/>
+    <ROW File="KryptonToolkitTemplates.url" Component_="CheckVersion.url" FileName="KRYPTO~1.URL|Krypton Toolkit Templates.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\Krypton Toolkit Templates.url" SelfReg="false"/>
+    <ROW File="KryptonToolkitSuite5.400CoreModule.url" Component_="KryptonToolkitSuite5.400CoreModule.url" FileName="KRYPTO~1.URL|Krypton Toolkit Suite 5.400 - Core Module.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\NuGet\Krypton Toolkit Suite 5.400 - Core Module.url" SelfReg="false"/>
+    <ROW File="KryptonToolkitSuite5.400DockingModule.url" Component_="KryptonToolkitSuite5.400DockingModule.url" FileName="KRYPTO~2.URL|Krypton Toolkit Suite 5.400 - Docking Module.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\NuGet\Krypton Toolkit Suite 5.400 - Docking Module.url" SelfReg="false"/>
+    <ROW File="KryptonToolkitSuite5.400NavigatorModule.url" Component_="KryptonToolkitSuite5.400NavigatorModule.url" FileName="KRYPTO~3.URL|Krypton Toolkit Suite 5.400 - Navigator Module.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\NuGet\Krypton Toolkit Suite 5.400 - Navigator Module.url" SelfReg="false"/>
+    <ROW File="KryptonToolkitSuite5.400RibbonModule.url" Component_="KryptonToolkitSuite5.400RibbonModule.url" FileName="KRYPTO~4.URL|Krypton Toolkit Suite 5.400 - Ribbon Module.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\NuGet\Krypton Toolkit Suite 5.400 - Ribbon Module.url" SelfReg="false"/>
+    <ROW File="KryptonToolkitSuite5.400WorkspaceModule.url" Component_="KryptonToolkitSuite5.400WorkspaceModule.url" FileName="KRYPTO~5.URL|Krypton Toolkit Suite 5.400 - Workspace Module.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\NuGet\Krypton Toolkit Suite 5.400 - Workspace Module.url" SelfReg="false"/>
+    <ROW File="OnlineHelp.url" Component_="OnlineHelp.url" FileName="ONLINE~1.URL|Online Help.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\Online Help.url" SelfReg="false"/>
+    <ROW File="ProjectHomepage.url" Component_="ProjectHomepage.url" FileName="PROJEC~1.URL|Project Homepage.url" Attributes="0" SourcePath="P:\Development\Krypton Releases\5.400\WebLinks\Project Homepage.url" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
+    <ROW Action="AI_DetectSoftware" Sequence="101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Setup Files" Languages="en_GB" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en_GB.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\FolderDlg.aip"/>
+    <ROW Fragment="LicenseAgreementDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\LicenseAgreementDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="PreparePrereqDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\PreparePrereqDlg.aip"/>
+    <ROW Fragment="PrerequisitesDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\PrerequisitesDlg.aip"/>
+    <ROW Fragment="ProgressPrereqDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\ProgressPrereqDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;spring\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="SetupTypeDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\SetupTypeDlg.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;spring\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\WelcomeDlg.aip"/>
+    <ROW Fragment="WelcomePrereqDlg.aip" Path="&lt;AI_THEMES&gt;spring\fragments\WelcomePrereqDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractFiles" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="tempFiles.dll" SourcePath="&lt;AI_CUSTACTS&gt;tempFiles.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
+    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="45" Y="118" Width="360" Height="166" Attributes="3" Property="EulaRead" Text="P:\Development\Krypton Releases\5.400\License\License.rtf" Order="800" MsiKey="LicenseAgreementDlg#AgreementText"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_RemoveTempFiles" Condition="1" Ordering="102"/>
+    <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_RemoveTempFiles" Condition="1" Ordering="101"/>
+    <ROW Dialog_="WelcomePrereqDlg" Control_="Next" Event="NewDialog" Argument="PrerequisitesDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
+    <ROW Dialog_="PrerequisitesDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
+    <ROW Dialog_="PrerequisitesDlg" Control_="Back" Event="NewDialog" Argument="WelcomePrereqDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="SetupTypeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="SetupTypeDlg" Control_="TypicalButton" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="299"/>
+    <ROW Dialog_="SetupTypeDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="102"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL AND InstallMode=InstallModeCustom" Ordering="101"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_INSTALL AND InstallMode=InstallModeCustom" Ordering="2"/>
+    <ROW Dialog_="SetupTypeDlg" Control_="CustomButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_INSTALL AND InstallMode=InstallModeCustom" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="SetupTypeDlg" Condition="AI_INSTALL AND InstallMode=InstallModeCustom" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="102"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="2"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="701"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="701"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="SetupTypeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+    <ROW Directory_="NuGet_1_Dir" Component_="NuGet" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ChooseTextStyles" Type="1" Source="aicustact.dll" Target="ChooseTextStyles"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_ExtractFiles" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="AI_RemoveAllTempFiles" Target="[AI_TEMP_FILE_ROLLBACK_INFO]"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_EstimateExtractFiles" Type="1" Source="Prereq.dll" Target="EstimateExtractFiles"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractFiles" Type="1025" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_ExtractTempFiles" Type="1" Source="tempFiles.dll" Target="ExtractTempFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#KryptonExplorer.exe]"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_RemoveAllTempFiles" Type="1281" Source="tempFiles.dll" Target="RemoveAllTempFiles" AdditionalSeq="AI_DATA_SETTER_1"/>
+    <ROW Action="AI_RemoveTempFiles" Type="1" Source="tempFiles.dll" Target="RemoveTempFiles" WithoutSeq="true"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_RunFinishActions" Type="1" Source="aicustact.dll" Target="RunFinishActions" WithoutSeq="true"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
+    <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
+    <ROW Feature_="MainFeature" Component_="KryptonDocking.dll"/>
+    <ROW Feature_="MainFeature" Component_="KryptonDocking.xml"/>
+    <ROW Feature_="MainFeature" Component_="KryptonNavigator.dll"/>
+    <ROW Feature_="MainFeature" Component_="KryptonRibbon.dll"/>
+    <ROW Feature_="MainFeature" Component_="KryptonToolkit.dll"/>
+    <ROW Feature_="MainFeature" Component_="KryptonWorkspace.dll"/>
+    <ROW Feature_="MainFeature" Component_="AdvancedPageDragandDrop.exe"/>
+    <ROW Feature_="MainFeature" Component_="ApplicationMenu.exe"/>
+    <ROW Feature_="MainFeature" Component_="AutoShrinkingGroups.exe"/>
+    <ROW Feature_="MainFeature" Component_="BasicEvents.exe"/>
+    <ROW Feature_="MainFeature" Component_="BasicPageDragandDrop.exe"/>
+    <ROW Feature_="MainFeature" Component_="ButtonSpecPlayground.exe"/>
+    <ROW Feature_="MainFeature" Component_="CellMaximizeandRestore.exe"/>
+    <ROW Feature_="MainFeature" Component_="ChildControlStack.exe"/>
+    <ROW Feature_="MainFeature" Component_="ContextualTabs.exe"/>
+    <ROW Feature_="MainFeature" Component_="CustomControlUsingPalettes.exe"/>
+    <ROW Feature_="MainFeature" Component_="CustomControlUsingRenderers.exe"/>
+    <ROW Feature_="MainFeature" Component_="DockingCustomized.exe"/>
+    <ROW Feature_="MainFeature" Component_="DockingFlags.exe"/>
+    <ROW Feature_="MainFeature" Component_="DockingPersistence.exe"/>
+    <ROW Feature_="MainFeature" Component_="ExpandingHeaderGroupsDockStyleExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="ExpandingHeaderGroupsSplittersExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="ExpandingHeaderGroupsStackExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="ExpandingPages.exe"/>
+    <ROW Feature_="MainFeature" Component_="ExternalDragtoDocking.exe"/>
+    <ROW Feature_="MainFeature" Component_="InputFormExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KeyTipsandKeyboardAccess.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonBorderEdgeExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonBreadCrumbExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonButtonExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonCheckboxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonCheckButtonExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonCheckedListBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonCheckSetExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonColorButtonExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonComboBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonCommandExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonContextMenuExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonDataGridViewExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonDateTimePickerExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonDomainUpDownExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonDropButtonExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonExplorer.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonFormExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonGalleryExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonGroupExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonGroupBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonHeaderExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonHeaderGroupExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonInputBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonLabelExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonLinkLabelExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonListBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonMaskedTextBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonMessageBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonMonthCalendarExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonNumericUpDownExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonPaletteExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonPanelExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonRadioButtonExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonRichTextBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonSeparatorExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonSplitContainerExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonTaskDialogExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonTextBoxExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonTrackBarExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonTreeViewExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="KryptonWrapLabelExamples.exe"/>
+    <ROW Feature_="MainFeature" Component_="MDIApplication.exe"/>
+    <ROW Feature_="MainFeature" Component_="MDIRibbon.exe"/>
+    <ROW Feature_="MainFeature" Component_="MemoEditor.exe"/>
+    <ROW Feature_="MainFeature" Component_="MultiControlDocking.exe"/>
+    <ROW Feature_="MainFeature" Component_="NavigatorandFloatingWindows.exe"/>
+    <ROW Feature_="MainFeature" Component_="NavigatorContextMenus.exe"/>
+    <ROW Feature_="MainFeature" Component_="NavigatorModes.exe"/>
+    <ROW Feature_="MainFeature" Component_="NavigatorPalettes.exe"/>
+    <ROW Feature_="MainFeature" Component_="NavigatorPlayground.exe"/>
+    <ROW Feature_="MainFeature" Component_="NavigatorToolTips.exe"/>
+    <ROW Feature_="MainFeature" Component_="OneNoteTabs.exe"/>
+    <ROW Feature_="MainFeature" Component_="OrientationPlusAlignment.exe"/>
+    <ROW Feature_="MainFeature" Component_="OutlookMailClone.exe"/>
+    <ROW Feature_="MainFeature" Component_="OutlookMockup.exe"/>
+    <ROW Feature_="MainFeature" Component_="PaletteDesigner.exe"/>
+    <ROW Feature_="MainFeature" Component_="PaletteUpgradeTool.exe"/>
+    <ROW Feature_="MainFeature" Component_="PerTabButtons.exe"/>
+    <ROW Feature_="MainFeature" Component_="PopupPages.exe"/>
+    <ROW Feature_="MainFeature" Component_="QuickAccessToolbar.exe"/>
+    <ROW Feature_="MainFeature" Component_="RibbonandNavigatorandWorkspace.exe"/>
+    <ROW Feature_="MainFeature" Component_="RibbonControls.exe"/>
+    <ROW Feature_="MainFeature" Component_="RibbonGallery.exe"/>
+    <ROW Feature_="MainFeature" Component_="RibbonToolTips.exe"/>
+    <ROW Feature_="MainFeature" Component_="SinglelinePlusMultiline.exe"/>
+    <ROW Feature_="MainFeature" Component_="StandardDocking.exe"/>
+    <ROW Feature_="MainFeature" Component_="SystemThemedForms.exe"/>
+    <ROW Feature_="MainFeature" Component_="TabBorderStyles.exe"/>
+    <ROW Feature_="MainFeature" Component_="TestClipBase.exe"/>
+    <ROW Feature_="MainFeature" Component_="TestMessageBoxClipping.exe"/>
+    <ROW Feature_="MainFeature" Component_="TestTextClipping.exe"/>
+    <ROW Feature_="MainFeature" Component_="TestApp.exe"/>
+    <ROW Feature_="MainFeature" Component_="ThreePaneApplicationBasic.exe"/>
+    <ROW Feature_="MainFeature" Component_="ThreePaneApplicationExtended.exe"/>
+    <ROW Feature_="MainFeature" Component_="UserPageCreation.exe"/>
+    <ROW Feature_="MainFeature" Component_="WorkspaceCellLayout.exe"/>
+    <ROW Feature_="MainFeature" Component_="WorkspaceCellModes.exe"/>
+    <ROW Feature_="MainFeature" Component_="WorkspacePersistence.exe"/>
+    <ROW Feature_="MainFeature" Component_="AdvancedPageDragandDrop.pdb"/>
+    <ROW Feature_="MainFeature" Component_="KryptonDocking.xml_1"/>
+    <ROW Feature_="MainFeature" Component_="KryptonToolkitHelp.chm"/>
+    <ROW Feature_="MainFeature" Component_="License.rtf"/>
+    <ROW Feature_="MainFeature" Component_="CheckVersion.url"/>
+    <ROW Feature_="MainFeature" Component_="KryptonToolkitSuite5.400CoreModule.url"/>
+    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+    <ROW Feature_="MainFeature" Component_="FileaBugorNewRequest.url"/>
+    <ROW Feature_="MainFeature" Component_="NuGet"/>
+    <ROW Feature_="MainFeature" Component_="JoinourDiscordServer.url"/>
+    <ROW Feature_="MainFeature" Component_="OnlineHelp.url"/>
+    <ROW Feature_="MainFeature" Component_="ProjectHomepage.url"/>
+    <ROW Feature_="MainFeature" Component_="KryptonToolkitSuite5.400DockingModule.url"/>
+    <ROW Feature_="MainFeature" Component_="KryptonToolkitSuite5.400NavigatorModule.url"/>
+    <ROW Feature_="MainFeature" Component_="KryptonToolkitSuite5.400RibbonModule.url"/>
+    <ROW Feature_="MainFeature" Component_="KryptonToolkitSuite5.400WorkspaceModule.url"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="KryptonExplorer.exe" SourcePath="P:\Development\Krypton Releases\5.400\Binaries\Examples\Krypton Explorer.exe" Index="0"/>
+    <ROW Name="SystemFoldermsiexec.exe" SourcePath="&lt;AI_RES&gt;uninstall.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1503"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="103" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild"/>
+    <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
+    <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
+    <ROW Action="AI_DetectSoftware" Sequence="102"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
+    <ROW Action="AI_ExtractTempFiles" Sequence="1001"/>
+    <ROW Action="AI_RemoveTempFiles" Sequence="6601"/>
+    <ROW Action="AI_RemoveAllTempFiles" Sequence="1502"/>
+    <ROW Action="AI_DATA_SETTER_1" Sequence="1501"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_ExtractTempFiles" Sequence="1001"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="103"/>
+    <ROW Action="AI_DetectSoftware" Sequence="102"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
+    <ROW Action="AI_ChooseTextStyles" Sequence="74"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] can not be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] can not be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="AI_DETECTED_DOTNET_VERSION &gt;= AI_REQUIRED_DOTNET_VERSION" Description="[ProductName] can not be installed on systems with .NET Framework version lower than [AI_REQUIRED_DOTNET_DISPLAY]." DescriptionLocId="AI.LaunchCondition.DotNET" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] can not be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="CheckVersion" Directory_="SHORTCUTDIR" Name="CHECKV~1|Check Version" Component_="CheckVersion.url" Target="[#CheckVersion.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="WebLinks_Dir"/>
+    <ROW Shortcut="FileaBugorNewRequest" Directory_="SHORTCUTDIR" Name="FILEAB~1|File a Bug or New Request" Component_="FileaBugorNewRequest.url" Target="[#FileaBugorNewRequest.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="WebLinks_Dir"/>
+    <ROW Shortcut="JoinourDiscordServer" Directory_="SHORTCUTDIR" Name="JOINOU~1|Join our Discord Server" Component_="JoinourDiscordServer.url" Target="[#JoinourDiscordServer.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="WebLinks_Dir"/>
+    <ROW Shortcut="KryptonExplorer.exe" Directory_="SHORTCUTDIR" Name="KRYPTO~1.EXE|Krypton Explorer.exe" Component_="KryptonExplorer.exe" Target="[#KryptonExplorer.exe]" Description="Krypton Explorer.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Examples_Dir"/>
+    <ROW Shortcut="KryptonExplorer.exe_1" Directory_="DesktopFolder" Name="KRYPTO~1|Krypton Explorer" Component_="KryptonExplorer.exe" Target="[#KryptonExplorer.exe]" Description="Krypton Explorer.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Examples_Dir"/>
+    <ROW Shortcut="KryptonToolkitHelp" Directory_="SHORTCUTDIR" Name="KRYPTO~1|Krypton Toolkit Help" Component_="KryptonToolkitHelp.chm" Target="[#KryptonToolkitHelp.chm]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Help_Dir"/>
+    <ROW Shortcut="KryptonToolkitSuite5.400CoreModule" Directory_="NuGet_1_Dir" Name="KRYPTO~1.400|Krypton Toolkit Suite 5.400 - Core Module" Component_="KryptonToolkitSuite5.400CoreModule.url" Target="[#KryptonToolkitSuite5.400CoreModule.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="NuGet_Dir"/>
+    <ROW Shortcut="KryptonToolkitSuite5.400DockingModu" Directory_="NuGet_1_Dir" Name="KRYPTO~2.400|Krypton Toolkit Suite 5.400 - Docking Module" Component_="KryptonToolkitSuite5.400DockingModule.url" Target="[#KryptonToolkitSuite5.400DockingModule.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="NuGet_Dir"/>
+    <ROW Shortcut="KryptonToolkitSuite5.400NavigatorMo" Directory_="NuGet_1_Dir" Name="KRYPTO~3.400|Krypton Toolkit Suite 5.400 - Navigator Module" Component_="KryptonToolkitSuite5.400NavigatorModule.url" Target="[#KryptonToolkitSuite5.400NavigatorModule.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="NuGet_Dir"/>
+    <ROW Shortcut="KryptonToolkitSuite5.400RibbonModul" Directory_="NuGet_1_Dir" Name="KRYPTO~4.400|Krypton Toolkit Suite 5.400 - Ribbon Module" Component_="KryptonToolkitSuite5.400RibbonModule.url" Target="[#KryptonToolkitSuite5.400RibbonModule.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="NuGet_Dir"/>
+    <ROW Shortcut="KryptonToolkitSuite5.400WorkspaceMo" Directory_="NuGet_1_Dir" Name="KRYPTO~5.400|Krypton Toolkit Suite 5.400 - Workspace Module" Component_="KryptonToolkitSuite5.400WorkspaceModule.url" Target="[#KryptonToolkitSuite5.400WorkspaceModule.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="NuGet_Dir"/>
+    <ROW Shortcut="OnlineHelp" Directory_="SHORTCUTDIR" Name="ONLINE~1|Online Help" Component_="OnlineHelp.url" Target="[#OnlineHelp.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="WebLinks_Dir"/>
+    <ROW Shortcut="PaletteDesigner.exe" Directory_="SHORTCUTDIR" Name="PALETT~1.EXE|Palette Designer.exe" Component_="PaletteDesigner.exe" Target="[#PaletteDesigner.exe]" Description="Palette Designer.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Examples_Dir"/>
+    <ROW Shortcut="PaletteDesigner.exe_1" Directory_="DesktopFolder" Name="PALETT~1|Palette Designer" Component_="PaletteDesigner.exe" Target="[#PaletteDesigner.exe]" Description="Palette Designer.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Examples_Dir"/>
+    <ROW Shortcut="PaletteUpgradeTool.exe" Directory_="SHORTCUTDIR" Name="PALETT~2.EXE|Palette Upgrade Tool.exe" Component_="PaletteUpgradeTool.exe" Target="[#PaletteUpgradeTool.exe]" Description="Palette Upgrade Tool.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Examples_Dir"/>
+    <ROW Shortcut="PaletteUpgradeTool.exe_1" Directory_="DesktopFolder" Name="PALETT~2|Palette Upgrade Tool" Component_="PaletteUpgradeTool.exe" Target="[#PaletteUpgradeTool.exe]" Description="Palette Upgrade Tool.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Examples_Dir"/>
+    <ROW Shortcut="ProjectHomepage" Directory_="SHORTCUTDIR" Name="PROJEC~1|Project Homepage" Component_="ProjectHomepage.url" Target="[#ProjectHomepage.url]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="WebLinks_Dir"/>
+    <ROW Shortcut="UninstallProductNameProductVersion" Directory_="SHORTCUTDIR" Name="UNINST~1.0|Uninstall [|ProductName] [|ProductVersion]" Component_="ProjectHomepage.url" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Hotkey="0" Icon_="SystemFoldermsiexec.exe" IconIndex="0" ShowCmd="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="spring"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
+    <ROW PrereqKey="C673FE9433B49AFAC9592AB26B8F8E4" DisplayName=".NET Framework 4.0" SetupFileUrl="http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe" Location="1" ExactSize="50449456" WinNTVersions="Windows 8 x86, Windows 8.1 x86, Windows 10 x86" WinNT64Versions="Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64, Windows 10 x64, Windows Server x64" Operator="1" NoUiComLine="/q /norestart" Options="xy" MD5="251743dfd3fda414570524bac9e55381" TargetName=".NET Framework 4.0"/>
+    <ATTRIBUTE name="PrereqsOrder" value="C673FE9433B49AFAC9592AB26B8F8E4"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="C673FE9433B49AFAC9592AB26B8F8E4Install" Prereq="C673FE9433B49AFAC9592AB26B8F8E4" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Install" RefContent="M1" Order="1" Property="PreReqSearch_C673FE9433B49AFAC9592A"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
+    <ROW Directory_="APPDIR" SourcePath="P:\Development\Krypton Releases\5.400" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+  </COMPONENT>
+</DOCUMENT>
