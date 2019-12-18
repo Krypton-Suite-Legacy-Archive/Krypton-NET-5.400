@@ -114,19 +114,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="KryptonToolkitSuite5400CoreModule">
-      <Version>5.400.1254</Version>
-    </PackageReference>
-    <PackageReference Include="KryptonToolkitSuite5400DockingModule">
-      <Version>5.400.742</Version>
+      <Version>5.400.1300</Version>
     </PackageReference>
     <PackageReference Include="KryptonToolkitSuite5400NavigatorModule">
-      <Version>5.400.763</Version>
-    </PackageReference>
-    <PackageReference Include="KryptonToolkitSuite5400RibbonModule">
-      <Version>5.400.817</Version>
+      <Version>5.400.772</Version>
     </PackageReference>
     <PackageReference Include="KryptonToolkitSuite5400WorkspaceModule">
-      <Version>5.400.716</Version>
+      <Version>5.400.719</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
